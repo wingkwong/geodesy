@@ -3,3 +3,6 @@ description: Geodesic and trigonometric calculations in Dart
 version: 0.1.0
 homepage: https://github.com/wingkwong/geodesy
 author: WONG, Wing Kam <wingkwong.code@gmail.com>
+
+environment:
+  sdk: '>=2.0.0 <3.0.0'
