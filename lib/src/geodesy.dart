@@ -53,6 +53,18 @@ class Geodesy {
     return new LatLng(radiansToDegrees(latRadians2), (radiansToDegrees(lngRadians2) + 540) % 360 - 180);
   }
 
+  // calculate the bearing from point 1 to point 2
+  num bearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
+    var l1LatRadians = degreesToRadians(l1.lat);
+    var l2LatRadians = degreesToRadians(l2.lat);
+    var lngRadiansDiff = degreesToRadians(l2.lng - l1.lng);
+    var y = math.sin(lngRadiansDiff) * math.cos(l2LatRadians);
+    var x = math.cos(l1LatRadians) * math.sin(l2LatRadians) - math.sin(l1LatRadians) * math.cos(l2LatRadians) * math.cos(lngRadiansDiff);
+    var radians = math.atan2(y, x);
+
+    return (radiansToDegrees(radians) + 360) % 360;
+  }
+  
   // convert degrees to radians
   num degreesToRadians(num degrees) {
     return degrees * PI / 180;
@@ -62,5 +74,4 @@ class Geodesy {
   num radiansToDegrees(num radians) {
      return radians * 180 / PI;
    }
-
 } 
