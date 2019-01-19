@@ -9,6 +9,7 @@ class Geodesy {
   const Geodesy() : 
     latlng = const LatLng(0.0, 0.0);
 
+  // calculate a destination point given the distance and bearing
   LatLng destinationPointByDistanceAndBearing(LatLng l, num distance, num bearing, num radius) {
     radius = radius ?? RADIUS;
 
@@ -69,7 +70,7 @@ class Geodesy {
     return distance;
    }
 
-  // calculate the bearing from point 1 to point 2
+  // calculate the bearing from point l1 to point l2
   num bearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
     num l1LatRadians = degreesToRadians(l1.lat);
     num l2LatRadians = degreesToRadians(l2.lat);
@@ -81,7 +82,7 @@ class Geodesy {
     return (radiansToDegrees(radians) + 360) % 360;
   }
 
-  // calculate the final bearing from point 1 to point 2
+  // calculate the final bearing from point l1 to point l2
   num finalBearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
     return (bearingBetweenTwoGeoPoints(l2, l1) + 180) % 360;
   }
