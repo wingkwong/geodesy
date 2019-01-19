@@ -29,37 +29,38 @@ class Geodesy {
     return distance;
    }
 
-   LatLng destinationPointByDistanceAndBearing(LatLng l, num distance, num bearing, num radius) {
-     radius = radius ?? RADIUS;
+  LatLng destinationPointByDistanceAndBearing(LatLng l, num distance, num bearing, num radius) {
+    radius = radius ?? RADIUS;
 
-      var angularDistanceRadius = distance / radius;
-      var bearingRadians = degreesToRadians(bearing);
+    var angularDistanceRadius = distance / radius;
+    var bearingRadians = degreesToRadians(bearing);
 
-      var latRadians = degreesToRadians(l.lat);
-      var lngRadians = degreesToRadians(l.lng);
+    var latRadians = degreesToRadians(l.lat);
+    var lngRadians = degreesToRadians(l.lng);
 
-      num sinLatRadians = math.sin(latRadians);
-      num cosLatRadians = math.cos(latRadians);
-      num sinAngularDistanceRadius = math.sin(angularDistanceRadius);
-      num cosAngularDistanceRadius = math.cos(angularDistanceRadius);
-      num sinBearingRadians = math.sin(bearingRadians);
-      num cosBearingRadians = math.cos(bearingRadians);
+    num sinLatRadians = math.sin(latRadians);
+    num cosLatRadians = math.cos(latRadians);
+    num sinAngularDistanceRadius = math.sin(angularDistanceRadius);
+    num cosAngularDistanceRadius = math.cos(angularDistanceRadius);
+    num sinBearingRadians = math.sin(bearingRadians);
+    num cosBearingRadians = math.cos(bearingRadians);
 
-      num sinLatRadians2 = sinLatRadians * cosAngularDistanceRadius + cosLatRadians * sinAngularDistanceRadius * cosBearingRadians;
-      num latRadians2 = math.asin(sinLatRadians2);
-      num y = sinBearingRadians * sinAngularDistanceRadius * cosLatRadians;
-      num x = cosAngularDistanceRadius - sinLatRadians * sinLatRadians2;
-      num lngRadians2 = lngRadians + math.atan2(y, x);
-      return new LatLng(radiansToDegrees(latRadians2), (radiansToDegrees(lngRadians2) + 540) % 360 - 180);
-   }
+    num sinLatRadians2 = sinLatRadians * cosAngularDistanceRadius + cosLatRadians * sinAngularDistanceRadius * cosBearingRadians;
+    num latRadians2 = math.asin(sinLatRadians2);
+    num y = sinBearingRadians * sinAngularDistanceRadius * cosLatRadians;
+    num x = cosAngularDistanceRadius - sinLatRadians * sinLatRadians2;
+    num lngRadians2 = lngRadians + math.atan2(y, x);
+    return new LatLng(radiansToDegrees(latRadians2), (radiansToDegrees(lngRadians2) + 540) % 360 - 180);
+  }
 
-   // convert degrees to radians
-   num degreesToRadians(num degrees) {
-     return degrees * PI / 180;
-   }
+  // convert degrees to radians
+  num degreesToRadians(num degrees) {
+    return degrees * PI / 180;
+  }
 
-   // convert degrees to radians
-   num radiansToDegrees(num radians) {
+  // convert degrees to radians
+  num radiansToDegrees(num radians) {
      return radians * 180 / PI;
    }
+
 } 
