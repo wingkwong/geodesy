@@ -64,7 +64,12 @@ class Geodesy {
 
     return (radiansToDegrees(radians) + 360) % 360;
   }
-  
+
+  // calculate the final bearing from point 1 to point 2
+  num finalBearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
+    return (bearingBetweenTwoGeoPoints(l2, l1) + 180) % 360;
+  }
+
   // convert degrees to radians
   num degreesToRadians(num degrees) {
     return degrees * PI / 180;
