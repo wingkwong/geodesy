@@ -95,4 +95,9 @@ class Geodesy {
   num radiansToDegrees(num radians) {
      return radians * 180 / PI;
    }
+
+  // check if a given geo point is in the bouding box
+  bool isGeoPointInBoudingBox(LatLng l, LatLng topLeft, LatLng bottomRight) {
+    return topLeft.lat <= l.lat && l.lat <= bottomRight.lat && topLeft.lng <= l.lng && l.lng <= bottomRight.lng ? true : false;
+  }
 } 
