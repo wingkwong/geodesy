@@ -9,34 +9,14 @@ class Geodesy {
   const Geodesy() : 
     latlng = const LatLng(0.0, 0.0);
 
-  // calculate the distance in meters between two geo points
-  num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, num radius) {
-      radius = radius ?? RADIUS;
-      var R = radius;
-      num l1LatRadians = degreesToRadians(l1.lat);
-      num l1LngRadians = degreesToRadians(l1.lng);
-      num l2LatRadians = degreesToRadians(l2.lat);
-      num l2LngRadians = degreesToRadians(l2.lng);
-      num latRadiansDiff = l2LatRadians - l1LatRadians;
-      num lngRadiansDiff = l2LngRadians - l1LngRadians;
-
-      var a = math.sin(latRadiansDiff/2) * math.sin(latRadiansDiff/2)
-            + math.cos(l1LatRadians) * math.cos(l2LatRadians)
-            * math.sin(lngRadiansDiff/2) * math.sin(lngRadiansDiff/2);
-      var c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a));
-      num distance = R * c;
-
-    return distance;
-   }
-
   LatLng destinationPointByDistanceAndBearing(LatLng l, num distance, num bearing, num radius) {
     radius = radius ?? RADIUS;
 
-    var angularDistanceRadius = distance / radius;
-    var bearingRadians = degreesToRadians(bearing);
+    num angularDistanceRadius = distance / radius;
+    num bearingRadians = degreesToRadians(bearing);
 
-    var latRadians = degreesToRadians(l.lat);
-    var lngRadians = degreesToRadians(l.lng);
+    num latRadians = degreesToRadians(l.lat);
+    num lngRadians = degreesToRadians(l.lng);
 
     num sinLatRadians = math.sin(latRadians);
     num cosLatRadians = math.cos(latRadians);
@@ -53,14 +33,50 @@ class Geodesy {
     return new LatLng(radiansToDegrees(latRadians2), (radiansToDegrees(lngRadians2) + 540) % 360 - 180);
   }
 
+  // calcuate the midpoint bewteen teo geo points
+  LatLng midPointBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
+    num l1LatRadians = degreesToRadians(l1.lat); num l1LngRadians = degreesToRadians(l1.lng);
+    num l2LatRadians = degreesToRadians(l2.lat); num lngRadiansDiff = degreesToRadians(l2.lng - l1.lng);
+
+    num vectorX = math.cos(l2LatRadians) * math.cos(lngRadiansDiff);
+    num vectorY = math.cos(l2LatRadians) * math.sin(lngRadiansDiff);
+
+    num x = math.sqrt((math.cos(l1LatRadians) + vectorX) * (math.cos(l1LatRadians) + vectorX) + vectorY * vectorY);
+    num y = math.sin(l1LatRadians) + math.sin(l2LatRadians);
+    num latRadians = math.atan2(y, x);
+    num lngRadians = l1LngRadians + math.atan2(vectorY, math.cos(l1LatRadians) + vectorX);
+
+    return new LatLng(radiansToDegrees(latRadians), (radiansToDegrees(lngRadians) + 540) % 360 - 180);
+  }
+  
+  // calculate the distance in meters between two geo points
+  num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, num radius) {
+      radius = radius ?? RADIUS;
+      num R = radius;
+      num l1LatRadians = degreesToRadians(l1.lat);
+      num l1LngRadians = degreesToRadians(l1.lng);
+      num l2LatRadians = degreesToRadians(l2.lat);
+      num l2LngRadians = degreesToRadians(l2.lng);
+      num latRadiansDiff = l2LatRadians - l1LatRadians;
+      num lngRadiansDiff = l2LngRadians - l1LngRadians;
+
+      num a = math.sin(latRadiansDiff/2) * math.sin(latRadiansDiff/2)
+            + math.cos(l1LatRadians) * math.cos(l2LatRadians)
+            * math.sin(lngRadiansDiff/2) * math.sin(lngRadiansDiff/2);
+      num c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a));
+      num distance = R * c;
+
+    return distance;
+   }
+
   // calculate the bearing from point 1 to point 2
   num bearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
-    var l1LatRadians = degreesToRadians(l1.lat);
-    var l2LatRadians = degreesToRadians(l2.lat);
-    var lngRadiansDiff = degreesToRadians(l2.lng - l1.lng);
-    var y = math.sin(lngRadiansDiff) * math.cos(l2LatRadians);
-    var x = math.cos(l1LatRadians) * math.sin(l2LatRadians) - math.sin(l1LatRadians) * math.cos(l2LatRadians) * math.cos(lngRadiansDiff);
-    var radians = math.atan2(y, x);
+    num l1LatRadians = degreesToRadians(l1.lat);
+    num l2LatRadians = degreesToRadians(l2.lat);
+    num lngRadiansDiff = degreesToRadians(l2.lng - l1.lng);
+    num y = math.sin(lngRadiansDiff) * math.cos(l2LatRadians);
+    num x = math.cos(l1LatRadians) * math.sin(l2LatRadians) - math.sin(l1LatRadians) * math.cos(l2LatRadians) * math.cos(lngRadiansDiff);
+    num radians = math.atan2(y, x);
 
     return (radiansToDegrees(radians) + 360) % 360;
   }
