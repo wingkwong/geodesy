@@ -8,7 +8,7 @@ class Geodesy {
 
   const Geodesy() : latlng = const LatLng(0.0, 0.0);
 
-  // calculate a destination point given the distance and bearing
+  /// calculate a destination point given the distance and bearing
   LatLng destinationPointByDistanceAndBearing(
       LatLng l, num distance, num bearing, num radius) {
     radius = radius ?? RADIUS;
@@ -36,7 +36,7 @@ class Geodesy {
         (radiansToDegrees(lngRadians2) + 540) % 360 - 180);
   }
 
-  // calcuate the midpoint bewteen teo geo points
+  /// calcuate the midpoint bewteen teo geo points
   LatLng midPointBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
     num l1LatRadians = degreesToRadians(l1.lat);
     num l1LngRadians = degreesToRadians(l1.lng);
@@ -58,7 +58,7 @@ class Geodesy {
         (radiansToDegrees(lngRadians) + 540) % 360 - 180);
   }
 
-  // calculate the distance in meters between two geo points
+  /// calculate the distance in meters between two geo points
   num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, num radius) {
     radius = radius ?? RADIUS;
     num R = radius;
@@ -80,7 +80,7 @@ class Geodesy {
     return distance;
   }
 
-  // calculate the bearing from point l1 to point l2
+  /// calculate the bearing from point l1 to point l2
   num bearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
     num l1LatRadians = degreesToRadians(l1.lat);
     num l2LatRadians = degreesToRadians(l2.lat);
@@ -95,22 +95,22 @@ class Geodesy {
     return (radiansToDegrees(radians) + 360) % 360;
   }
 
-  // calculate the final bearing from point l1 to point l2
+  /// calculate the final bearing from point l1 to point l2
   num finalBearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
     return (bearingBetweenTwoGeoPoints(l2, l1) + 180) % 360;
   }
 
-  // convert degrees to radians
+  /// convert degrees to radians
   num degreesToRadians(num degrees) {
     return degrees * PI / 180;
   }
 
-  // convert degrees to radians
+  /// convert degrees to radians
   num radiansToDegrees(num radians) {
     return radians * 180 / PI;
   }
 
-  // check if a given geo point is in the bouding box
+  /// check if a given geo point is in the bouding box
   bool isGeoPointInBoudingBox(LatLng l, LatLng topLeft, LatLng bottomRight) {
     return topLeft.lat <= l.lat &&
             l.lat <= bottomRight.lat &&
