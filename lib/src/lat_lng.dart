@@ -1,6 +1,6 @@
 class LatLng {
-   final num lat;
-   final num lng;
+  final num lat;
+  final num lng;
 
-   const LatLng(this.lat, this.lng);
+  const LatLng(this.lat, this.lng);
 }
