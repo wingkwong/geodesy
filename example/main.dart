@@ -32,4 +32,10 @@ main() async {
 
   bool inBoudingBox = geodesy.isGeoPointInBoudingBox(l3, l5, l4);
   print("[isGeoPointInBoudingBox]: " + inBoudingBox.toString());
+
+  num b1 = 108.547;
+  num b2 = 32.435;
+  LatLng intersectionByPaths = geodesy.intersectionByPaths(l4, l5, b1, b2);
+  print("[intersectionByPaths] Lat: " + intersectionByPaths.lat.toString());
+  print("[intersectionByPaths] Lng: " + intersectionByPaths.lng.toString());
 }

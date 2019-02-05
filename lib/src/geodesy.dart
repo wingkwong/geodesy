@@ -58,6 +58,63 @@ class Geodesy {
         (radiansToDegrees(lngRadians) + 540) % 360 - 180);
   }
 
+  /// calculate the geo point of intersection of two given paths
+  LatLng intersectionByPaths(LatLng l1, LatLng l2, num b1, num b2) {
+    num l1LatRadians = degreesToRadians(l1.lat);
+    num l1LngRadians = degreesToRadians(l1.lng);
+    num l2LatRadians = degreesToRadians(l2.lat);
+    num l2LngRadians = degreesToRadians(l2.lng);
+    num b1Radians = degreesToRadians(b1);
+    num b2Radians = degreesToRadians(b2);
+    num latRadiansDiff = l2LatRadians - l1LatRadians;
+    num lngRadiansDiff = l2LngRadians - l1LngRadians;
+
+    num angularDistance = 2 *
+        math.asin(math.sqrt(
+            math.sin(latRadiansDiff / 2) * math.sin(latRadiansDiff / 2) +
+                math.cos(l1LatRadians) *
+                    math.cos(l2LatRadians) *
+                    math.sin(lngRadiansDiff / 2) *
+                    math.sin(lngRadiansDiff / 2)));
+    if (angularDistance == 0) return null;
+
+    num initBearingX = math.acos((math.sin(l2LatRadians) -
+            math.sin(l1LatRadians) * math.cos(angularDistance)) /
+        (math.sin(angularDistance) * math.cos(l1LatRadians)));
+    if (initBearingX.isNaN) initBearingX = 0;
+    num initBearingY = math.acos((math.sin(l1LatRadians) -
+            math.sin(l2LatRadians) * math.cos(angularDistance)) /
+        (math.sin(angularDistance) * math.cos(l2LatRadians)));
+
+    num finalBearingX = math.sin(l2LngRadians - l1LngRadians) > 0
+        ? initBearingX
+        : 2 * PI - initBearingX;
+    num finalBearingY = math.sin(l2LngRadians - l1LngRadians) > 0
+        ? 2 * PI - initBearingY
+        : initBearingY;
+
+    num angle1 = b1Radians - finalBearingX;
+    num angle2 = finalBearingY - b2Radians;
+
+    if (math.sin(angle1) == 0 && math.sin(angle2) == 0) return null;
+    if (math.sin(angle1) * math.sin(angle2) < 0) return null;
+
+    num angle3 = math.acos(-math.cos(angle1) * math.cos(angle2) +
+        math.sin(angle1) * math.sin(angle2) * math.cos(angularDistance));
+    num dst13 = math.atan2(
+        math.sin(angularDistance) * math.sin(angle1) * math.sin(angle2),
+        math.cos(angle2) + math.cos(angle1) * math.cos(angle3));
+    num lat3 = math.asin(math.sin(l1LatRadians) * math.cos(dst13) +
+        math.cos(l1LatRadians) * math.sin(dst13) * math.cos(b1Radians));
+    num lngRadiansDiff13 = math.atan2(
+        math.sin(b1Radians) * math.sin(dst13) * math.cos(l1LatRadians),
+        math.cos(dst13) - math.sin(l1LatRadians) * math.sin(lat3));
+    num l3LngRadians = l1LngRadians + lngRadiansDiff13;
+
+    return new LatLng(radiansToDegrees(lat3),
+        (radiansToDegrees(l3LngRadians) + 540) % 360 - 180);
+  }
+
   /// calculate the distance in meters between two geo points
   num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, num radius) {
     radius = radius ?? RADIUS;
