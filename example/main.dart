@@ -38,4 +38,8 @@ main() async {
   LatLng intersectionByPaths = geodesy.intersectionByPaths(l4, l5, b1, b2);
   print("[intersectionByPaths] Lat: " + intersectionByPaths.lat.toString());
   print("[intersectionByPaths] Lng: " + intersectionByPaths.lng.toString());
+
+  LatLng l6 = LatLng(50.587, 1.231);
+  num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l4, l5, l6, null);
+  print("[crossTrackDistanceTo] :" + distanceToGreatCircle.toString());
 }

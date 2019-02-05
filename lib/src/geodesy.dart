@@ -167,6 +167,21 @@ class Geodesy {
     return radians * 180 / PI;
   }
 
+  /// calculate signed distance from a geo point to greate circle with start and end points
+  num crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, num radius) {
+    num R = radius ?? RADIUS;
+
+    num distStartL1 = distanceBetweenTwoGeoPoints(start, l1, R) / R;
+    num radiansStartL1 =
+        degreesToRadians(bearingBetweenTwoGeoPoints(start, l1));
+    num radiansEndL1 = degreesToRadians(bearingBetweenTwoGeoPoints(start, end));
+
+    num x = math
+        .asin(math.sin(distStartL1) * math.sin(radiansStartL1 - radiansEndL1));
+
+    return x * R;
+  }
+
   /// check if a given geo point is in the bouding box
   bool isGeoPointInBoudingBox(LatLng l, LatLng topLeft, LatLng bottomRight) {
     return topLeft.lat <= l.lat &&
