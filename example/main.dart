@@ -42,4 +42,14 @@ main() async {
   LatLng l6 = LatLng(50.587, 1.231);
   num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l4, l5, l6, null);
   print("[crossTrackDistanceTo] :" + distanceToGreatCircle.toString());
+
+  List<LatLng> poly = [
+    LatLng(1.0, 1.0),
+    LatLng(1.0, 2.0),
+    LatLng(2.0, 2.0),
+    LatLng(2.0, 1.0)
+  ];
+  LatLng l7 = LatLng(1.5, 1.5);
+  bool isGeoPointInPolygon = geodesy.isGeoPointInPolygon(l7, poly);
+  print("[isGeoPointInPolygon] :" + isGeoPointInPolygon.toString());
 }

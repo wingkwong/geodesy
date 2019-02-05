@@ -191,4 +191,20 @@ class Geodesy {
         ? true
         : false;
   }
+
+  /// check if a given geo point is in the a polygon using even-odd rule algorithm
+  bool isGeoPointInPolygon(LatLng l, List<LatLng> polygon) {
+    var isInPolygon = false;
+
+    for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+      if ((((polygon[i].lat <= l.lat) && (l.lat < polygon[j].lat)) ||
+              ((polygon[j].lat <= l.lat) && (l.lat < polygon[i].lat))) &&
+          (l.lng <
+              (polygon[j].lng - polygon[i].lng) *
+                      (l.lat - polygon[i].lat) /
+                      (polygon[j].lat - polygon[i].lat) +
+                  polygon[i].lng)) isInPolygon = !isInPolygon;
+    }
+    return isInPolygon;
+  }
 }
