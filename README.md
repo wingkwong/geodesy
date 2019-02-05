@@ -72,3 +72,22 @@ Check if a given geo point is in the bouding box
 ````
 bool inBoudingBox = geodesy.isGeoPointInBoudingBox(l1, l2, l3);
 ````
+
+### intersectionByPaths(LatLng l1, LatLng l2, num b1, num b2) 
+Calculate the geo point of intersection of two given paths
+````
+LatLng intersectionByPaths = geodesy.intersectionByPaths(l1, l2, b1, b2);
+````
+
+### crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, num radius)
+Calculate signed distance from a geo point to greate circle with start and end points
+````
+num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l1, l2, l3, null);
+````
+  
+### isGeoPointInPolygon(LatLng l, List<LatLng> polygon)
+Check if a given geo point is in the a polygon using even-odd rule algorithm
+````
+bool isGeoPointInPolygon = geodesy.isGeoPointInPolygon(l, poly);
+````
+ 
