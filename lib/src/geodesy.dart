@@ -1,12 +1,9 @@
 import 'dart:math' as math;
-import 'lat_lng.dart';
+import 'package:latlong/latlong.dart';
 
 class Geodesy {
-  final LatLng latlng;
   final num RADIUS = 6371e3; // meters
   final num PI = math.pi;
-
-  const Geodesy() : latlng = const LatLng(0.0, 0.0);
 
   /// calculate a destination point given the distance and bearing
   LatLng destinationPointByDistanceAndBearing(
@@ -14,10 +11,10 @@ class Geodesy {
     radius = radius ?? RADIUS;
 
     num angularDistanceRadius = distance / radius;
-    num bearingRadians = degreesToRadians(bearing);
+    num bearingRadians = degToRadian(bearing);
 
-    num latRadians = degreesToRadians(l.lat);
-    num lngRadians = degreesToRadians(l.lng);
+    num latRadians = degToRadian(l.latitude);
+    num lngRadians = degToRadian(l.longitude);
 
     num sinLatRadians = math.sin(latRadians);
     num cosLatRadians = math.cos(latRadians);
@@ -32,16 +29,16 @@ class Geodesy {
     num y = sinBearingRadians * sinAngularDistanceRadius * cosLatRadians;
     num x = cosAngularDistanceRadius - sinLatRadians * sinLatRadians2;
     num lngRadians2 = lngRadians + math.atan2(y, x);
-    return new LatLng(radiansToDegrees(latRadians2),
-        (radiansToDegrees(lngRadians2) + 540) % 360 - 180);
+    return new LatLng(
+        radianToDeg(latRadians2), (radianToDeg(lngRadians2) + 540) % 360 - 180);
   }
 
   /// calcuate the midpoint bewteen teo geo points
   LatLng midPointBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
-    num l1LatRadians = degreesToRadians(l1.lat);
-    num l1LngRadians = degreesToRadians(l1.lng);
-    num l2LatRadians = degreesToRadians(l2.lat);
-    num lngRadiansDiff = degreesToRadians(l2.lng - l1.lng);
+    num l1LatRadians = degToRadian(l1.latitude);
+    num l1LngRadians = degToRadian(l1.longitude);
+    num l2LatRadians = degToRadian(l2.latitude);
+    num lngRadiansDiff = degToRadian(l2.longitude - l1.longitude);
 
     num vectorX = math.cos(l2LatRadians) * math.cos(lngRadiansDiff);
     num vectorY = math.cos(l2LatRadians) * math.sin(lngRadiansDiff);
@@ -54,18 +51,18 @@ class Geodesy {
     num lngRadians =
         l1LngRadians + math.atan2(vectorY, math.cos(l1LatRadians) + vectorX);
 
-    return new LatLng(radiansToDegrees(latRadians),
-        (radiansToDegrees(lngRadians) + 540) % 360 - 180);
+    return new LatLng(
+        radianToDeg(latRadians), (radianToDeg(lngRadians) + 540) % 360 - 180);
   }
 
   /// calculate the geo point of intersection of two given paths
   LatLng intersectionByPaths(LatLng l1, LatLng l2, num b1, num b2) {
-    num l1LatRadians = degreesToRadians(l1.lat);
-    num l1LngRadians = degreesToRadians(l1.lng);
-    num l2LatRadians = degreesToRadians(l2.lat);
-    num l2LngRadians = degreesToRadians(l2.lng);
-    num b1Radians = degreesToRadians(b1);
-    num b2Radians = degreesToRadians(b2);
+    num l1LatRadians = degToRadian(l1.latitude);
+    num l1LngRadians = degToRadian(l1.longitude);
+    num l2LatRadians = degToRadian(l2.latitude);
+    num l2LngRadians = degToRadian(l2.longitude);
+    num b1Radians = degToRadian(b1);
+    num b2Radians = degToRadian(b2);
     num latRadiansDiff = l2LatRadians - l1LatRadians;
     num lngRadiansDiff = l2LngRadians - l1LngRadians;
 
@@ -111,18 +108,18 @@ class Geodesy {
         math.cos(dst13) - math.sin(l1LatRadians) * math.sin(lat3));
     num l3LngRadians = l1LngRadians + lngRadiansDiff13;
 
-    return new LatLng(radiansToDegrees(lat3),
-        (radiansToDegrees(l3LngRadians) + 540) % 360 - 180);
+    return new LatLng(
+        radianToDeg(lat3), (radianToDeg(l3LngRadians) + 540) % 360 - 180);
   }
 
   /// calculate the distance in meters between two geo points
   num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, num radius) {
     radius = radius ?? RADIUS;
     num R = radius;
-    num l1LatRadians = degreesToRadians(l1.lat);
-    num l1LngRadians = degreesToRadians(l1.lng);
-    num l2LatRadians = degreesToRadians(l2.lat);
-    num l2LngRadians = degreesToRadians(l2.lng);
+    num l1LatRadians = degToRadian(l1.latitude);
+    num l1LngRadians = degToRadian(l1.longitude);
+    num l2LatRadians = degToRadian(l2.latitude);
+    num l2LngRadians = degToRadian(l2.longitude);
     num latRadiansDiff = l2LatRadians - l1LatRadians;
     num lngRadiansDiff = l2LngRadians - l1LngRadians;
 
@@ -139,9 +136,9 @@ class Geodesy {
 
   /// calculate the bearing from point l1 to point l2
   num bearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
-    num l1LatRadians = degreesToRadians(l1.lat);
-    num l2LatRadians = degreesToRadians(l2.lat);
-    num lngRadiansDiff = degreesToRadians(l2.lng - l1.lng);
+    num l1LatRadians = degToRadian(l1.latitude);
+    num l2LatRadians = degToRadian(l2.latitude);
+    num lngRadiansDiff = degToRadian(l2.longitude - l1.longitude);
     num y = math.sin(lngRadiansDiff) * math.cos(l2LatRadians);
     num x = math.cos(l1LatRadians) * math.sin(l2LatRadians) -
         math.sin(l1LatRadians) *
@@ -149,7 +146,7 @@ class Geodesy {
             math.cos(lngRadiansDiff);
     num radians = math.atan2(y, x);
 
-    return (radiansToDegrees(radians) + 360) % 360;
+    return (radianToDeg(radians) + 360) % 360;
   }
 
   /// calculate the final bearing from point l1 to point l2
@@ -157,24 +154,13 @@ class Geodesy {
     return (bearingBetweenTwoGeoPoints(l2, l1) + 180) % 360;
   }
 
-  /// convert degrees to radians
-  num degreesToRadians(num degrees) {
-    return degrees * PI / 180;
-  }
-
-  /// convert degrees to radians
-  num radiansToDegrees(num radians) {
-    return radians * 180 / PI;
-  }
-
   /// calculate signed distance from a geo point to greate circle with start and end points
   num crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, num radius) {
     num R = radius ?? RADIUS;
 
     num distStartL1 = distanceBetweenTwoGeoPoints(start, l1, R) / R;
-    num radiansStartL1 =
-        degreesToRadians(bearingBetweenTwoGeoPoints(start, l1));
-    num radiansEndL1 = degreesToRadians(bearingBetweenTwoGeoPoints(start, end));
+    num radiansStartL1 = degToRadian(bearingBetweenTwoGeoPoints(start, l1));
+    num radiansEndL1 = degToRadian(bearingBetweenTwoGeoPoints(start, end));
 
     num x = math
         .asin(math.sin(distStartL1) * math.sin(radiansStartL1 - radiansEndL1));
@@ -184,10 +170,10 @@ class Geodesy {
 
   /// check if a given geo point is in the bouding box
   bool isGeoPointInBoudingBox(LatLng l, LatLng topLeft, LatLng bottomRight) {
-    return topLeft.lat <= l.lat &&
-            l.lat <= bottomRight.lat &&
-            topLeft.lng <= l.lng &&
-            l.lng <= bottomRight.lng
+    return topLeft.latitude <= l.latitude &&
+            l.latitude <= bottomRight.latitude &&
+            topLeft.longitude <= l.longitude &&
+            l.longitude <= bottomRight.longitude
         ? true
         : false;
   }
@@ -197,13 +183,15 @@ class Geodesy {
     var isInPolygon = false;
 
     for (var i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-      if ((((polygon[i].lat <= l.lat) && (l.lat < polygon[j].lat)) ||
-              ((polygon[j].lat <= l.lat) && (l.lat < polygon[i].lat))) &&
-          (l.lng <
-              (polygon[j].lng - polygon[i].lng) *
-                      (l.lat - polygon[i].lat) /
-                      (polygon[j].lat - polygon[i].lat) +
-                  polygon[i].lng)) isInPolygon = !isInPolygon;
+      if ((((polygon[i].latitude <= l.latitude) &&
+                  (l.latitude < polygon[j].latitude)) ||
+              ((polygon[j].latitude <= l.latitude) &&
+                  (l.latitude < polygon[i].latitude))) &&
+          (l.longitude <
+              (polygon[j].longitude - polygon[i].longitude) *
+                      (l.latitude - polygon[i].latitude) /
+                      (polygon[j].latitude - polygon[i].latitude) +
+                  polygon[i].longitude)) isInPolygon = !isInPolygon;
     }
     return isInPolygon;
   }
