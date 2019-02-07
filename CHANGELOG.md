@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.3.0
+- Added latlong package
+- Deprecated LatLng
+- Deprecated degreesToRadians & radiansToDegrees
+
 ## 0.2.0
 - Added intersectionByPaths
 - Added crossTrackDistanceTo 
