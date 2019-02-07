@@ -19,7 +19,7 @@ import 'package:geodesy/geodesy.dart';
 Geodesy geodesy = Geodesy();
 ````
 
-### LatLng(num lat, num lng)
+### LatLng(double latitude, double longitude)
 ````
 LatLng l = LatLng(22.308, 114.1716);
 ````
