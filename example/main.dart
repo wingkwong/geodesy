@@ -12,9 +12,9 @@ main() async {
   LatLng distinationPoint =
       geodesy.destinationPointByDistanceAndBearing(l3, 7794.0, 300.7, null);
   print("[destinationPointByDistanceAndBearing] Lat: " +
-      distinationPoint.lat.toString());
+      distinationPoint.latitude.toString());
   print("[destinationPointByDistanceAndBearing] Lng: " +
-      distinationPoint.lng.toString());
+      distinationPoint.longitude.toString());
 
   LatLng l4 = LatLng(52.205, 0.119);
   LatLng l5 = LatLng(48.857, 2.351);
@@ -25,10 +25,10 @@ main() async {
   print("[finalBearingBetweenTwoGeoPoints] Bearing:" + finalBearing.toString());
 
   LatLng midpoint = geodesy.midPointBetweenTwoGeoPoints(l4, l5);
-  print(
-      "[midPointBetweenTwoGeoPoints] Midpoint Lat: " + midpoint.lat.toString());
-  print(
-      "[midPointBetweenTwoGeoPoints] Midpoint Lng: " + midpoint.lng.toString());
+  print("[midPointBetweenTwoGeoPoints] Midpoint Lat: " +
+      midpoint.latitude.toString());
+  print("[midPointBetweenTwoGeoPoints] Midpoint Lng: " +
+      midpoint.longitude.toString());
 
   bool inBoudingBox = geodesy.isGeoPointInBoudingBox(l3, l5, l4);
   print("[isGeoPointInBoudingBox]: " + inBoudingBox.toString());
@@ -36,8 +36,10 @@ main() async {
   num b1 = 108.547;
   num b2 = 32.435;
   LatLng intersectionByPaths = geodesy.intersectionByPaths(l4, l5, b1, b2);
-  print("[intersectionByPaths] Lat: " + intersectionByPaths.lat.toString());
-  print("[intersectionByPaths] Lng: " + intersectionByPaths.lng.toString());
+  print(
+      "[intersectionByPaths] Lat: " + intersectionByPaths.latitude.toString());
+  print(
+      "[intersectionByPaths] Lng: " + intersectionByPaths.longitude.toString());
 
   LatLng l6 = LatLng(50.587, 1.231);
   num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l4, l5, l6, null);
