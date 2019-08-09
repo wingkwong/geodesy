@@ -1,6 +1,6 @@
 import '../lib/geodesy.dart';
 
-main() async {
+void main() async {
   Geodesy geodesy = Geodesy();
   LatLng l1 = LatLng(50.06638889, 5.71472222);
   LatLng l2 = LatLng(58.64388889, 3.07000000);
