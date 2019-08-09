@@ -12,7 +12,7 @@ class Geodesy {
     radius = radius ?? RADIUS;
 
     num angularDistanceRadius = distance / radius;
-    num bearingRadians = degToRadian(bearing);
+    num bearingRadians = degToRadian(bearing as double);
 
     num latRadians = degToRadian(l.latitude);
     num lngRadians = degToRadian(l.longitude);
@@ -30,8 +30,8 @@ class Geodesy {
     num y = sinBearingRadians * sinAngularDistanceRadius * cosLatRadians;
     num x = cosAngularDistanceRadius - sinLatRadians * sinLatRadians2;
     num lngRadians2 = lngRadians + math.atan2(y, x);
-    return new LatLng(
-        radianToDeg(latRadians2), (radianToDeg(lngRadians2) + 540) % 360 - 180);
+    return new LatLng(radianToDeg(latRadians2 as double),
+        (radianToDeg(lngRadians2 as double) + 540) % 360 - 180);
   }
 
   /// calcuate the midpoint bewteen teo geo points
@@ -52,8 +52,8 @@ class Geodesy {
     num lngRadians =
         l1LngRadians + math.atan2(vectorY, math.cos(l1LatRadians) + vectorX);
 
-    return new LatLng(
-        radianToDeg(latRadians), (radianToDeg(lngRadians) + 540) % 360 - 180);
+    return new LatLng(radianToDeg(latRadians as double),
+        (radianToDeg(lngRadians as double) + 540) % 360 - 180);
   }
 
   /// calculate the geo point of intersection of two given paths
@@ -62,8 +62,8 @@ class Geodesy {
     num l1LngRadians = degToRadian(l1.longitude);
     num l2LatRadians = degToRadian(l2.latitude);
     num l2LngRadians = degToRadian(l2.longitude);
-    num b1Radians = degToRadian(b1);
-    num b2Radians = degToRadian(b2);
+    num b1Radians = degToRadian(b1 as double);
+    num b2Radians = degToRadian(b2 as double);
     num latRadiansDiff = l2LatRadians - l1LatRadians;
     num lngRadiansDiff = l2LngRadians - l1LngRadians;
 
@@ -109,8 +109,8 @@ class Geodesy {
         math.cos(dst13) - math.sin(l1LatRadians) * math.sin(lat3));
     num l3LngRadians = l1LngRadians + lngRadiansDiff13;
 
-    return new LatLng(
-        radianToDeg(lat3), (radianToDeg(l3LngRadians) + 540) % 360 - 180);
+    return new LatLng(radianToDeg(lat3 as double),
+        (radianToDeg(l3LngRadians as double) + 540) % 360 - 180);
   }
 
   /// calculate the distance in meters between two geo points
@@ -147,7 +147,7 @@ class Geodesy {
             math.cos(lngRadiansDiff);
     num radians = math.atan2(y, x);
 
-    return (radianToDeg(radians) + 360) % 360;
+    return (radianToDeg(radians as double) + 360) % 360;
   }
 
   /// calculate the final bearing from point l1 to point l2
@@ -160,8 +160,10 @@ class Geodesy {
     num R = radius ?? RADIUS;
 
     num distStartL1 = distanceBetweenTwoGeoPoints(start, l1, R) / R;
-    num radiansStartL1 = degToRadian(bearingBetweenTwoGeoPoints(start, l1));
-    num radiansEndL1 = degToRadian(bearingBetweenTwoGeoPoints(start, end));
+    num radiansStartL1 =
+        degToRadian(bearingBetweenTwoGeoPoints(start, l1) as double);
+    num radiansEndL1 =
+        degToRadian(bearingBetweenTwoGeoPoints(start, end) as double);
 
     num x = math
         .asin(math.sin(distStartL1) * math.sin(radiansStartL1 - radiansEndL1));
