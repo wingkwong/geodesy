@@ -9,3 +9,4 @@ environment:
 
 dependencies:
   latlong: ^0.6.1
+  pedantic: ^1.6.0
