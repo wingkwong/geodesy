@@ -25,10 +25,10 @@ LatLng l = LatLng(22.308, 114.1716);
 ````
 
 ## Methods
-### destinationPointByDistanceAndBearing(LatLng l, num distance, num bearing, num radius)
+### destinationPointByDistanceAndBearing(LatLng l, num distance, num bearing, [num radius])
 Calculate a destination point given the distance and bearing. If raduis is not specified, Earth radius will be used.
 ````
-LatLng distinationPoint = geodesy.destinationPointByDistanceAndBearing(l3, 2400, 420.2, null);
+LatLng distinationPoint = geodesy.destinationPointByDistanceAndBearing(l3, 2400, 420.2);
 ````
 
 ### midPointBetweenTwoGeoPoints(LatLng l1, LatLng l2)
@@ -37,10 +37,10 @@ Calcuate the midpoint bewteen teo geo points.
 LatLng midpoint = geodesy.midPointBetweenTwoGeoPoints(l1, l2);
 ````
 
-### distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, num radius) 
+### distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, [num radius]) 
 Calculate the distance in meters between two geo points. If raduis is not specified, Earth radius will be used.
 ````
-num distance = geodesy.distanceBetweenTwoGeoPoints(l1, l2, null);
+num distance = geodesy.distanceBetweenTwoGeoPoints(l1, l2);
 ````
 
 ### bearingBetweenTwoGeoPoints(LatLng l1, LatLng l2)
@@ -79,10 +79,10 @@ Calculate the geo point of intersection of two given paths
 LatLng intersectionByPaths = geodesy.intersectionByPaths(l1, l2, b1, b2);
 ````
 
-### crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, num radius)
+### crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, [num radius])
 Calculate signed distance from a geo point to greate circle with start and end points
 ````
-num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l1, l2, l3, null);
+num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l1, l2, l3);
 ````
   
 ### isGeoPointInPolygon(LatLng l, List<LatLng> polygon)
