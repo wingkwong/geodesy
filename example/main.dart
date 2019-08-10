@@ -5,12 +5,12 @@ main() async {
   LatLng l1 = LatLng(50.06638889, 5.71472222);
   LatLng l2 = LatLng(58.64388889, 3.07000000);
 
-  num distance = geodesy.distanceBetweenTwoGeoPoints(l1, l2, null);
+  num distance = geodesy.distanceBetweenTwoGeoPoints(l1, l2);
   print("[distanceBetweenTwoGeoPoints] Distance: " + distance.toString());
 
   LatLng l3 = LatLng(51.4778, -0.0015);
   LatLng distinationPoint =
-      geodesy.destinationPointByDistanceAndBearing(l3, 7794.0, 300.7, null);
+      geodesy.destinationPointByDistanceAndBearing(l3, 7794.0, 300.7);
   print("[destinationPointByDistanceAndBearing] Lat: " +
       distinationPoint.latitude.toString());
   print("[destinationPointByDistanceAndBearing] Lng: " +
@@ -42,7 +42,7 @@ main() async {
       "[intersectionByPaths] Lng: " + intersectionByPaths.longitude.toString());
 
   LatLng l6 = LatLng(50.587, 1.231);
-  num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l4, l5, l6, null);
+  num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l4, l5, l6);
   print("[crossTrackDistanceTo] :" + distanceToGreatCircle.toString());
 
   List<LatLng> poly = [

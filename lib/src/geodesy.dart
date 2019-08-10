@@ -7,7 +7,8 @@ class Geodesy {
 
   /// calculate a destination point given the distance and bearing
   LatLng destinationPointByDistanceAndBearing(
-      LatLng l, num distance, num bearing, num radius) {
+      LatLng l, num distance, num bearing,
+      [num radius]) {
     radius = radius ?? RADIUS;
 
     num angularDistanceRadius = distance / radius;
@@ -113,7 +114,7 @@ class Geodesy {
   }
 
   /// calculate the distance in meters between two geo points
-  num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, num radius) {
+  num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, [num radius]) {
     radius = radius ?? RADIUS;
     num R = radius;
     num l1LatRadians = degToRadian(l1.latitude);
@@ -155,7 +156,7 @@ class Geodesy {
   }
 
   /// calculate signed distance from a geo point to greate circle with start and end points
-  num crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, num radius) {
+  num crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, [num radius]) {
     num R = radius ?? RADIUS;
 
     num distStartL1 = distanceBetweenTwoGeoPoints(start, l1, R) / R;
