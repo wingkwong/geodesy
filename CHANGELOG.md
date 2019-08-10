@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.1
+- Applied strict static analysis
+- Made the radius parameter optional
+
 ## 0.3.0
 - Added latlong package
 - Deprecated LatLng
