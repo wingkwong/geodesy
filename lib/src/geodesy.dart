@@ -201,4 +201,20 @@ class Geodesy {
     }
     return isInPolygon;
   }
+
+  /// Get a list of [LatLng] points within a distance from
+  /// a given point
+  ///
+  /// Distance is in meters
+  List<LatLng> pointsInRange(
+      LatLng point, List<LatLng> pointsToCheck, num distance) {
+    final geoFencedPoints = <LatLng>[];
+    for (final p in pointsToCheck) {
+      final distanceFromCenter = distanceBetweenTwoGeoPoints(point, p);
+      if (distanceFromCenter <= distance) {
+        geoFencedPoints.add(p);
+      }
+    }
+    return geoFencedPoints;
+  }
 }
