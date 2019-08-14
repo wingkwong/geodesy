@@ -82,4 +82,18 @@ void main() {
     bool isGeoPointInPolygon = geodesy.isGeoPointInPolygon(l7, poly);
     expect(isGeoPointInPolygon, true);
   });
+
+  test("pointsInRange", () async {
+    final point = LatLng(51.0, 0);
+    final distance = 10000;
+    final pointNotInRange = geodesy.destinationPointByDistanceAndBearing(
+        point, distance + 10, 420.0);
+    final pointInRange = geodesy.destinationPointByDistanceAndBearing(
+        point, distance - 10, 420.0);
+    final pointsToCheck = <LatLng>[pointInRange, pointNotInRange];
+    final geofencedPoints =
+        geodesy.pointsInRange(point, pointsToCheck, distance);
+    expect((geofencedPoints.contains(pointInRange)), true);
+    expect((geofencedPoints.contains(pointNotInRange)), false);
+  });
 }
