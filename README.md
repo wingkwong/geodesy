@@ -1,5 +1,7 @@
 # Geodesy
 
+[![pub package](https://img.shields.io/pub/v/geodesy.svg)](https://pub.dartlang.org/packages/geodesy)
+
 A Dart library for implementing geodesic and trigonometric calculations based on a spherical Earth model for working with points and paths such as distances, bearings and destinations
 
 ## Getting Started
