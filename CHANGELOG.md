@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.3.2
+- Added tests
+- Added pointsInRange
+
 ## 0.3.1
 - Applied strict static analysis
 - Made the radius parameter optional
