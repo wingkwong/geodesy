@@ -1,5 +1,5 @@
 import 'dart:math' as math;
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 /// The main geodesy class
 class Geodesy {
@@ -9,7 +9,7 @@ class Geodesy {
   /// calculate a destination point given the distance and bearing
   LatLng destinationPointByDistanceAndBearing(
       LatLng l, num distance, num bearing,
-      [num radius]) {
+      [num? radius]) {
     radius = radius ?? _RADIUS;
 
     num angularDistanceRadius = distance / radius;
@@ -25,11 +25,11 @@ class Geodesy {
     num sinBearingRadians = math.sin(bearingRadians);
     num cosBearingRadians = math.cos(bearingRadians);
 
-    num sinLatRadians2 = sinLatRadians * cosAngularDistanceRadius +
+    var sinLatRadians2 = sinLatRadians * cosAngularDistanceRadius +
         cosLatRadians * sinAngularDistanceRadius * cosBearingRadians;
     num latRadians2 = math.asin(sinLatRadians2);
-    num y = sinBearingRadians * sinAngularDistanceRadius * cosLatRadians;
-    num x = cosAngularDistanceRadius - sinLatRadians * sinLatRadians2;
+    var y = sinBearingRadians * sinAngularDistanceRadius * cosLatRadians;
+    var x = cosAngularDistanceRadius - sinLatRadians * sinLatRadians2;
     num lngRadians2 = lngRadians + math.atan2(y, x);
     return LatLng(radianToDeg(latRadians2 as double),
         (radianToDeg(lngRadians2 as double) + 540) % 360 - 180);
@@ -58,15 +58,15 @@ class Geodesy {
   }
 
   /// calculate the geo point of intersection of two given paths
-  LatLng intersectionByPaths(LatLng l1, LatLng l2, num b1, num b2) {
+  LatLng? intersectionByPaths(LatLng l1, LatLng l2, num b1, num b2) {
     num l1LatRadians = degToRadian(l1.latitude);
     num l1LngRadians = degToRadian(l1.longitude);
     num l2LatRadians = degToRadian(l2.latitude);
     num l2LngRadians = degToRadian(l2.longitude);
     num b1Radians = degToRadian(b1 as double);
     num b2Radians = degToRadian(b2 as double);
-    num latRadiansDiff = l2LatRadians - l1LatRadians;
-    num lngRadiansDiff = l2LngRadians - l1LngRadians;
+    var latRadiansDiff = l2LatRadians - l1LatRadians;
+    var lngRadiansDiff = l2LngRadians - l1LngRadians;
 
     num angularDistance = 2 *
         math.asin(math.sqrt(
@@ -85,15 +85,15 @@ class Geodesy {
             math.sin(l2LatRadians) * math.cos(angularDistance)) /
         (math.sin(angularDistance) * math.cos(l2LatRadians)));
 
-    num finalBearingX = math.sin(l2LngRadians - l1LngRadians) > 0
+    var finalBearingX = math.sin(l2LngRadians - l1LngRadians) > 0
         ? initBearingX
         : 2 * _PI - initBearingX;
-    num finalBearingY = math.sin(l2LngRadians - l1LngRadians) > 0
+    var finalBearingY = math.sin(l2LngRadians - l1LngRadians) > 0
         ? 2 * _PI - initBearingY
         : initBearingY;
 
-    num angle1 = b1Radians - finalBearingX;
-    num angle2 = finalBearingY - b2Radians;
+    var angle1 = b1Radians - finalBearingX;
+    var angle2 = finalBearingY - b2Radians;
 
     if (math.sin(angle1) == 0 && math.sin(angle2) == 0) return null;
     if (math.sin(angle1) * math.sin(angle2) < 0) return null;
@@ -108,22 +108,22 @@ class Geodesy {
     num lngRadiansDiff13 = math.atan2(
         math.sin(b1Radians) * math.sin(dst13) * math.cos(l1LatRadians),
         math.cos(dst13) - math.sin(l1LatRadians) * math.sin(lat3));
-    num l3LngRadians = l1LngRadians + lngRadiansDiff13;
+    var l3LngRadians = l1LngRadians + lngRadiansDiff13;
 
     return LatLng(radianToDeg(lat3 as double),
         (radianToDeg(l3LngRadians as double) + 540) % 360 - 180);
   }
 
   /// calculate the distance in meters between two geo points
-  num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, [num radius]) {
+  num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, [num? radius]) {
     radius = radius ?? _RADIUS;
-    num R = radius;
+    var R = radius;
     num l1LatRadians = degToRadian(l1.latitude);
     num l1LngRadians = degToRadian(l1.longitude);
     num l2LatRadians = degToRadian(l2.latitude);
     num l2LngRadians = degToRadian(l2.longitude);
-    num latRadiansDiff = l2LatRadians - l1LatRadians;
-    num lngRadiansDiff = l2LngRadians - l1LngRadians;
+    var latRadiansDiff = l2LatRadians - l1LatRadians;
+    var lngRadiansDiff = l2LngRadians - l1LngRadians;
 
     num a = math.sin(latRadiansDiff / 2) * math.sin(latRadiansDiff / 2) +
         math.cos(l1LatRadians) *
@@ -131,7 +131,7 @@ class Geodesy {
             math.sin(lngRadiansDiff / 2) *
             math.sin(lngRadiansDiff / 2);
     num c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
-    num distance = R * c;
+    var distance = R * c;
 
     return distance;
   }
@@ -158,8 +158,8 @@ class Geodesy {
 
   /// calculate signed distance from a geo point
   /// to greate circle with start and end points
-  num crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, [num radius]) {
-    num R = radius ?? _RADIUS;
+  num crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, [num? radius]) {
+    var R = radius ?? _RADIUS;
 
     num distStartL1 = distanceBetweenTwoGeoPoints(start, l1, R) / R;
     num radiansStartL1 =
