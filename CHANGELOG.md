@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.4.0-nullsafety.0
+- Null Safety Upgrade
+
 ## 0.3.2
 - Added tests
 - Added pointsInRange
