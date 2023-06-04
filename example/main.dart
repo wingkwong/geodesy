@@ -33,8 +33,8 @@ void main() async {
   print('[midPointBetweenTwoGeoPoints] Midpoint Lng: ' +
       midpoint.longitude.toString());
 
-  var inBoudingBox = geodesy.isGeoPointInBoudingBox(l3, l5, l4);
-  print('[isGeoPointInBoudingBox]: ' + inBoudingBox.toString());
+  var inBoundingBox = geodesy.isGeoPointInBoundingBox(l3, l5, l4);
+  print('[isGeoPointInBoundingBox]: ' + inBoundingBox.toString());
 
   num b1 = 108.547;
   num b2 = 32.435;
