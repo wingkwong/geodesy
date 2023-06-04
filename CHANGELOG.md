@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.4.1
+- fixed isGeoPointInBoundingBox typos & logic
+
 ## 0.4.0
 - added dart 3 compatible changes
 - revised test cases
