@@ -173,8 +173,8 @@ class Geodesy {
     return x * R;
   }
 
-  /// check if a given geo point is in the bouding box
-  bool isGeoPointInBoudingBox(LatLng l, LatLng topLeft, LatLng bottomRight) {
+  /// check if a given geo point is in the bounding box
+  bool isGeoPointInBoundingBox(LatLng l, LatLng topLeft, LatLng bottomRight) {
     return topLeft.latitude <= l.latitude &&
             l.latitude <= bottomRight.latitude &&
             topLeft.longitude <= l.longitude &&
