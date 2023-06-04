@@ -90,12 +90,12 @@ Convert degrees to radians
 num degrees = radiansToDegrees(latRadians);
 ```
 
-### isGeoPointInBoudingBox(LatLng l, LatLng topLeft, LatLng bottomRight)
+### isGeoPointInBoundingBox(LatLng l, LatLng topLeft, LatLng bottomRight)
 
-Check if a given geo point is in the bouding box
+Check if a given geo point is in the bounding box
 
 ```dart
-bool inBoudingBox = geodesy.isGeoPointInBoudingBox(l1, l2, l3);
+bool inBoundingBox = geodesy.isGeoPointInBoundingBox(l1, l2, l3);
 ```
 
 ### intersectionByPaths(LatLng l1, LatLng l2, num b1, num b2)

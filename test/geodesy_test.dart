@@ -44,12 +44,12 @@ void main() {
     expect(midpoint.toString(), expectedMidpoint.toString());
   });
 
-  test('isGeoPointInBoudingBox', () async {
+  test('isGeoPointInBoundingBox', () async {
     final l3 = const LatLng(51.4778, -0.0015);
     final l4 = const LatLng(52.205, 0.119);
     final l5 = const LatLng(48.857, 2.351);
-    final inBoudingBox = geodesy.isGeoPointInBoudingBox(l3, l5, l4);
-    expect(inBoudingBox, false);
+    final inBoundingBox = geodesy.isGeoPointInBoundingBox(l3, l5, l4);
+    expect(inBoundingBox, false);
   });
 
   test('intersectionByPaths', () async {
