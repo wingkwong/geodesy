@@ -1,12 +1,18 @@
 # CHANGELOG
 
+## 0.4.2
+- Removed pedantic
+- Migrated to lints package with Dart 3 compatible
+- Refactored source code
+- Revised README.md 
+
 ## 0.4.1
-- fixed isGeoPointInBoundingBox typos & logic
+- Fixed isGeoPointInBoundingBox typos & logic
 
 ## 0.4.0
-- added dart 3 compatible changes
-- revised test cases
-- bumped minimum dart version to 3.0.
+- Added dart 3 compatible changes
+- Revised test cases
+- Bumped minimum Dart version to 3.0.
 
 ## 0.4.0-nullsafety.0
 - Null Safety Upgrade

@@ -1,6 +1,6 @@
 name: geodesy
 description: A Dart library for geodesic and trigonometric calculations working with points and paths
-version: 0.4.1
+version: 0.4.2
 homepage: https://github.com/wingkwong/geodesy
 
 environment:
