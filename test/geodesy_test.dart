@@ -2,7 +2,7 @@ import 'package:test/test.dart';
 import 'package:geodesy/geodesy.dart';
 
 void main() {
-  var geodesy = Geodesy();
+  final geodesy = Geodesy();
 
   test('distanceBetweenTwoGeoPoints', () async {
     final l1 = const LatLng(50.06638889, 5.71472222);
@@ -93,9 +93,9 @@ void main() {
     final pointInRange = geodesy.destinationPointByDistanceAndBearing(
         point, distance - 10, 420.0);
     final pointsToCheck = <LatLng>[pointInRange, pointNotInRange];
-    final geofencedPoints =
+    final geoFencedPoints =
         geodesy.pointsInRange(point, pointsToCheck, distance);
-    expect((geofencedPoints.contains(pointInRange)), true);
-    expect((geofencedPoints.contains(pointNotInRange)), false);
+    expect((geoFencedPoints.contains(pointInRange)), true);
+    expect((geoFencedPoints.contains(pointNotInRange)), false);
   });
 }
