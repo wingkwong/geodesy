@@ -98,4 +98,70 @@ void main() {
     expect((geoFencedPoints.contains(pointInRange)), true);
     expect((geoFencedPoints.contains(pointNotInRange)), false);
   });
+
+  test('Great-Circle distance between two points using the Haversine formula',
+      () async {
+    const num latitude1 = 52.5200; // Latitude of the first point
+    const num longitude1 = 13.4050; // Longitude of the first point
+    const num latitude2 = 48.8566; // Latitude of the second point
+    const num longitude2 = 2.3522; // Longitude of the second point
+
+    const num expectedDistance = 877460.0; // Expected distance in kilometers
+
+    final num distance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
+        latitude1, longitude1, latitude2, longitude2);
+
+    expect(distance, closeTo(expectedDistance, 10.0));
+  });
+
+  test('getRectangleBounds returns correct rectangle bounds', () async {
+    List<LatLng> polygonCoords = [
+      const LatLng(37.7749, -122.4194),
+      const LatLng(37.3382, -121.8863),
+      const LatLng(37.7749, -121.4194),
+      const LatLng(37.7749, -123.4194),
+    ];
+
+    List<LatLng> expectedRectangleBounds = [
+      const LatLng(37.3382, -123.4194),
+      const LatLng(37.3382, -121.4194),
+      const LatLng(37.7749, -121.4194),
+      const LatLng(37.7749, -123.4194),
+    ];
+
+    List<LatLng> rectangleBounds = geodesy.getRectangleBounds(polygonCoords);
+
+    // Assert that the rectangle bounds are calculated correctly
+    expect(rectangleBounds.length, expectedRectangleBounds.length);
+    for (int i = 0; i < expectedRectangleBounds.length; i++) {
+      LatLng expectedCoord = expectedRectangleBounds[i];
+      LatLng actualCoord = rectangleBounds[i];
+      expect(actualCoord.latitude, expectedCoord.latitude);
+      expect(actualCoord.longitude, expectedCoord.longitude);
+    }
+  });
+
+  group('calculateBoundingBox', () {
+    test(
+        '''should calculate the correct bounding box for a given center point and distance''',
+        () async {
+      final centerPoint = const LatLng(40.0, -73.0); // Example center point
+      final distanceInKm = 10.0; // Example distance in kilometers
+
+      final result = geodesy.calculateBoundingBox(centerPoint, distanceInKm);
+
+      // Expected coordinates for the bounding box
+      final expectedTopLeft =
+          const LatLng(40.09090909090909, -73.16323914050199);
+      final expectedBottomRight =
+          const LatLng(39.90909090909091, -72.836760859498);
+
+      // Check if the calculated bounding box matches the expected coordinates
+      expect(result[0].latitude, closeTo(expectedTopLeft.latitude, 0.1));
+      expect(result[0].longitude, closeTo(expectedTopLeft.longitude, 0.1));
+      expect(result[1].latitude, closeTo(expectedBottomRight.latitude, 0.1));
+      expect(result[1].longitude, closeTo(expectedBottomRight.longitude, 0.1));
+    });
+  });
+
 }
