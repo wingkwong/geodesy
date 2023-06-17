@@ -67,8 +67,8 @@ void main() async {
   num greatCircleDistance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
       latitude1, longitude1, latitude2, longitude2);
 
-  print('''Distance between the two points: 
-      ${greatCircleDistance.toStringAsFixed(2)} km''');
+  print(
+      '''[greatCircleDistance]: ${greatCircleDistance.toStringAsFixed(2)} km''');
 
   // Polygon Coords
   List<LatLng> polygonCoords = [
@@ -80,20 +80,20 @@ void main() async {
 
   List<LatLng> rectangleBounds = geodesy.getRectangleBounds(polygonCoords);
 
-  print('Rectangle Bounds:');
+  print('[getRectangleBounds]: ');
   for (LatLng coord in rectangleBounds) {
-    print('Latitude: ${coord.latitude}, Longitude: ${coord.longitude}');
+    print(' > Latitude: ${coord.latitude}, Longitude: ${coord.longitude}');
   }
 
   // Calculate Bounding Box
-  final centerPoint = const LatLng(
-      37.7749, -122.4194); // Example central position (San Francisco)
-
-  final distanceInKm = 1.0; // Example distance in kilometers
+  // Example central position (San Francisco)
+  final centerPoint = const LatLng(37.7749, -122.4194);
+  // Example distance in kilometers
+  final distanceInKm = 1.0;
 
   final boundingBox = geodesy.calculateBoundingBox(centerPoint, distanceInKm);
 
-  print('Bounding Box:');
-  print('Top Left: ${boundingBox[0]}');
-  print('Bottom Right: ${boundingBox[1]}');
+  print('[calculateBoundingBox]: ');
+  print(' > Top Left: ${boundingBox[0]}');
+  print(' > Bottom Right: ${boundingBox[1]}');
 }
