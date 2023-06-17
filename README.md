@@ -9,7 +9,7 @@ A Dart library for implementing geodesic and trigonometric calculations based on
 ### Add the following line in your `pubspec.yml` file
 
 ```dart
-geodesy:
+geodesy:<latest_version>
 ```
 
 ### Include the widget in your dart file
@@ -131,4 +131,46 @@ final point = LatLng(51.0, 0);
 final pointsToCheck = <LatLng>[/* points here */];
 final distance = 10000;
 List<LatLng> geoFencedPoints = geodesy.pointsInRange(point, pointsToCheck, distance);
+```
+
+### getRectangleBounds(List<LatLng> polygonCoords)
+
+Similar to PolygonEnvelop in Python
+
+```dart
+  List<LatLng> polygonCoords = [
+    const LatLng(37.7749, -122.4194),
+    const LatLng(37.3382, -121.8863),
+    const LatLng(37.7749, -121.4194),
+    const LatLng(37.7749, -123.4194),
+  ];
+
+  List<LatLng> rectangleBounds = geodesy.getRectangleBounds(polygonCoords);
+```
+
+### Great-circle distance between two points using the Haversine formula
+
+Calculate the Great-Circle Distance between two Geo points
+
+```dart
+num latitude1 = 37.7749;
+  num longitude1 = -122.4194;
+  num latitude2 = 37.3382;
+  num longitude2 = -121.8863;
+
+  num greatCircleDistance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
+      latitude1, longitude1, latitude2, longitude2);
+```
+
+### calculateBoundingBox(LatLng centerPoint, num distanceInKm)
+
+Given the Latitude and Longitude and distance in kilometers it calculate the bounding box value
+
+```dart
+  final centerPoint = const LatLng(
+      37.7749, -122.4194); // Example central position (San Francisco)
+
+  final distanceInKm = 1.0; // Example distance in kilometers
+
+  final boundingBox = geodesy.calculateBoundingBox(centerPoint, distanceInKm);
 ```
