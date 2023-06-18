@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.5.0
+- greatCircleDistanceBetweenTwoGeoPoints
+- getRectangleBounds
+- calculateBoundingBox
+
 ## 0.4.2
 - Removed pedantic
 - Migrated to lints package with Dart 3 compatible
