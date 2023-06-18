@@ -229,4 +229,75 @@ class Geodesy {
     }
     return geoFencedPoints;
   }
+
+  /// great-circle distance between two points using the Haversine formula
+  num greatCircleDistanceBetweenTwoGeoPoints(
+      num lat1, num lon1, num lat2, num lon2) {
+    final num earthRadius = _RADIUS; // Radius of the earth in kilometers
+
+    num dLat = degToRadian(lat2.toDouble() - lat1.toDouble());
+    num dLon = degToRadian(lon2.toDouble() - lon1.toDouble());
+
+    num a = math.sin(dLat / 2) * math.sin(dLat / 2) +
+        math.cos(degToRadian(lat1.toDouble())) *
+            math.cos(degToRadian(lat2.toDouble())) *
+            math.sin(dLon / 2) *
+            math.sin(dLon / 2);
+    num c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+    num distance = earthRadius * c;
+
+    return distance;
+  }
+
+  /// GetRectangleBounds
+
+  List<LatLng> getRectangleBounds(List<LatLng> polygonCoords) {
+    num minLatitude = double.infinity.toDouble();
+    num maxLatitude = double.negativeInfinity.toDouble();
+    num minLongitude = double.infinity.toDouble();
+    num maxLongitude = double.negativeInfinity.toDouble();
+
+    for (LatLng coord in polygonCoords) {
+      if (coord.latitude < minLatitude) {
+        minLatitude = coord.latitude;
+      }
+      if (coord.latitude > maxLatitude) {
+        maxLatitude = coord.latitude;
+      }
+      if (coord.longitude < minLongitude) {
+        minLongitude = coord.longitude;
+      }
+      if (coord.longitude > maxLongitude) {
+        maxLongitude = coord.longitude;
+      }
+    }
+
+    List<LatLng> rectangleBounds = [
+      LatLng(minLatitude.toDouble(), minLongitude.toDouble()),
+      LatLng(minLatitude.toDouble(), maxLongitude.toDouble()),
+      LatLng(maxLatitude.toDouble(), maxLongitude.toDouble()),
+      LatLng(maxLatitude.toDouble(), minLongitude.toDouble()),
+    ];
+
+    return rectangleBounds;
+  }
+
+  /// Bounding Box per distance in Kilometers
+  List<LatLng> calculateBoundingBox(LatLng centerPoint, num distanceInKm) {
+    // Earth's radius in kilometers
+    final num radiusOfEarth = _RADIUS / 1000;
+    // Convert latitude to radians
+    final num latInRadians = centerPoint.latitude * (_PI / 180.0);
+    final num degreeLatDistance =
+        (distanceInKm / radiusOfEarth) * (180.0 / _PI);
+    final num degreeLngDistance = degreeLatDistance / math.cos(latInRadians);
+    final num topLat = centerPoint.latitude + degreeLatDistance;
+    final num leftLng = centerPoint.longitude - degreeLngDistance;
+    final num bottomLat = centerPoint.latitude - degreeLatDistance;
+    final num rightLng = centerPoint.longitude + degreeLngDistance;
+    final LatLng topLeft = LatLng(topLat.toDouble(), leftLng.toDouble());
+    final LatLng bottomRight =
+        LatLng(bottomLat.toDouble(), rightLng.toDouble());
+    return [topLeft, bottomRight];
+  }
 }
