@@ -12,12 +12,12 @@ void main() async {
   print('[distanceBetweenTwoGeoPoints] Distance: ' + distance.toString());
 
   var l3 = const LatLng(51.4778, -0.0015);
-  var distinationPoint =
+  var destinationPoint =
       geodesy.destinationPointByDistanceAndBearing(l3, 7794.0, 300.7);
   print('[destinationPointByDistanceAndBearing] Lat: ' +
-      distinationPoint.latitude.toString());
+      destinationPoint.latitude.toString());
   print('[destinationPointByDistanceAndBearing] Lng: ' +
-      distinationPoint.longitude.toString());
+      destinationPoint.longitude.toString());
 
   var l4 = const LatLng(52.205, 0.119);
   var l5 = const LatLng(48.857, 2.351);
@@ -57,4 +57,43 @@ void main() async {
   var l7 = const LatLng(1.5, 1.5);
   var isGeoPointInPolygon = geodesy.isGeoPointInPolygon(l7, poly);
   print('[isGeoPointInPolygon] :' + isGeoPointInPolygon.toString());
+
+  // Great-circle distance between two points using the Haversine formula
+  num latitude1 = 37.7749;
+  num longitude1 = -122.4194;
+  num latitude2 = 37.3382;
+  num longitude2 = -121.8863;
+
+  num greatCircleDistance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
+      latitude1, longitude1, latitude2, longitude2);
+
+  print(
+      '''[greatCircleDistance]: ${greatCircleDistance.toStringAsFixed(2)} km''');
+
+  // Polygon Coords
+  List<LatLng> polygonCoords = [
+    const LatLng(37.7749, -122.4194),
+    const LatLng(37.3382, -121.8863),
+    const LatLng(37.7749, -121.4194),
+    const LatLng(37.7749, -123.4194),
+  ];
+
+  List<LatLng> rectangleBounds = geodesy.getRectangleBounds(polygonCoords);
+
+  print('[getRectangleBounds]: ');
+  for (LatLng coord in rectangleBounds) {
+    print(' > Latitude: ${coord.latitude}, Longitude: ${coord.longitude}');
+  }
+
+  // Calculate Bounding Box
+  // Example central position (San Francisco)
+  final centerPoint = const LatLng(37.7749, -122.4194);
+  // Example distance in kilometers
+  final distanceInKm = 1.0;
+
+  final boundingBox = geodesy.calculateBoundingBox(centerPoint, distanceInKm);
+
+  print('[calculateBoundingBox]: ');
+  print(' > Top Left: ${boundingBox[0]}');
+  print(' > Bottom Right: ${boundingBox[1]}');
 }
