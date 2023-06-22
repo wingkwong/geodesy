@@ -174,3 +174,44 @@ Given the Latitude and Longitude and distance in kilometers it calculate the bou
 
   final boundingBox = geodesy.calculateBoundingBox(centerPoint, distanceInKm);
 ```
+
+## calculate Polygon Centroid
+
+```dart
+  List<LatLng> polygon = [
+    const LatLng(0, 0),
+    const LatLng(4, 0),
+    const LatLng(4, 4),
+    const LatLng(0, 4)
+  ];
+
+  LatLng centroid = geodesy.findPolygonCentroid(polygon);
+
+  print("Centroid: ${centroid.latitude}, ${centroid.longitude}");
+```
+
+## Get the Intersecting Polygon Area among different Polygons
+
+```dart
+final List<LatLng> polygon1 = [
+    const LatLng(0, 0),
+    const LatLng(0, 2),
+    const LatLng(2, 2),
+    const LatLng(2, 0),
+  ];
+
+  final List<LatLng> polygon2 = [
+    const LatLng(1, 1),
+    const LatLng(1, 3),
+    const LatLng(3, 3),
+    const LatLng(3, 1),
+  ];
+
+  final List<LatLng> intersectionPoints =
+      geodesy.getPolygonIntersection(polygon1, polygon2);
+
+  print('Intersection Points:');
+  for (final point in intersectionPoints) {
+    print('Latitude: ${point.latitude}, Longitude: ${point.longitude}');
+  }
+```
