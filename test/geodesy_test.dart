@@ -164,4 +164,48 @@ void main() {
     });
   });
 
+// Polygon Centroid
+
+  test('findPolygonCentroid calculates the centroid correctly', () {
+    // Create a test polygon
+    List<LatLng> polygon = [
+      const LatLng(0, 0),
+      const LatLng(0, 4),
+      const LatLng(4, 4),
+      const LatLng(4, 0),
+    ];
+
+    // Calculate the centroid
+    LatLng centroid = geodesy.findPolygonCentroid(polygon);
+
+    // Verify the centroid coordinates
+    expect(centroid.latitude, equals(2.0));
+    expect(centroid.longitude, equals(2.0));
+  });
+
+  // Polygon Intersection
+  test('Intersection of two polygons', () {
+    final polygon1 = [
+      const LatLng(0, 0),
+      const LatLng(0, 2),
+      const LatLng(2, 2),
+      const LatLng(2, 0),
+    ];
+
+    final polygon2 = [
+      const LatLng(1, 1),
+      const LatLng(1, 3),
+      const LatLng(3, 3),
+      const LatLng(3, 1),
+    ];
+
+    final intersectionPoints =
+        geodesy.getPolygonIntersection(polygon1, polygon2);
+
+    expect(intersectionPoints.length, 2);
+    expect(intersectionPoints[0].latitude, 1);
+    expect(intersectionPoints[0].longitude, 2);
+    expect(intersectionPoints[1].latitude, 2);
+    expect(intersectionPoints[1].longitude, 1);
+  });
 }
