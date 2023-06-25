@@ -2,9 +2,6 @@
 include: package:lints/core.yaml
 
 analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
   errors:
     missing_return: error
     missing_required_param: error
