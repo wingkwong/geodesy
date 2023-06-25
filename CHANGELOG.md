@@ -1,9 +1,14 @@
 # CHANGELOG
 
+## 0.6.0
+
+- Add findPolygonCentroid
+- Add getPolygonIntersection
+
 ## 0.5.0
-- greatCircleDistanceBetweenTwoGeoPoints
-- getRectangleBounds
-- calculateBoundingBox
+- Add greatCircleDistanceBetweenTwoGeoPoints
+- Add getRectangleBounds
+- Add calculateBoundingBox
 
 ## 0.4.2
 - Removed pedantic
