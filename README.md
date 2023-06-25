@@ -148,18 +148,18 @@ Similar to PolygonEnvelop in Python
   List<LatLng> rectangleBounds = geodesy.getRectangleBounds(polygonCoords);
 ```
 
-### Great-circle distance between two points using the Haversine formula
+### greatCircleDistanceBetweenTwoGeoPoints(num lat1, num lng1, num lat2, num lng2)
 
-Calculate the Great-Circle Distance between two Geo points
+Calculate the Great-Circle Distance between two Geo points using the Haversine formula
 
 ```dart
 num latitude1 = 37.7749;
-  num longitude1 = -122.4194;
-  num latitude2 = 37.3382;
-  num longitude2 = -121.8863;
+num longitude1 = -122.4194;
+num latitude2 = 37.3382;
+num longitude2 = -121.8863;
 
-  num greatCircleDistance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
-      latitude1, longitude1, latitude2, longitude2);
+num greatCircleDistance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
+    latitude1, longitude1, latitude2, longitude2);
 ```
 
 ### calculateBoundingBox(LatLng centerPoint, num distanceInKm)
@@ -175,7 +175,7 @@ Given the Latitude and Longitude and distance in kilometers it calculate the bou
   final boundingBox = geodesy.calculateBoundingBox(centerPoint, distanceInKm);
 ```
 
-## calculate Polygon Centroid
+## findPolygonCentroid(List<LatLng> polygon)
 
 ```dart
   List<LatLng> polygon = [
@@ -186,11 +186,10 @@ Given the Latitude and Longitude and distance in kilometers it calculate the bou
   ];
 
   LatLng centroid = geodesy.findPolygonCentroid(polygon);
-
   print("Centroid: ${centroid.latitude}, ${centroid.longitude}");
 ```
 
-## Get the Intersecting Polygon Area among different Polygons
+## getPolygonIntersection(List<LatLng> polygon1, List<LatLng> polygon2)
 
 ```dart
 final List<LatLng> polygon1 = [
