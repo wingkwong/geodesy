@@ -250,7 +250,6 @@ class Geodesy {
   }
 
   /// GetRectangleBounds
-
   List<LatLng> getRectangleBounds(List<LatLng> polygonCoords) {
     num minLatitude = double.infinity.toDouble();
     num maxLatitude = double.negativeInfinity.toDouble();
@@ -301,17 +300,17 @@ class Geodesy {
     return [topLeft, bottomRight];
   }
 
-  /// finds the centroid of polygons:
-  LatLng findPolygonCentroid(List<LatLng> polygon) {
+  /// finds the centroid of polygons
+  LatLng findPolygonCentroid(List<LatLng> polygons) {
     num x = 0;
     num y = 0;
     num signedArea = 0;
 
-    num vertexCount = polygon.length;
+    num vertexCount = polygons.length;
 
     for (int i = 0; i < vertexCount; i++) {
-      final LatLng currentVertex = polygon[i];
-      final LatLng nextVertex = polygon[(i + 1) % vertexCount.toInt()];
+      final LatLng currentVertex = polygons[i];
+      final LatLng nextVertex = polygons[(i + 1) % vertexCount.toInt()];
 
       num a = currentVertex.longitude * nextVertex.latitude -
           nextVertex.longitude * currentVertex.latitude;
@@ -323,6 +322,7 @@ class Geodesy {
     signedArea *= 0.5;
     x /= (6 * signedArea);
     y /= (6 * signedArea);
+
     // Return the centroid as LatLng object
     return LatLng(
       y.toDouble(),
@@ -352,7 +352,6 @@ class Geodesy {
         }
       }
     }
-
     return intersectionPoints;
   }
 
