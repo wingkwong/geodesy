@@ -2,182 +2,72 @@
 
 [![pub package](https://img.shields.io/pub/v/geodesy.svg)](https://pub.dartlang.org/packages/geodesy)
 
-A Dart library for implementing geodesic and trigonometric calculations based on a spherical Earth model for working with points and paths such as distances, bearings and destinations
+## About
 
-## Getting Started
+A Dart library for implementing geodesic and trigonometric calculations based on a spherical Earth model for working with points and paths such as distances, bearings and destinations.
 
-### Add the following line in your `pubspec.yml` file
+## How to Use Geodesy
+
+### Commands
+
+#### For Dart
 
 ```dart
-geodesy:<latest_version>
+dart pub get geodesy
 ```
 
-### Include the widget in your dart file
+#### For Flutter
+
+```dart
+flutter pub get geodesy
+```
+
+### Import the library in your dart file
 
 ```dart
 import 'package:geodesy/geodesy.dart';
 ```
 
-## Usage
-
-### Geodesy()
+### Initialization
 
 ```dart
 final Geodesy geodesy = Geodesy();
 ```
 
-### LatLng(double latitude, double longitude)
+## Class
+
+Please visit for deeper understanding of each and every methods available in this library
+
+[CLASS](docs/CLASS.md)
+
+## Static Methods
+
+[STATIC METHODS](DOCS/METHODS.md)
+
+## Example - Geodesy Class
+
+Few Examples - For Further Examples Visit here
+
+[Examples](example/main.dart)
 
 ```dart
-final LatLng l = LatLng(22.308, 114.1716);
-```
+import 'package:geodesy/geodesy.dart';
 
-## Methods
-
-### destinationPointByDistanceAndBearing(LatLng l, num distance, num bearing, [num radius])
-
-Calculate a destination point given the distance and bearing. If radius is not specified, Earth radius will be used.
-
-```dart
-final LatLng destinationPoint = geodesy.destinationPointByDistanceAndBearing(l3, 2400, 420.2);
-```
-
-### midPointBetweenTwoGeoPoints(LatLng l1, LatLng l2)
-
-Calculate the midpoint between teo geo points.
-
-```dart
-final LatLng midpoint = geodesy.midPointBetweenTwoGeoPoints(l1, l2);
-```
-
-### distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, [num radius])
-
-Calculate the distance in meters between two geo points. If radius is not specified, Earth radius will be used.
-
-```dart
-final num distance = geodesy.distanceBetweenTwoGeoPoints(l1, l2);
-```
-
-### bearingBetweenTwoGeoPoints(LatLng l1, LatLng l2)
-
-Calculate the bearing from point l1 to point l2.
-
-```dart
-final num finalBearing = geodesy.finalBearingBetweenTwoGeoPoints(l1, l2);
-```
-
-### finalBearingBetweenTwoGeoPoints(LatLng l1, LatLng l2)
-
-Calculate the final bearing from point l1 to point l2.
-
-```dart
-final num finalBearing = geodesy.finalBearingBetweenTwoGeoPoints(l1, l2);
-```
-
-### degreesToRadians(num degrees)
-
-Convert degrees to radians
-
-```dart
-final num l1LatRadians = degreesToRadians(l1.lat);
-```
-
-### radiansToDegrees(num radians)
-
-Convert degrees to radians
-
-```dart
-final num degrees = radiansToDegrees(latRadians);
-```
-
-### isGeoPointInBoundingBox(LatLng l, LatLng topLeft, LatLng bottomRight)
-
-Check if a given geo point is in the bounding box
-
-```dart
-final bool inBoundingBox = geodesy.isGeoPointInBoundingBox(l1, l2, l3);
-```
-
-### intersectionByPaths(LatLng l1, LatLng l2, num b1, num b2)
-
-Calculate the geo point of intersection of two given paths
-
-```dart
-final LatLng intersectionByPaths = geodesy.intersectionByPaths(l1, l2, b1, b2);
-```
-
-### crossTrackDistanceTo(LatLng l1, LatLng start, LatLng end, [num radius])
-
-Calculate signed distance from a geo point to create circle with start and end points
-
-```dart
-final num distanceToGreatCircle = geodesy.crossTrackDistanceTo(l1, l2, l3);
-```
-  
-### isGeoPointInPolygon(LatLng l, List<LatLng> polygon)
-
-Check if a given geo point is in the a polygon using even-odd rule algorithm
-
-```dart
-final bool isGeoPointInPolygon = geodesy.isGeoPointInPolygon(l, poly);
-```
-
-### pointsInRange(LatLng point, List<LatLng> pointsToCheck, num distance)
-
-Get a list of points within a distance in meters from a given point
-
-```dart
-final point = LatLng(51.0, 0);
-final pointsToCheck = <LatLng>[/* points here */];
-final distance = 10000;
-List<LatLng> geoFencedPoints = geodesy.pointsInRange(point, pointsToCheck, distance);
-```
-
-### getRectangleBounds(List<LatLng> polygonCoords)
-
-Similar to PolygonEnvelop in Python
-
-```dart
-  List<LatLng> polygonCoords = [
-    const LatLng(37.7749, -122.4194),
-    const LatLng(37.3382, -121.8863),
-    const LatLng(37.7749, -121.4194),
-    const LatLng(37.7749, -123.4194),
-  ];
-
-  List<LatLng> rectangleBounds = geodesy.getRectangleBounds(polygonCoords);
-```
-
-### greatCircleDistanceBetweenTwoGeoPoints(num lat1, num lng1, num lat2, num lng2)
-
-Calculate the Great-Circle Distance between two Geo points using the Haversine formula
-
-```dart
-num latitude1 = 37.7749;
-num longitude1 = -122.4194;
-num latitude2 = 37.3382;
-num longitude2 = -121.8863;
-
-num greatCircleDistance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
-    latitude1, longitude1, latitude2, longitude2);
-```
-
-### calculateBoundingBox(LatLng centerPoint, num distanceInKm)
-
-Given the Latitude and Longitude and distance in kilometers it calculate the bounding box value
-
-```dart
-  final centerPoint = const LatLng(
-      37.7749, -122.4194); // Example central position (San Francisco)
-
-  final distanceInKm = 1.0; // Example distance in kilometers
+void main(){
+  final Geodesy geodesy = Geodesy();
+  // Calculate Bounding Box
+  // Example central position (San Francisco)
+  final centerPoint = const LatLng(37.7749, -122.4194);
+  // Example distance in kilometers
+  final distanceInKm = 1.0;
 
   final boundingBox = geodesy.calculateBoundingBox(centerPoint, distanceInKm);
-```
 
-## findPolygonCentroid(List<LatLng> polygon)
+  print('[calculateBoundingBox]: ');
+  print(' > Top Left: ${boundingBox[0]}');
+  print(' > Bottom Right: ${boundingBox[1]}');
 
-```dart
+  // Polygon Centroid
   List<LatLng> polygon = [
     const LatLng(0, 0),
     const LatLng(4, 0),
@@ -186,13 +76,11 @@ Given the Latitude and Longitude and distance in kilometers it calculate the bou
   ];
 
   LatLng centroid = geodesy.findPolygonCentroid(polygon);
+
   print("Centroid: ${centroid.latitude}, ${centroid.longitude}");
-```
 
-## getPolygonIntersection(List<LatLng> polygon1, List<LatLng> polygon2)
-
-```dart
-final List<LatLng> polygon1 = [
+  // Polygon Intersection
+  final List<LatLng> polygon1 = [
     const LatLng(0, 0),
     const LatLng(0, 2),
     const LatLng(2, 2),
@@ -213,4 +101,61 @@ final List<LatLng> polygon1 = [
   for (final point in intersectionPoints) {
     print('Latitude: ${point.latitude}, Longitude: ${point.longitude}');
   }
+}
+```
+
+## Example Static Methods
+
+```dart
+import 'package:geodesy/geodesy.dart';
+
+void main() {
+  // Calculate Bounding Box
+  // Example central position (San Francisco)
+  final centerPoint = const LatLng(37.7749, -122.4194);
+  // Example distance in kilometers
+  final distanceInKm = 1.0;
+  // Static Method
+  final boundingBox =
+      BoundingBox.calculateBoundingBox(centerPoint, distanceInKm);
+
+  print('[calculateBoundingBox]: ');
+  print(' > Top Left: ${boundingBox[0]}');
+  print(' > Bottom Right: ${boundingBox[1]}');
+
+  // Polygon Centroid
+  List<LatLng> polygon = [
+    const LatLng(0, 0),
+    const LatLng(4, 0),
+    const LatLng(4, 4),
+    const LatLng(0, 4)
+  ];
+  // Static Method
+  final LatLng centroid = PolygonCentroid.findPolygonCentroid(polygon);
+
+  print("Centroid: ${centroid.latitude}, ${centroid.longitude}");
+
+  // Polygon Intersection
+  final List<LatLng> polygon1 = [
+    const LatLng(0, 0),
+    const LatLng(0, 2),
+    const LatLng(2, 2),
+    const LatLng(2, 0),
+  ];
+
+  final List<LatLng> polygon2 = [
+    const LatLng(1, 1),
+    const LatLng(1, 3),
+    const LatLng(3, 3),
+    const LatLng(3, 1),
+  ];
+  // Static Method
+  final List<LatLng> intersectionPoints =
+      PolygonIntersection.getPolygonIntersection(polygon1, polygon2);
+
+  print('Intersection Points:');
+  for (final point in intersectionPoints) {
+    print('Latitude: ${point.latitude}, Longitude: ${point.longitude}');
+  }
+}
 ```
