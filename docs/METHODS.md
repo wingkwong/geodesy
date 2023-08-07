@@ -2,7 +2,7 @@
 
 The `Geodesy` Static Methods provides a collection of methods for performing various geodetic calculations, including distance calculations, point intersections, and more. This  designed to work with geographical coordinates in the form of latitude and longitude.
 
-Call any Static Methods which is given blow without using geodesy Instance
+Call any Static Methods which is given below without using geodesy Instance.
 
 ## Methods
 
