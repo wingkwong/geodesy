@@ -4,7 +4,7 @@ import 'package:geodesy/geodesy.dart';
 void main() {
   final geodesy = Geodesy();
 
-  test('distanceBetweenTwoGeoPoints', () async {
+  test('distanceBetweenTwoGeoPoints', () {
     final l1 = const LatLng(50.06638889, 5.71472222);
     final l2 = const LatLng(58.64388889, 3.07000000);
     final distance = geodesy.distanceBetweenTwoGeoPoints(l1, l2);
@@ -20,7 +20,7 @@ void main() {
     expect(destinationPoint.toString(), expectedDestinationPoint.toString());
   });
 
-  test('bearingBetweenTwoGeoPoints', () async {
+  test('bearingBetweenTwoGeoPoints', () {
     final l4 = const LatLng(52.205, 0.119);
     final l5 = const LatLng(48.857, 2.351);
     final bearing = geodesy.bearingBetweenTwoGeoPoints(l4, l5);
@@ -28,7 +28,7 @@ void main() {
     expect(bearing, expectedBearing);
   });
 
-  test('finalBearingBetweenTwoGeoPoints', () async {
+  test('finalBearingBetweenTwoGeoPoints', () {
     final l4 = const LatLng(52.205, 0.119);
     final l5 = const LatLng(48.857, 2.351);
     final finalBearing = geodesy.finalBearingBetweenTwoGeoPoints(l4, l5);
@@ -36,7 +36,7 @@ void main() {
     expect(finalBearing, expectedFinalBearing);
   });
 
-  test('midPointBetweenTwoGeoPoints', () async {
+  test('midPointBetweenTwoGeoPoints', () {
     final l4 = const LatLng(52.205, 0.119);
     final l5 = const LatLng(48.857, 2.351);
     final midpoint = geodesy.midPointBetweenTwoGeoPoints(l4, l5);
@@ -44,7 +44,7 @@ void main() {
     expect(midpoint.toString(), expectedMidpoint.toString());
   });
 
-  test('isGeoPointInBoundingBox', () async {
+  test('isGeoPointInBoundingBox', () {
     final l3 = const LatLng(51.4778, -0.0015);
     final l4 = const LatLng(52.205, 0.119);
     final l5 = const LatLng(48.857, 2.351);
@@ -52,7 +52,7 @@ void main() {
     expect(inBoundingBox, false);
   });
 
-  test('intersectionByPaths', () async {
+  test('intersectionByPaths', () {
     final l4 = const LatLng(52.205, 0.119);
     final l5 = const LatLng(48.857, 2.351);
     final b1 = 108.547;
@@ -64,7 +64,7 @@ void main() {
         intersectionByPaths.toString(), expectedIntersectionByPaths.toString());
   });
 
-  test('crossTrackDistanceTo', () async {
+  test('crossTrackDistanceTo', () {
     final l4 = const LatLng(52.205, 0.119);
     final l5 = const LatLng(48.857, 2.351);
     final l6 = const LatLng(50.587, 1.231);
@@ -73,7 +73,7 @@ void main() {
     expect(distanceToGreatCircle, expectedDistanceToGreatCircle);
   });
 
-  test('crossTrackDistanceTo', () async {
+  test('crossTrackDistanceTo', () {
     var poly = <LatLng>[
       const LatLng(1.0, 1.0),
       const LatLng(1.0, 2.0),
@@ -85,7 +85,7 @@ void main() {
     expect(isGeoPointInPolygon, true);
   });
 
-  test('pointsInRange', () async {
+  test('pointsInRange', () {
     final point = const LatLng(51.0, 0);
     final distance = 10000;
     final pointNotInRange = geodesy.destinationPointByDistanceAndBearing(
@@ -100,7 +100,7 @@ void main() {
   });
 
   test('Great-Circle distance between two points using the Haversine formula',
-      () async {
+      () {
     const num latitude1 = 52.5200; // Latitude of the first point
     const num longitude1 = 13.4050; // Longitude of the first point
     const num latitude2 = 48.8566; // Latitude of the second point
@@ -114,7 +114,7 @@ void main() {
     expect(distance, closeTo(expectedDistance, 10.0));
   });
 
-  test('getRectangleBounds returns correct rectangle bounds', () async {
+  test('getRectangleBounds returns correct rectangle bounds', () {
     List<LatLng> polygonCoords = [
       const LatLng(37.7749, -122.4194),
       const LatLng(37.3382, -121.8863),
@@ -144,7 +144,7 @@ void main() {
   group('calculateBoundingBox', () {
     test(
         '''should calculate the correct bounding box for a given center point and distance''',
-        () async {
+        () {
       final centerPoint = const LatLng(40.0, -73.0); // Example center point
       final distanceInKm = 10.0; // Example distance in kilometers
 
