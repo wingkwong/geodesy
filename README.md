@@ -13,13 +13,13 @@ A Dart library for implementing geodesic and trigonometric calculations based on
 #### For Dart
 
 ```dart
-dart pub get geodesy
+dart pub add geodesy
 ```
 
 #### For Flutter
 
 ```dart
-flutter pub get geodesy
+flutter pub add geodesy
 ```
 
 ### Import the library in your dart file
