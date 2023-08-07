@@ -48,9 +48,7 @@ Please see the details  [here](docs/METHODS.md).
 
 ## Example - Geodesy Class
 
-Few Examples - For Further Examples Visit here
-
-[Examples](example/main.dart)
+Please check out [here](example/main.dart) for more.
 
 ```dart
 import 'package:geodesy/geodesy.dart';
