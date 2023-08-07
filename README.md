@@ -36,13 +36,15 @@ final Geodesy geodesy = Geodesy();
 
 ## Class
 
-Please visit for deeper understanding of each and every methods available in this library
+The Geodesy class provides a collection of methods for performing various geodetic calculations, including distance calculations, point intersections, and more. This class is designed to work with geographical coordinates in the form of latitude and longitude.
 
-[CLASS](docs/CLASS.md)
+Please see the details [here](docs/CLASS.md).
 
 ## Static Methods
 
-[STATIC METHODS](DOCS/METHODS.md)
+Static methods are avilable without using Geodesy instance.
+
+Please see the details  [here](docs/METHODS.md).
 
 ## Example - Geodesy Class
 
