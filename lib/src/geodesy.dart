@@ -56,9 +56,9 @@ class Geodesy {
   /// a given point
   /// Distance is in meters
   List<LatLng> pointsInRange(
-          LatLng point, List<LatLng> pointsToCheck, num distance) {
-              return PointRange.pointInRange(point, pointsToCheck, distance);
-            }
+      LatLng point, List<LatLng> pointsToCheck, num distance) {
+    return PointRange.pointInRange(point, pointsToCheck, distance);
+  }
 
   /// great-circle distance between two points using the Haversine formula
   num greatCircleDistanceBetweenTwoGeoPoints(

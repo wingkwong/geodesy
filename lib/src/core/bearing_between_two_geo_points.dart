@@ -17,8 +17,9 @@ class BearingBetweenTwoGeoPoints {
 
     return (degrees + 360) % 360;
   }
-///
+
+  ///
   static num finalBearingBetweenTwoGeoPoints(LatLng l1, LatLng l2) {
-  return (bearingBetweenTwoGeoPoints(l2, l1) + 180) % 360;
-}
+    return (bearingBetweenTwoGeoPoints(l2, l1) + 180) % 360;
+  }
 }
