@@ -1,11 +1,6 @@
 
 
 import 'core.dart';
-
-void main() {
-
-}
-
 /// Vincenty formula for Geodesic Distance Calculation
 class VincentyDistance {
   /// Vincenty formula for Geodesic Distance Calculation
