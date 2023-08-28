@@ -141,7 +141,7 @@ bool isGeoPointInPolygon(LatLng point, List<LatLng> polygon)
 ```
 
 - `point` (LatLng): The point to check (latitude, longitude).
-- `polygon` (List<LatLng>): A list of vertices defining the polygon.
+- `polygon` (List`<LatLng>`): A list of vertices defining the polygon.
 
 Returns `true` if the point is within the polygon, otherwise `false`.
 
@@ -154,7 +154,7 @@ List<LatLng> pointsInRange(LatLng point, List<LatLng> pointsToCheck, num distanc
 ```
 
 - `point` (LatLng): The center point (latitude, longitude).
-- `pointsToCheck` (List<LatLng>): List of points to check against.
+- `pointsToCheck` (List`<LatLng>`): List of points to check against.
 - `distance` (num): The maximum distance in meters.
 
 Returns a list of `LatLng` points within the specified distance from the center point.
@@ -184,7 +184,7 @@ Get the bounding rectangle for a polygon defined by its vertices.
 List<LatLng> getRectangleBounds(List<LatLng> polygonCoords)
 ```
 
-- `polygonCoords` (List<LatLng>): List of vertices defining the polygon.
+- `polygonCoords` (List`<LatLng>`): List of vertices defining the polygon.
 
 Returns a list of `LatLng` points representing the bounding rectangle's corners.
 
@@ -209,7 +209,7 @@ Find the centroid of a polygon defined by its vertices.
 LatLng findPolygonCentroid(List<LatLng> polygon)
 ```
 
-- `polygon` (List<LatLng>): List of vertices defining the polygon.
+- `polygon` (List`<LatLng>`): List of vertices defining the polygon.
 
 Returns a `LatLng` object representing the centroid of the polygon.
 
@@ -223,10 +223,24 @@ Calculate the intersection of
 List<LatLng> getPolygonIntersection(List<LatLng> polygon1, List<LatLng> polygon2)
 ```
 
-- `polygon1` (List<LatLng>): List of vertices defining the first polygon.
-- `polygon2` (List<LatLng>): List of vertices defining the second polygon.
+- `polygon1` (List`<LatLng>`): List of vertices defining the first polygon.
+- `polygon2` (List`<LatLng>`): List of vertices defining the second polygon.
 
 Returns a list of `LatLng` points representing the intersection polygon.
+
+### Vincenty formula for Geodesic Distance Calculation
+
+```dart
+ final double calculatedDistance = geodesy.vincentyDistance(
+      point1.latitude, point1.longitude, point2.latitude, point2.longitude);
+```
+
+### Calculate Area of Polygon with Hole
+
+```dart
+final calculatedArea =
+        geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
+```
 
 ---
 

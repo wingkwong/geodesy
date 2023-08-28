@@ -53,7 +53,7 @@ Please check out [here](example/main.dart) for more.
 ```dart
 import 'package:geodesy/geodesy.dart';
 
-void main(){
+void main() {
   final Geodesy geodesy = Geodesy();
   // Calculate Bounding Box
   // Example central position (San Francisco)
@@ -102,6 +102,26 @@ void main(){
     print('Latitude: ${point.latitude}, Longitude: ${point.longitude}');
   }
 }
+
+// Calculate Area
+final outerPolygon = [
+  const LatLng(0.0, 0.0),
+  const LatLng(0.0, 1.0),
+  const LatLng(1.0, 1.0),
+  const LatLng(1.0, 0.0),
+];
+
+// Define a hole within the outer polygon
+final hole1 = [
+  const LatLng(0.25, 0.25),
+  const LatLng(0.25, 0.75),
+  const LatLng(0.75, 0.75),
+  const LatLng(0.75, 0.25),
+];
+
+final holes = [hole1];
+final calculatedArea =
+    geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
 
 ## Example Static Methods
@@ -158,4 +178,29 @@ void main() {
     print('Latitude: ${point.latitude}, Longitude: ${point.longitude}');
   }
 }
+// Static Method
+final outerPolygon = [
+    const LatLng(0.0, 0.0),
+    const LatLng(0.0, 1.0),
+    const LatLng(1.0, 1.0),
+    const LatLng(1.0, 0.0),
+  ];
+
+  final hole1 = [
+    const LatLng(0.25, 0.25),
+    const LatLng(0.25, 0.75),
+    const LatLng(0.75, 0.75),
+    const LatLng(0.75, 0.25),
+  ];
+
+  final holes = [hole1];
+final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
+
+## Code of Conduct
+
+See [here](doc/CODE_OF_CONDUCT.md).
+
+## License
+
+See [here](./LICENSE).

@@ -208,4 +208,48 @@ void main() {
     expect(intersectionPoints[1].latitude, 2);
     expect(intersectionPoints[1].longitude, 1);
   });
+
+  // Calculate Vincenty Distance
+  test('Calculate Vincenty distance', () {
+    // Distance between SF and LA in meters
+    final double expectedDistance = 559042.3365044123;
+
+    final double calculatedDistance = geodesy.vincentyDistance(
+      37.7749, -122.4194, // San Francisco
+      34.0522, -118.2437, // Los Angeles
+    );
+
+    expect(calculatedDistance, closeTo(expectedDistance, 0.01));
+  });
+
+  /// Calculate Area of Polygon with Hole
+  test('Calculate Area of Polygon with Hole', () {
+    // Define the outer polygon
+    final outerPolygon = [
+      const LatLng(0.0, 0.0),
+      const LatLng(0.0, 1.0),
+      const LatLng(1.0, 1.0),
+      const LatLng(1.0, 0.0),
+    ];
+
+    // Define a hole within the outer polygon
+    final hole1 = [
+      const LatLng(0.25, 0.25),
+      const LatLng(0.25, 0.75),
+      const LatLng(0.75, 0.75),
+      const LatLng(0.75, 0.25),
+    ];
+
+    // Combine the outer polygon and holes
+    final holes = [hole1];
+
+    // Calculate the area of the polygon with the hole
+    final calculatedArea =
+        geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
+
+    // Expected area of the polygon with the hole
+    final expectedArea = 0.75; // This value should match the actual calculation
+
+    expect(calculatedArea, expectedArea);
+  });
 }

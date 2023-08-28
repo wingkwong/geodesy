@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 0.8.0
+
+- Implement Calculating Polygon Area With Hole
+- Implement Vincenty Formula for Geodesic Distance Calculation
+- Add CODE_OF_CONDUCT.md
+- Revise LICENSE
+
 ## 0.7.0
 
 - Refactor geodesy
