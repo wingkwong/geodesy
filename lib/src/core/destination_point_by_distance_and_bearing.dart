@@ -34,4 +34,8 @@ class DistanceAndBearing {
     return LatLng(radianToDeg(latRadians2 as double),
         (radianToDeg(lngRadians2 as double) + 540) % 360 - 180);
   }
+
+  // Vincenty formula
+  // Spherical law of cosines
+// Equi-rectangular approximation
 }

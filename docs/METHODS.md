@@ -122,7 +122,7 @@ GeoPoints.isGeoPointInPolygon(l, polygon);
 ```
 
 - `l` (LatLng): The point to check (latitude, longitude).
-- `polygon` (List<LatLng>): A list of vertices defining the polygon.
+- `polygon` (List`<LatLng>`): A list of vertices defining the polygon.
 
 Returns `true` if the point is within the polygon, otherwise `false`.
 
@@ -135,7 +135,7 @@ PointRange.pointInRange(point, pointsToCheck, distance);
 ```
 
 - `point` (LatLng): The center point (latitude, longitude).
-- `pointsToCheck` (List<LatLng>): List of points to check against.
+- `pointsToCheck` (List`<LatLng>`): List of points to check against.
 - `distance` (num): The maximum distance in meters.
 
 Returns a list of `LatLng` points within the specified distance from the center point.
@@ -163,7 +163,7 @@ Get the bounding rectangle for a polygon defined by its vertices.
 RectangleBounds.getRectangleBounds(polygonCoords);
 ```
 
-- `polygonCoords` (List<LatLng>): List of vertices defining the polygon.
+- `polygonCoords` (List`<LatLng>`): List of vertices defining the polygon.
 
 Returns a list of `LatLng` points representing the bounding rectangle's corners.
 
@@ -188,7 +188,7 @@ Find the centroid of a polygon defined by its vertices.
 PolygonCentroid.findPolygonCentroid(polygons);
 ```
 
-- `polygon` (List<LatLng>): List of vertices defining the polygon.
+- `polygon` (List`<LatLng>`): List of vertices defining the polygon.
 
 Returns a `LatLng` object representing the centroid of the polygon.
 
@@ -202,10 +202,22 @@ Calculate the intersection of
 PolygonIntersection.getPolygonIntersection(polygon1, polygon2);
 ```
 
-- `polygon1` (List<LatLng>): List of vertices defining the first polygon.
-- `polygon2` (List<LatLng>): List of vertices defining the second polygon.
+- `polygon1` (List`<LatLng>`): List of vertices defining the first polygon.
+- `polygon2` (List`<LatLng>`): List of vertices defining the second polygon.
 
 Returns a list of `LatLng` points representing the intersection polygon.
+
+### Vincenty formula for Geodesic Distance Calculation
+
+```dart
+VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
+```
+
+### Calculate Area of Polygon with Hole
+
+```dart
+final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
+```
 
 ---
 

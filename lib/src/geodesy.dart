@@ -1,4 +1,5 @@
 import 'package:geodesy/geodesy.dart';
+import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 /// The main Geodesy Class
 class Geodesy {
@@ -86,5 +87,15 @@ class Geodesy {
   List<LatLng> getPolygonIntersection(
       List<LatLng> polygon1, List<LatLng> polygon2) {
     return PolygonIntersection.getPolygonIntersection(polygon1, polygon2);
+  }
+
+  /// Vincenty formula for Geodesic Distance Calculation
+  double vincentyDistance(double lat1, double lon1, double lat2, double lon2) {
+    return VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
+  }
+  /// Calculate the Area inside polygon Hole
+  double calculatePolygonWithHolesArea(
+      List<LatLng> outerPolygon, List<List<LatLng>> holes) {
+    return Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
   }
 }
