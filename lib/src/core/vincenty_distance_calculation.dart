@@ -2,6 +2,8 @@ import 'core.dart';
 
 /// Vincenty formula for Geodesic Distance Calculation
 class VincentyDistance {
+  /// Calculate the geodesic distance between two points 
+  /// on the surface of an ellipsoid, such as the Earth.
   static double vincentyDistance(
     double lat1,
     double lon1,
