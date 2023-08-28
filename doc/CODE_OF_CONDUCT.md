@@ -33,7 +33,7 @@ The following behaviors are considered unacceptable in the geodesy Dart library 
 
 ## Reporting Unacceptable Behavior
 
-If you witness or experience unacceptable behavior, please report it to the repository maintainers immediately. You can do this by sending an email to [email protected] or opening an issue on the GitHub repository.
+If you witness or experience unacceptable behavior, please report it to the repository maintainers immediately. You can do this by sending an email to wingkwong.code@gmail.com or opening an issue on the GitHub repository.
 
 ## Enforcement
 
@@ -41,4 +41,4 @@ The repository maintainers will investigate all reports of unacceptable behavior
 
 ## Contact Information
 
-If you have any questions about this Code of Conduct, please contact the repository maintainers at [email protected]
+If you have any questions about this Code of Conduct, please contact the repository maintainers at wingkwong.code@gmail.com.
