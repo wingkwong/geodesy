@@ -1,8 +1,7 @@
 import 'core.dart';
 
-///
+/// DestinationPointByDistanceAndBearing
 class DistanceAndBearing {
-  /// DestinationPointByDistanceAndBearing:-
   /// This code takes a starting point, a distance, a direction (bearing), and
   /// optionally a radius, and calculates the coordinates of a new point based
   /// on these inputs, using trigonometric calculations and the Haversine formula
@@ -34,8 +33,4 @@ class DistanceAndBearing {
     return LatLng(radianToDeg(latRadians2 as double),
         (radianToDeg(lngRadians2 as double) + 540) % 360 - 180);
   }
-
-  // Vincenty formula
-  // Spherical law of cosines
-// Equi-rectangular approximation
 }
