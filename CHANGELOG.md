@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.7.0
+
+- Refactor geodesy
+- Support Class & Static methods
+
 ## 0.6.0
 
 - Add findPolygonCentroid
