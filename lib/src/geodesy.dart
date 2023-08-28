@@ -93,6 +93,7 @@ class Geodesy {
   double vincentyDistance(double lat1, double lon1, double lat2, double lon2) {
     return VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
   }
+
   /// Calculate the Area inside polygon Hole
   double calculatePolygonWithHolesArea(
       List<LatLng> outerPolygon, List<List<LatLng>> holes) {

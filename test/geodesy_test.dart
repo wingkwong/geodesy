@@ -248,8 +248,7 @@ void main() {
         geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
 
     // Expected area of the polygon with the hole
-    final expectedArea =
-        0.75; // This value should match the actual calculation
+    final expectedArea = 0.75; // This value should match the actual calculation
 
     expect(calculatedArea, expectedArea);
   });

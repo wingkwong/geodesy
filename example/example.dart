@@ -62,8 +62,7 @@ void main() {
   );
 
   print(
-    '''Distance between San Francisco and Los Angeles: 
-    $calculatedDistance meters''',
+    '''Distance between San Francisco and Los Angeles:  $calculatedDistance meters''',
   );
 
   // Define the outer polygon

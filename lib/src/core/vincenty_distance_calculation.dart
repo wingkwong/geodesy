@@ -1,9 +1,7 @@
-
-
 import 'core.dart';
+
 /// Vincenty formula for Geodesic Distance Calculation
 class VincentyDistance {
-  /// Vincenty formula for Geodesic Distance Calculation
   static double vincentyDistance(
     double lat1,
     double lon1,
@@ -85,5 +83,3 @@ class VincentyDistance {
     return distance;
   }
 }
-
-
