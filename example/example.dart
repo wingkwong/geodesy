@@ -1,4 +1,5 @@
 import 'package:geodesy/geodesy.dart';
+import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 void main() {
   // Calculate Bounding Box
@@ -48,4 +49,40 @@ void main() {
   for (final point in intersectionPoints) {
     print('Latitude: ${point.latitude}, Longitude: ${point.longitude}');
   }
+
+  // Vincenty formula for Geodesic Distance Calculation
+  final LatLng point1 = const LatLng(37.7749, -122.4194); // San Francisco
+  final LatLng point2 = const LatLng(34.0522, -118.2437); // Los Angeles
+
+  final double calculatedDistance = VincentyDistance.vincentyDistance(
+    point1.latitude,
+    point1.longitude,
+    point2.latitude,
+    point2.longitude,
+  );
+
+  print(
+    '''Distance between San Francisco and Los Angeles:  $calculatedDistance meters''',
+  );
+
+  // Define the outer polygon
+  final outerPolygon = [
+    const LatLng(0.0, 0.0),
+    const LatLng(0.0, 1.0),
+    const LatLng(1.0, 1.0),
+    const LatLng(1.0, 0.0),
+  ];
+
+  // Define a hole within the outer polygon
+  final hole1 = [
+    const LatLng(0.25, 0.25),
+    const LatLng(0.25, 0.75),
+    const LatLng(0.75, 0.75),
+    const LatLng(0.75, 0.25),
+  ];
+
+  final holes = [hole1];
+
+  final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
+  print("Area of polygon with holes: $area");
 }
