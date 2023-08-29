@@ -193,4 +193,14 @@ void main() {
   print('Initial Point: ${initialPoint.latitude}, ${initialPoint.longitude}');
   print('''Destination Point: ${destinationPoints.latitude}, 
       ${destinationPoints.longitude}''');
+
+  /// Geodetic Point Manipulation - Midpoint between two points
+  final bgPoint1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final pFPoint2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+  LatLng midPointBetweenTwoPoints =
+      geodesy.calculateMidpoint(bgPoint1, pFPoint2);
+
+  print('''Midpoint: ${midPointBetweenTwoPoints.latitude}, 
+      ${midPointBetweenTwoPoints.longitude}''');
 }

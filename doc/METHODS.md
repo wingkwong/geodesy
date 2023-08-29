@@ -240,6 +240,13 @@ double sLCDdistance =
       initialPoint, bearingDegrees, distanceKm);
 ```
 
+### Geodetic Point Manipulation - Midpoint between two points
+
+```dart
+  LatLng midPointBetweenTwoPoints =
+      MidPointBetweenTwoPoints.calculateMidpoint(bgPoint1, pFPoint2);
+```
+
 ---
 
 This `Geodesy` provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

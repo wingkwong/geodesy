@@ -260,6 +260,13 @@ final calculatedArea =
   LatLng destinationPoints = geodesy.calculateDestinationPoint(initialPoint, bearingDegrees, distanceKm);
 ```
 
+### Geodetic Point Manipulation - Midpoint between two points
+
+```dart
+  LatLng midPointBetweenTwoPoints =
+      geodesy.calculateMidpoint(bgPoint1, pFPoint2);
+```
+
 ---
 
 This `Geodesy` class provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

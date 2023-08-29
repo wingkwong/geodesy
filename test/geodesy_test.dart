@@ -300,4 +300,21 @@ void main() {
     expect(destinationPoint.latitude, closeTo(expectedLatitude, tolerance));
     expect(destinationPoint.longitude, closeTo(expectedLongitude, tolerance));
   });
+
+  test('Midpoint between Berlin and Paris', () {
+    final point1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final point2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+    LatLng midpoint = geodesy.calculateMidpoint(point1, point2);
+
+    // Expected midpoint coordinates (approximate)
+    double expectedLatitude = 50.6883;
+    double expectedLongitude = 7.8786;
+
+    // Define a tolerance for latitude and longitude comparisons
+    double tolerance = 0.001;
+
+    expect(midpoint.latitude, closeTo(expectedLatitude, tolerance));
+    expect(midpoint.longitude, closeTo(expectedLongitude, tolerance));
+  });
 }

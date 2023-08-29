@@ -1,6 +1,7 @@
 import 'package:geodesy/geodesy.dart';
 import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 /// The main Geodesy Class
@@ -117,5 +118,10 @@ class Geodesy {
       LatLng initialPoint, double bearingDegrees, double distanceKm) {
     return DestinationPoint.calculateDestinationPoint(
         initialPoint, bearingDegrees, distanceKm);
+  }
+
+  /// Geodetic Point Manipulation - Midpoint between two points
+  LatLng calculateMidpoint(LatLng point1, LatLng point2) {
+    return MidPointBetweenTwoPoints.calculateMidpoint(point1, point2);
   }
 }

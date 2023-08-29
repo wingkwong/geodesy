@@ -1,6 +1,7 @@
 import 'package:geodesy/geodesy.dart';
 import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 void main() {
@@ -120,4 +121,14 @@ void main() {
   print('Initial Point: ${initialPoint.latitude}, ${initialPoint.longitude}');
   print('''Destination Point: ${destinationPoints.latitude}, 
       ${destinationPoints.longitude}''');
+
+  /// Geodetic Point Manipulation - Midpoint between two points
+  final bgPoint1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final pFPoint2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+  LatLng midPointBetweenTwoPoints =
+      MidPointBetweenTwoPoints.calculateMidpoint(bgPoint1, pFPoint2);
+
+  print('''Midpoint: ${midPointBetweenTwoPoints.latitude}, 
+      ${midPointBetweenTwoPoints.longitude}''');
 }
