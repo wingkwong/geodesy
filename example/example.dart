@@ -1,5 +1,5 @@
 import 'package:geodesy/geodesy.dart';
-import 'package:geodesy/src/core/equirectangular_distance.dart';
+import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 void main() {
@@ -96,5 +96,15 @@ void main() {
           firstPoint, secondPoint);
   print(
       '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} km
+      ''');
+
+  /// Calculate Spherical Law Of Cosines Distance
+  final bGPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final pFPoint = const LatLng(48.8566, 2.3522); // Paris, France
+
+  double sLCDdistance =
+      SphericalLawOfCosines.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+  print(
+      '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} km
       ''');
 }

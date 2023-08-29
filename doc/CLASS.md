@@ -248,6 +248,12 @@ final calculatedArea =
   double equirectangularDistance = geodesy.equirectangularDistance(firstPoint, secondPoint);
 ```
 
+### Spherical Law Of Cosines Distance
+
+```dart
+ double sLCDdistance = geodesy.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+```
+
 ---
 
 This `Geodesy` class provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

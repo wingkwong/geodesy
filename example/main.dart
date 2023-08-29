@@ -172,4 +172,13 @@ void main() {
   print(
       '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} km
       ''');
+
+  /// Calculate Spherical Law Of Cosines Distance
+  final bGPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final pFPoint = const LatLng(48.8566, 2.3522); // Paris, France
+
+  double sLCDdistance = geodesy.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+  print(
+      '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} km
+      ''');
 }

@@ -1,4 +1,4 @@
-import 'core.dart';
+import '../core.dart';
 
 /// Equirectangular approximation Calculation
 class EquirectangularApproximation {

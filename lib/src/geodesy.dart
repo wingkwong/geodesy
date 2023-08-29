@@ -1,5 +1,5 @@
 import 'package:geodesy/geodesy.dart';
-import 'package:geodesy/src/core/equirectangular_distance.dart';
+import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 /// The main Geodesy Class
@@ -104,5 +104,10 @@ class Geodesy {
   /// Equirectangular approximation Calculation
   double equirectangularDistance(LatLng point1, LatLng point2) {
     return EquirectangularApproximation.equirectangularDistance(point1, point2);
+  }
+
+  /// Calculate Spherical Law Of Cosines Distance
+  double sphericalLawOfCosinesDistance(LatLng point1, LatLng point2) {
+    return SphericalLawOfCosines.sphericalLawOfCosinesDistance(point1, point2);
   }
 }

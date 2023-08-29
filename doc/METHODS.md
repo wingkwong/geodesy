@@ -226,6 +226,13 @@ final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
   EquirectangularApproximation.equirectangularDistance(firstPoint,secondPoint);
 ```
 
+### Spherical Law Of Cosines Distance
+
+```dart
+double sLCDdistance =
+      SphericalLawOfCosines.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+```
+
 ---
 
 This `Geodesy` provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.
