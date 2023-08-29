@@ -1,6 +1,7 @@
 import 'package:geodesy/geodesy.dart';
 import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_points_along_great_circle.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
@@ -131,4 +132,17 @@ void main() {
 
   print('''Midpoint: ${midPointBetweenTwoPoints.latitude}, 
       ${midPointBetweenTwoPoints.longitude}''');
+
+  /// Geodetic Point Manipulation - Calculate Point Along Great Circle
+  final startPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final endPoint = const LatLng(48.8566, 2.3522); // Paris, France
+  final numPoints = 5; // Number of points along the arc
+
+  List<LatLng> arcPoints = GreatCirclePoint.calculatePointsAlongGreatCircle(
+      startPoint, endPoint, numPoints);
+
+  print('Points along Great Circle Arc:');
+  for (var point in arcPoints) {
+    print('${point.latitude}, ${point.longitude}');
+  }
 }

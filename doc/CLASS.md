@@ -267,6 +267,13 @@ final calculatedArea =
       geodesy.calculateMidpoint(bgPoint1, pFPoint2);
 ```
 
+### Geodetic Point Manipulation - Calculate Point Along Great Circle
+
+```dart
+  List<LatLng> arcPoints =
+      geodesy.calculatePointsAlongGreatCircle(startPoint, endPoint, numPoints);
+```
+
 ---
 
 This `Geodesy` class provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

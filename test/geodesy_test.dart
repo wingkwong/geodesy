@@ -317,4 +317,31 @@ void main() {
     expect(midpoint.latitude, closeTo(expectedLatitude, tolerance));
     expect(midpoint.longitude, closeTo(expectedLongitude, tolerance));
   });
+  test('Points along Great Circle Arc', () {
+    final startPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final endPoint = const LatLng(48.8566, 2.3522); // Paris, France
+    final numPoints = 5; // Number of points along the arc
+
+    List<LatLng> arcPoints = geodesy.calculatePointsAlongGreatCircle(
+        startPoint, endPoint, numPoints);
+
+    // Expected points along the great circle arc (approximate)
+    List<LatLng> expectedPoints = [
+      const LatLng(52.5200, 13.4050),
+      const LatLng(51.78732, 11.19444),
+      const LatLng(51.05464, 8.98388),
+      const LatLng(50.321960000000004, 6.773319999999998),
+      const LatLng(49.589279999999995, 4.562759999999999)
+    ];
+
+    // Define a tolerance for latitude and longitude comparisons
+    double tolerance = 0.001;
+
+    for (int i = 0; i < numPoints; i++) {
+      expect(arcPoints[i].latitude,
+          closeTo(expectedPoints[i].latitude, tolerance));
+      expect(arcPoints[i].longitude,
+          closeTo(expectedPoints[i].longitude, tolerance));
+    }
+  });
 }

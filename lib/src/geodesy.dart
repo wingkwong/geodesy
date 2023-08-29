@@ -1,6 +1,7 @@
 import 'package:geodesy/geodesy.dart';
 import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_points_along_great_circle.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
@@ -123,5 +124,12 @@ class Geodesy {
   /// Geodetic Point Manipulation - Midpoint between two points
   LatLng calculateMidpoint(LatLng point1, LatLng point2) {
     return MidPointBetweenTwoPoints.calculateMidpoint(point1, point2);
+  }
+
+  /// Geodetic Point Manipulation - Calculate Point Along Great Circle
+  List<LatLng> calculatePointsAlongGreatCircle(
+      LatLng startPoint, LatLng endPoint, int numPoints) {
+    return GreatCirclePoint.calculatePointsAlongGreatCircle(
+        startPoint, endPoint, numPoints);
   }
 }
