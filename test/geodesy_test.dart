@@ -248,9 +248,24 @@ void main() {
         geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
 
     // Expected area of the polygon with the hole
-    final expectedArea =
-        0.75; // This value should match the actual calculation
+    final expectedArea = 0.75; // This value should match the actual calculation
 
     expect(calculatedArea, expectedArea);
   });
+
+  //
+  test('Equirectangular Distance Calculation', () {
+      final LatLng point1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+      final LatLng point2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+      double distance = geodesy.equirectangularDistance(point1, point2);
+
+      // Expected distance between Berlin and Paris in kilometers (approximate)
+      double expectedDistance = 68326.0664427471;
+
+      // Define a tolerance for floating-point comparison
+      double tolerance = 0.01;
+
+      expect(distance, closeTo(expectedDistance, tolerance));
+    });
 }

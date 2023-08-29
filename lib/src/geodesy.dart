@@ -1,4 +1,5 @@
 import 'package:geodesy/geodesy.dart';
+import 'package:geodesy/src/core/equirectangular_distance.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 /// The main Geodesy Class
@@ -93,9 +94,15 @@ class Geodesy {
   double vincentyDistance(double lat1, double lon1, double lat2, double lon2) {
     return VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
   }
+
   /// Calculate the Area inside polygon Hole
   double calculatePolygonWithHolesArea(
       List<LatLng> outerPolygon, List<List<LatLng>> holes) {
     return Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
+  }
+
+  /// Equirectangular approximation Calculation
+  double equirectangularDistance(LatLng point1, LatLng point2) {
+    return EquirectangularApproximation.equirectangularDistance(point1, point2);
   }
 }

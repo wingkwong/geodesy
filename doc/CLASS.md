@@ -242,6 +242,12 @@ final calculatedArea =
         geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
 
+### Equirectangular approximation Calculation
+
+```dart
+  double equirectangularDistance = geodesy.equirectangularDistance(firstPoint, secondPoint);
+```
+
 ---
 
 This `Geodesy` class provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

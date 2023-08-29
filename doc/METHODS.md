@@ -219,6 +219,13 @@ VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
 final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
 
+### Equirectangular approximation Calculation
+
+```dart
+  double equirectangularDistance = 
+  EquirectangularApproximation.equirectangularDistance(firstPoint,secondPoint);
+```
+
 ---
 
 This `Geodesy` provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

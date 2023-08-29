@@ -162,4 +162,14 @@ void main() {
 
   final area = geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
   print("Area of polygon with holes: $area");
+
+  // Equirectangular approximation Calculation
+  final firstPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final secondPoint = const LatLng(48.8566, 2.3522); // Paris, France
+
+  double equirectangularDistance =
+      geodesy.equirectangularDistance(firstPoint, secondPoint);
+  print(
+      '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} km
+      ''');
 }

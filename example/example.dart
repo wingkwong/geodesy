@@ -1,4 +1,5 @@
 import 'package:geodesy/geodesy.dart';
+import 'package:geodesy/src/core/equirectangular_distance.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 void main() {
@@ -86,4 +87,15 @@ void main() {
 
   final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
   print("Area of polygon with holes: $area");
+
+  // Equirectangular approximation Calculation
+  final firstPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final secondPoint = const LatLng(48.8566, 2.3522); // Paris, France
+
+  double equirectangularDistance =
+      EquirectangularApproximation.equirectangularDistance(
+          firstPoint, secondPoint);
+  print(
+      '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} km
+      ''');
 }

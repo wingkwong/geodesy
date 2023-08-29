@@ -42,7 +42,7 @@ Please see the details [here](doc/CLASS.md).
 
 ## Static Methods
 
-Static methods are avilable without using Geodesy instance.
+Static methods are available without using Geodesy instance.
 
 Please see the details  [here](doc/METHODS.md).
 
