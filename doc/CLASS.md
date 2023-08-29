@@ -254,6 +254,12 @@ final calculatedArea =
  double sLCDdistance = geodesy.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
 ```
 
+### Geodetic Point Manipulation - Rhumb Line Destination Formula
+
+```dart
+  LatLng destinationPoints = geodesy.calculateDestinationPoint(initialPoint, bearingDegrees, distanceKm);
+```
+
 ---
 
 This `Geodesy` class provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

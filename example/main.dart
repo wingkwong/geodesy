@@ -181,4 +181,16 @@ void main() {
   print(
       '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} km
       ''');
+
+  /// Geodetic Point Manipulation - Rhumb Line Destination Formula
+  final initialPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final bearingDegrees = 45.0; // 45 degrees bearing (northeast)
+  final distanceKm = 100.0; // 100 kilometers distance
+
+  LatLng destinationPoints = geodesy.calculateDestinationPoint(
+      initialPoint, bearingDegrees, distanceKm);
+
+  print('Initial Point: ${initialPoint.latitude}, ${initialPoint.longitude}');
+  print('''Destination Point: ${destinationPoints.latitude}, 
+      ${destinationPoints.longitude}''');
 }

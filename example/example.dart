@@ -1,5 +1,6 @@
 import 'package:geodesy/geodesy.dart';
 import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 void main() {
@@ -107,4 +108,16 @@ void main() {
   print(
       '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} km
       ''');
+
+  /// Geodetic Point Manipulation - Rhumb Line Destination Formula
+  final initialPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final bearingDegrees = 45.0; // 45 degrees bearing (northeast)
+  final distanceKm = 100.0; // 100 kilometers distance
+
+  LatLng destinationPoints = DestinationPoint.calculateDestinationPoint(
+      initialPoint, bearingDegrees, distanceKm);
+
+  print('Initial Point: ${initialPoint.latitude}, ${initialPoint.longitude}');
+  print('''Destination Point: ${destinationPoints.latitude}, 
+      ${destinationPoints.longitude}''');
 }

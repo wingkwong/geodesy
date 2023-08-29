@@ -1,5 +1,6 @@
 import 'package:geodesy/geodesy.dart';
 import 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 /// The main Geodesy Class
@@ -109,5 +110,12 @@ class Geodesy {
   /// Calculate Spherical Law Of Cosines Distance
   double sphericalLawOfCosinesDistance(LatLng point1, LatLng point2) {
     return SphericalLawOfCosines.sphericalLawOfCosinesDistance(point1, point2);
+  }
+
+  /// Geodetic Point Manipulation - Rhumb Line Destination Formula
+  LatLng calculateDestinationPoint(
+      LatLng initialPoint, double bearingDegrees, double distanceKm) {
+    return DestinationPoint.calculateDestinationPoint(
+        initialPoint, bearingDegrees, distanceKm);
   }
 }

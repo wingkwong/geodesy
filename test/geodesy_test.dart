@@ -282,4 +282,22 @@ void main() {
 
     expect(distance, closeTo(expectedDistance, tolerance));
   });
+  test('Destination point for 45 degree bearing and 100 km distance', () {
+    final initialPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final bearingDegrees = 45.0; // 45 degrees bearing (northeast)
+    final distanceKm = 100.0; // 100 kilometers distance
+
+    LatLng destinationPoint = geodesy.calculateDestinationPoint(
+        initialPoint, bearingDegrees, distanceKm);
+
+    // Expected destination point coordinates
+    double expectedLatitude = 53.155916406012715;
+    double expectedLongitude = 14.450082411263415;
+
+    // Define a tolerance for latitude and longitude comparisons
+    double tolerance = 0.001;
+
+    expect(destinationPoint.latitude, closeTo(expectedLatitude, tolerance));
+    expect(destinationPoint.longitude, closeTo(expectedLongitude, tolerance));
+  });
 }
