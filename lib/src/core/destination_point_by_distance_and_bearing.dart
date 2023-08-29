@@ -2,19 +2,11 @@ import 'core.dart';
 
 /// DestinationPointByDistanceAndBearing
 class DistanceAndBearing {
-<<<<<<< HEAD
   /// DestinationPointByDistanceAndBearing:-
   /// This code takes a starting point, a distance, a direction (bearing), and
   /// optionally a radius, and calculates the coordinates of a new point based
   /// on these inputs, using trigonometric calculations and the Haversine formula
   /// for spherical geometry.
-=======
-  /// This code takes a starting point, a distance, 
-  /// a direction (bearing), and optionally a radius, and 
-  /// calculates the coordinates of a new point
-  /// based on these inputs, using trigonometric calculations and 
-  /// the Haversine formula for spherical geometry.
->>>>>>> 6af10d56dc117c68b23f50df44ca2686268af241
   static LatLng destinationPointByDistanceAndBearing(
       LatLng l, num distance, num bearing,
       [num? radius]) {

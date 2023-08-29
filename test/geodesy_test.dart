@@ -252,7 +252,6 @@ void main() {
 
     expect(calculatedArea, expectedArea);
   });
-<<<<<<< HEAD
 
   //
   test('Equirectangular Distance Calculation', () {
@@ -345,6 +344,4 @@ void main() {
           closeTo(expectedPoints[i].longitude, tolerance));
     }
   });
-=======
->>>>>>> 6af10d56dc117c68b23f50df44ca2686268af241
 }

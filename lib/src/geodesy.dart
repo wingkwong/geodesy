@@ -1,4 +1,8 @@
 import 'package:geodesy/geodesy.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_points_along_great_circle.dart';
+import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
+import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 /// The main Geodesy Class
 class Geodesy {
@@ -86,5 +90,45 @@ class Geodesy {
   List<LatLng> getPolygonIntersection(
       List<LatLng> polygon1, List<LatLng> polygon2) {
     return PolygonIntersection.getPolygonIntersection(polygon1, polygon2);
+  }
+
+  /// Vincenty formula for Geodesic Distance Calculation
+  double vincentyDistance(double lat1, double lon1, double lat2, double lon2) {
+    return VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
+  }
+
+  /// Calculate the Area inside polygon Hole
+  double calculatePolygonWithHolesArea(
+      List<LatLng> outerPolygon, List<List<LatLng>> holes) {
+    return Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
+  }
+
+  /// Geodetic Point Manipulation - Rhumb Line Destination Formula
+  LatLng calculateDestinationPoint(
+      LatLng initialPoint, double bearingDegrees, double distanceKm) {
+    return DestinationPoint.calculateDestinationPoint(
+        initialPoint, bearingDegrees, distanceKm);
+  }
+
+  /// Geodetic Point Manipulation - Calculate Point Along Great Circle
+  List<LatLng> calculatePointsAlongGreatCircle(
+      LatLng startPoint, LatLng endPoint, int numPoints) {
+    return GreatCirclePoint.calculatePointsAlongGreatCircle(
+        startPoint, endPoint, numPoints);
+  }
+
+  /// Geodetic Point Manipulation - Midpoint between two points
+  LatLng calculateMidpoint(LatLng point1, LatLng point2) {
+    return MidPointBetweenTwoPoints.calculateMidpoint(point1, point2);
+  }
+
+  /// Equirectangular approximation Calculation
+  double equirectangularDistance(LatLng point1, LatLng point2) {
+    return EquirectangularApproximation.equirectangularDistance(point1, point2);
+  }
+
+  /// Calculate Spherical Law Of Cosines Distance
+  double sphericalLawOfCosinesDistance(LatLng point1, LatLng point2) {
+    return SphericalLawOfCosines.sphericalLawOfCosinesDistance(point1, point2);
   }
 }
