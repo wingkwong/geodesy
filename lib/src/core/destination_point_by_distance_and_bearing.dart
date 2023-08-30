@@ -5,8 +5,8 @@ class DistanceAndBearing {
   /// DestinationPointByDistanceAndBearing:
   /// This code takes a starting point, a distance, a direction (bearing), and
   /// optionally a radius, and calculates the coordinates of a new point based
-  /// on these inputs, using trigonometric calculations and the Haversine formula
-  /// for spherical geometry.
+  /// on these inputs, using trigonometric calculations and
+  /// the Haversine formula for spherical geometry.
   static LatLng destinationPointByDistanceAndBearing(
       LatLng l, num distance, num bearing,
       [num? radius]) {
