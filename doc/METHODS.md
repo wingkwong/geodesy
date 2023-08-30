@@ -219,6 +219,41 @@ VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
 final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
 
+### Equirectangular approximation Calculation
+
+```dart
+double equirectangularDistance = 
+  EquirectangularApproximation.equirectangularDistance(firstPoint,secondPoint);
+```
+
+### Spherical Law Of Cosines Distance
+
+```dart
+double sLCDdistance =
+  SphericalLawOfCosines.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+```
+
+### Geodetic Point Manipulation - Rhumb Line Destination Formula
+
+```dart
+LatLng destinationPoints = DestinationPoint.calculateDestinationPoint(
+  initialPoint, bearingDegrees, distanceKm);
+```
+
+### Geodetic Point Manipulation - Midpoint between two points
+
+```dart
+LatLng midPointBetweenTwoPoints =
+  MidPointBetweenTwoPoints.calculateMidpoint(bgPoint1, pFPoint2);
+```
+
+### Geodetic Point Manipulation - Calculate Point Along Great Circle
+
+```dart
+List<LatLng> arcPoints = GreatCirclePoint.calculatePointsAlongGreatCircle(
+  startPoint, endPoint, numPoints);
+```
+
 ---
 
 This `Geodesy` provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.

@@ -1,8 +1,8 @@
-import 'core.dart';
+import '../core.dart';
 
 ///
 class GeoPoints {
-  /// Calculate the distance in meters between two geo points
+  /// Calculate the Distance in meters between two geo points
   static num distanceBetweenTwoGeoPoints(LatLng l1, LatLng l2, [num? radius]) {
     final R = radius ?? 6371e3;
     final num l1LatRadians = degToRadian(l1.latitude);
