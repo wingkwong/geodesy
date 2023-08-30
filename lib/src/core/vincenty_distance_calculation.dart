@@ -2,6 +2,10 @@ import 'core.dart';
 
 /// Vincenty formula for Geodesic Distance Calculation
 class VincentyDistance {
+  /// Calculate the distance between two points on the surface of an ellipsoid.
+  /// It's calculate geodesic distances, which are the shortest distances
+  /// between two points on the curved surface of an
+  /// ellipsoid (such as the Earth).
   static double vincentyDistance(
     double lat1,
     double lon1,
