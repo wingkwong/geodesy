@@ -6,7 +6,7 @@ class SphericalLawOfCosines {
   /// longitude coordinates of two points. It calculates the distance
   /// between the points using the Spherical Law of Cosines formula
   /// and the Earth's radius.
-static  double sphericalLawOfCosinesDistance(LatLng point1, LatLng point2) {
+  static double sphericalLawOfCosinesDistance(LatLng point1, LatLng point2) {
     final double radius = 6371.0; // Earth's radius in kilometers
 
     double lat1 = (point1.latitude).toRadians();

@@ -222,7 +222,7 @@ final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
 ### Equirectangular approximation Calculation
 
 ```dart
-  double equirectangularDistance = 
+double equirectangularDistance = 
   EquirectangularApproximation.equirectangularDistance(firstPoint,secondPoint);
 ```
 
@@ -230,28 +230,28 @@ final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
 
 ```dart
 double sLCDdistance =
-      SphericalLawOfCosines.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+  SphericalLawOfCosines.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
 ```
 
 ### Geodetic Point Manipulation - Rhumb Line Destination Formula
 
 ```dart
-  LatLng destinationPoints = DestinationPoint.calculateDestinationPoint(
-      initialPoint, bearingDegrees, distanceKm);
+LatLng destinationPoints = DestinationPoint.calculateDestinationPoint(
+  initialPoint, bearingDegrees, distanceKm);
 ```
 
 ### Geodetic Point Manipulation - Midpoint between two points
 
 ```dart
-  LatLng midPointBetweenTwoPoints =
-      MidPointBetweenTwoPoints.calculateMidpoint(bgPoint1, pFPoint2);
+LatLng midPointBetweenTwoPoints =
+  MidPointBetweenTwoPoints.calculateMidpoint(bgPoint1, pFPoint2);
 ```
 
 ### Geodetic Point Manipulation - Calculate Point Along Great Circle
 
 ```dart
-  List<LatLng> arcPoints = GreatCirclePoint.calculatePointsAlongGreatCircle(
-      startPoint, endPoint, numPoints);
+List<LatLng> arcPoints = GreatCirclePoint.calculatePointsAlongGreatCircle(
+  startPoint, endPoint, numPoints);
 ```
 
 ---
