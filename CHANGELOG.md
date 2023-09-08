@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.9.0
+
+- Implement DistanceCalculations: EquirectangularApproximation, and SphericalLawOfCosines
+- Implement GeodeticPointManipulation: DestinationPoint, MidPointBetweenTwoPoints, and GreatCirclePoint
+
 ## 0.8.0
 
 - Implement Calculating Polygon Area With Hole
