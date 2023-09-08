@@ -42,7 +42,7 @@ Please see the details [here](doc/CLASS.md).
 
 ## Static Methods
 
-Static methods are avilable without using Geodesy instance.
+Static methods are available without using Geodesy instance.
 
 Please see the details  [here](doc/METHODS.md).
 
@@ -186,14 +186,14 @@ final outerPolygon = [
     const LatLng(1.0, 0.0),
   ];
 
-  final hole1 = [
-    const LatLng(0.25, 0.25),
-    const LatLng(0.25, 0.75),
-    const LatLng(0.75, 0.75),
-    const LatLng(0.75, 0.25),
-  ];
+final hole1 = [
+  const LatLng(0.25, 0.25),
+  const LatLng(0.25, 0.75),
+  const LatLng(0.75, 0.75),
+  const LatLng(0.75, 0.25),
+];
 
-  final holes = [hole1];
+final holes = [hole1];
 final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
 

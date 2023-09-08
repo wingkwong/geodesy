@@ -252,4 +252,96 @@ void main() {
 
     expect(calculatedArea, expectedArea);
   });
+
+  //
+  test('Equirectangular Distance Calculation', () {
+    final LatLng point1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final LatLng point2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+    double distance = geodesy.equirectangularDistance(point1, point2);
+
+    // Expected distance between Berlin and Paris in kilometers (approximate)
+    double expectedDistance = 68326.0664427471;
+
+    // Define a tolerance for floating-point comparison
+    double tolerance = 0.01;
+
+    expect(distance, closeTo(expectedDistance, tolerance));
+  });
+  test('Spherical Law of Cosines Distance Calculation', () {
+    final LatLng point1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final LatLng point2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+    double distance = geodesy.sphericalLawOfCosinesDistance(point1, point2);
+
+    // Expected distance between Berlin and Paris in kilometers (approximate)
+    double expectedDistance = 877.4633259175409;
+
+    // Define a tolerance for floating-point comparison
+    double tolerance = 0.01;
+
+    expect(distance, closeTo(expectedDistance, tolerance));
+  });
+  test('Destination point for 45 degree bearing and 100 km distance', () {
+    final initialPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final bearingDegrees = 45.0; // 45 degrees bearing (northeast)
+    final distanceKm = 100.0; // 100 kilometers distance
+
+    LatLng destinationPoint = geodesy.calculateDestinationPoint(
+        initialPoint, bearingDegrees, distanceKm);
+
+    // Expected destination point coordinates
+    double expectedLatitude = 53.155916406012715;
+    double expectedLongitude = 14.450082411263415;
+
+    // Define a tolerance for latitude and longitude comparisons
+    double tolerance = 0.001;
+
+    expect(destinationPoint.latitude, closeTo(expectedLatitude, tolerance));
+    expect(destinationPoint.longitude, closeTo(expectedLongitude, tolerance));
+  });
+
+  test('Midpoint between Berlin and Paris', () {
+    final point1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final point2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+    LatLng midpoint = geodesy.calculateMidpoint(point1, point2);
+
+    // Expected midpoint coordinates (approximate)
+    double expectedLatitude = 50.6883;
+    double expectedLongitude = 7.8786;
+
+    // Define a tolerance for latitude and longitude comparisons
+    double tolerance = 0.001;
+
+    expect(midpoint.latitude, closeTo(expectedLatitude, tolerance));
+    expect(midpoint.longitude, closeTo(expectedLongitude, tolerance));
+  });
+  test('Points along Great Circle Arc', () {
+    final startPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+    final endPoint = const LatLng(48.8566, 2.3522); // Paris, France
+    final numPoints = 5; // Number of points along the arc
+
+    List<LatLng> arcPoints = geodesy.calculatePointsAlongGreatCircle(
+        startPoint, endPoint, numPoints);
+
+    // Expected points along the great circle arc (approximate)
+    List<LatLng> expectedPoints = [
+      const LatLng(52.5200, 13.4050),
+      const LatLng(51.78732, 11.19444),
+      const LatLng(51.05464, 8.98388),
+      const LatLng(50.321960000000004, 6.773319999999998),
+      const LatLng(49.589279999999995, 4.562759999999999)
+    ];
+
+    // Define a tolerance for latitude and longitude comparisons
+    double tolerance = 0.001;
+
+    for (int i = 0; i < numPoints; i++) {
+      expect(arcPoints[i].latitude,
+          closeTo(expectedPoints[i].latitude, tolerance));
+      expect(arcPoints[i].longitude,
+          closeTo(expectedPoints[i].longitude, tolerance));
+    }
+  });
 }

@@ -231,15 +231,44 @@ Returns a list of `LatLng` points representing the intersection polygon.
 ### Vincenty formula for Geodesic Distance Calculation
 
 ```dart
- final double calculatedDistance = geodesy.vincentyDistance(
-      point1.latitude, point1.longitude, point2.latitude, point2.longitude);
+final double calculatedDistance = 
+  geodesy.vincentyDistance(point1.latitude, point1.longitude, point2.latitude, point2.longitude);
 ```
 
 ### Calculate Area of Polygon with Hole
 
 ```dart
-final calculatedArea =
-        geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
+final calculatedArea = geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
+```
+
+### Equirectangular Approximation Calculation
+
+```dart
+double equirectangularDistance = geodesy.equirectangularDistance(firstPoint, secondPoint);
+```
+
+### Spherical Law Of Cosines Distance
+
+```dart
+double sLCDdistance = geodesy.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+```
+
+### Geodetic Point Manipulation - Rhumb Line Destination Formula
+
+```dart
+LatLng destinationPoints = geodesy.calculateDestinationPoint(initialPoint, bearingDegrees, distanceKm);
+```
+
+### Geodetic Point Manipulation - Midpoint between two points
+
+```dart
+LatLng midPointBetweenTwoPoints = geodesy.calculateMidpoint(bgPoint1, pFPoint2);
+```
+
+### Geodetic Point Manipulation - Calculate Point Along Great Circle
+
+```dart
+List<LatLng> arcPoints = geodesy.calculatePointsAlongGreatCircle(startPoint, endPoint, numPoints);
 ```
 
 ---

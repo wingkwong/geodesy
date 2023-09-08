@@ -162,4 +162,58 @@ void main() {
 
   final area = geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
   print("Area of polygon with holes: $area");
+
+  // Equirectangular approximation Calculation
+  final firstPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final secondPoint = const LatLng(48.8566, 2.3522); // Paris, France
+
+  double equirectangularDistance =
+      geodesy.equirectangularDistance(firstPoint, secondPoint);
+  print(
+      '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} km
+      ''');
+
+  /// Calculate Spherical Law Of Cosines Distance
+  final bGPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final pFPoint = const LatLng(48.8566, 2.3522); // Paris, France
+
+  double sLCDdistance = geodesy.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
+  print(
+      '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} km
+      ''');
+
+  /// Geodetic Point Manipulation - Rhumb Line Destination Formula
+  final initialPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final bearingDegrees = 45.0; // 45 degrees bearing (northeast)
+  final distanceKm = 100.0; // 100 kilometers distance
+
+  LatLng destinationPoints = geodesy.calculateDestinationPoint(
+      initialPoint, bearingDegrees, distanceKm);
+
+  print('Initial Point: ${initialPoint.latitude}, ${initialPoint.longitude}');
+  print('''Destination Point: ${destinationPoints.latitude}, 
+      ${destinationPoints.longitude}''');
+
+  /// Geodetic Point Manipulation - Midpoint between two points
+  final bgPoint1 = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final pFPoint2 = const LatLng(48.8566, 2.3522); // Paris, France
+
+  LatLng midPointBetweenTwoPoints =
+      geodesy.calculateMidpoint(bgPoint1, pFPoint2);
+
+  print('''Midpoint: ${midPointBetweenTwoPoints.latitude}, 
+      ${midPointBetweenTwoPoints.longitude}''');
+
+  /// Geodetic Point Manipulation - Calculate Point Along Great Circle
+  final startPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
+  final endPoint = const LatLng(48.8566, 2.3522); // Paris, France
+  final numPoints = 5; // Number of points along the arc
+
+  List<LatLng> arcPoints =
+      geodesy.calculatePointsAlongGreatCircle(startPoint, endPoint, numPoints);
+
+  print('Points along Great Circle Arc:');
+  for (var point in arcPoints) {
+    print('${point.latitude}, ${point.longitude}');
+  }
 }
