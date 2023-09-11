@@ -216,4 +216,62 @@ void main() {
   for (var point in arcPoints) {
     print('${point.latitude}, ${point.longitude}');
   }
+
+  /// PolyLine Length Calculation
+  // Create a list of LatLng points representing your polyLine
+  List<LatLng> polyLinePoints = [
+    const LatLng(42.345, -71.098), // Add your points here
+    const LatLng(42.355, -71.108),
+    const LatLng(42.365, -71.118),
+    // Add more points as needed
+  ];
+
+  // Calculate the length of the polyLine
+  double length = geodesy.calculatePolyLineLength(polyLinePoints);
+
+  print('Length of the polyLine: $length meters');
+
+  /// Polygon Area by Using Shoelace formula
+  // Create a list of LatLng points representing your polygon
+  List<LatLng> polygonPoints = [
+    const LatLng(42.345, -71.098), // Add your points here
+    const LatLng(42.355, -71.108),
+    const LatLng(42.365, -71.118),
+    // Add more points as needed
+  ];
+
+  // Calculate the area of the polygon
+  double polygonArea = geodesy.calculatePolygonArea(polygonPoints);
+
+  print('Area of the polygon: $polygonArea square meters');
+
+  /// Calculate intersection points of two geodesic lines
+  // Example geodesic lines
+  LatLng start1 = const LatLng(42.345, -71.098);
+  LatLng end1 = const LatLng(42.355, -71.108);
+  LatLng start2 = const LatLng(42.355, -71.108);
+  LatLng end2 = const LatLng(42.365, -71.118);
+
+  // Calculate intersection point
+  LatLng? intersection =
+      geodesy.calculateGeodesicLineIntersection(start1, end1, start2, end2);
+
+  if (intersection != null) {
+    print(''''Intersection point: Latitude ${intersection.latitude}, 
+        Longitude ${intersection.longitude}''');
+  } else {
+    print('No intersection found.');
+  }
+
+  /// Project a point onto a geodesic line
+  // Example geodesic line and point
+  LatLng start = const LatLng(42.345, -71.098);
+  LatLng end = const LatLng(42.355, -71.108);
+  LatLng point = const LatLng(42.350, -71.103);
+
+  // Project the point onto the geodesic line
+  LatLng projection = geodesy.projectPointOntoGeodesicLine(point, start, end);
+
+  print('''Projected Point: Latitude ${projection.latitude}, 
+      Longitude ${projection.longitude}''');
 }

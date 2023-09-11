@@ -1,7 +1,10 @@
 import 'package:geodesy/geodesy.dart';
+import 'package:geodesy/src/core/GeodesicMeasurements/polygon_area_by_points.dart';
+import 'package:geodesy/src/core/GeodesicMeasurements/polyline_length_by_multiple_points.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_points_along_great_circle.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
+import 'package:geodesy/src/core/IntersectionAndProjection/geodesic_lines.dart';
 import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 /// The main Geodesy Class
@@ -130,5 +133,28 @@ class Geodesy {
   /// Calculate Spherical Law Of Cosines Distance
   double sphericalLawOfCosinesDistance(LatLng point1, LatLng point2) {
     return SphericalLawOfCosines.sphericalLawOfCosinesDistance(point1, point2);
+  }
+
+  /// PolyLine Class Calculate the length of a polyLine formed by
+  /// connecting multiple points
+  double calculatePolyLineLength(List<LatLng> polyLinePoints) {
+    return PolyLine.calculatePolyLineLength(polyLinePoints);
+  }
+
+  /// Calculate Polygon Area Using Shoelace formula
+  double calculatePolygonArea(List<LatLng> polygonPoints) {
+    return PolygonArea.calculatePolygonArea(polygonPoints);
+  }
+
+  /// Calculate intersection points of two geodesic lines
+  LatLng? calculateGeodesicLineIntersection(
+      LatLng start1, LatLng end1, LatLng start2, LatLng end2) {
+    return GeodesicLines.calculateGeodesicLineIntersection(
+        start1, end1, start2, end2);
+  }
+
+  /// Project a point onto a geodesic line
+  LatLng projectPointOntoGeodesicLine(LatLng point, LatLng start, LatLng end) {
+    return GeodesicLines.projectPointOntoGeodesicLine(point, start, end);
   }
 }

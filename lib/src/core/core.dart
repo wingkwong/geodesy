@@ -9,6 +9,7 @@ export 'package:geodesy/src/core/DistanceCalculations/geo_points.dart';
 export 'package:geodesy/src/core/vincenty_distance_calculation.dart';
 export 'package:geodesy/src/core/destination_point_by_distance_and_bearing.dart';
 export 'package:geodesy/src/core/cross_track_distance_to.dart';
+export 'package:geodesy/src/math/to_degrees.dart';
 export 'package:geodesy/src/core/DistanceCalculations/equirectangular_distance.dart';
 export 'package:geodesy/src/core/DistanceCalculations/spherical_law_of_cosines_distance.dart';
 export 'package:latlong2/latlong.dart' hide pi;

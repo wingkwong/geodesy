@@ -271,6 +271,25 @@ LatLng midPointBetweenTwoPoints = geodesy.calculateMidpoint(bgPoint1, pFPoint2);
 List<LatLng> arcPoints = geodesy.calculatePointsAlongGreatCircle(startPoint, endPoint, numPoints);
 ```
 
+### PolyLine Length by multiple Points
+
+```dart
+double length = PolyLine.calculatePolyLineLength(polyLinePoints);
+```
+
+### Polygon Area Calculation using Shoelace formula
+
+```dart
+ double polygonArea = geodesy.calculatePolygonArea(polygonPoints);
+```
+
+### Intersection points of two geodesic lines
+
+```dart
+  LatLng? intersection = geodesy.calculateGeodesicLineIntersection(
+      start1, end1, start2, end2);
+```
+
 ---
 
 This `Geodesy` class provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.
