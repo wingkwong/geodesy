@@ -1,12 +1,15 @@
 import '../core.dart';
 
-/// PolyLine Class Calculate the length of a polyLine formed by
-/// connecting multiple points
+/// A PolyLine class for calculating the length of a polyline formed by connecting
+/// multiple points.
 class PolyLine {
-  /// Calculate the distance between consecutive points using the distance
-  /// method from the Distance class. The distances are accumulated
-  /// to calculate the total length of the polyLine.
-
+  /// Calculates the length of a polyline by summing the distances between
+  /// consecutive points using the Haversine distance formula.
+  ///
+  /// [polyLinePoints] - A list of LatLng points representing the vertices of the
+  ///                    polyline, ordered in the sequence they are connected.
+  ///
+  /// Returns the total length of the polyline in meters.
   static double calculatePolyLineLength(List<LatLng> polyLinePoints) {
     final Distance distance = const Distance();
     double length = 0.0;

@@ -7,7 +7,6 @@ analyzer:
     missing_required_param: error
     invalid_use_of_protected_member: error
     dead_code: info
-    sdk_version_async_exported_from_core: ignore
 linter:
   rules:
     - always_declare_return_types
@@ -16,7 +15,6 @@ linter:
     - one_member_abstracts
     - recursive_getters
     - null_closures
-    - lines_longer_than_80_chars
     - prefer_conditional_assignment
     - prefer_const_constructors
     - prefer_final_fields

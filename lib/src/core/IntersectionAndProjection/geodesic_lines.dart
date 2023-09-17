@@ -1,12 +1,20 @@
 import '../core.dart';
 
-///  Geodesic lines
+/// A Geodesic Lines class for calculating geodesic lines, intersections, and projections.
 class GeodesicLines {
-  /// CalculateGeodesicLineIntersection function, which takes the starting
-  /// and ending points of two geodesic lines as input and calculates their
-  ///  intersection point using various geodesic formulas.
-  /// The function returns a LatLng representing the intersection point or
-  ///  null if no intersection is found.
+  /// Calculates the intersection point of two geodesic lines defined by their
+  /// starting and ending points.
+  ///
+  /// [start1] - The LatLng coordinates of the starting point of the first line.
+  ///
+  /// [end1] - The LatLng coordinates of the ending point of the first line.
+  ///
+  /// [start2] - The LatLng coordinates of the starting point of the second line.
+  ///
+  /// [end2] - The LatLng coordinates of the ending point of the second line.
+  ///
+  /// Returns the intersection point as a LatLng object, or null if no intersection
+  /// is found.
   static LatLng? calculateGeodesicLineIntersection(
       LatLng start1, LatLng end1, LatLng start2, LatLng end2) {
     const double earthRadius = 6371000; // Earth's radius in meters
@@ -64,16 +72,15 @@ class GeodesicLines {
     return LatLng((lat4).toDegrees(), (lon4).toDegrees());
   }
 
-  /// ProjectPointOntoGeodesicLine function takes a point and two endpoints 
-  /// of a geodesic line as input and calculates the projection of 
-  /// the point onto the line.
-  /// It calculates the initial bearing from the start to the end of the 
-  /// line, the distance from the start to the
-  /// given point, and the angular distance in radians.
-  /// Then, it calculates the final bearing and the destination point 
-  /// (projection) on the line.
-  /// Finally, it converts the destination point from radians to 
-  /// degrees and returns it as a LatLng object.
+  /// Projects a given point onto a geodesic line defined by two endpoints.
+  ///
+  /// [point] - The LatLng coordinates of the point to project.
+  ///
+  /// [start] - The LatLng coordinates of the starting point of the geodesic line.
+  ///
+  /// [end] - The LatLng coordinates of the ending point of the geodesic line.
+  ///
+  /// Returns the projected point as a LatLng object.
   static LatLng projectPointOntoGeodesicLine(
       LatLng point, LatLng start, LatLng end) {
     const double earthRadius = 6371000; // Earth's radius in meters
@@ -106,7 +113,14 @@ class GeodesicLines {
     return LatLng((lat2).toDegrees(), (lon2).toDegrees());
   }
 
-  /// Calculate Initial Bearing Distance
+  /// Calculates the initial bearing (azimuth) from one point to another.
+  ///
+  /// [start] - The LatLng coordinates of the starting point.
+  ///
+  /// [end] - The LatLng coordinates of the ending point.
+  ///
+  /// Returns the initial bearing in degrees, where 0 degrees indicates
+  /// a northward direction and 90 degrees indicates an eastward direction.
   static double initialBearing(LatLng start, LatLng end) {
     final double lat1 = (start.latitude).toRadians();
     final double lon1 = (start.longitude).toRadians();

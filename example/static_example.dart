@@ -5,7 +5,6 @@ import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_points_along_great_circle.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
 import 'package:geodesy/src/core/IntersectionAndProjection/geodesic_lines.dart';
-import 'package:geodesy/src/core/polygon_with_hole.dart';
 
 void main() {
   // Calculate Bounding Box
@@ -89,7 +88,7 @@ void main() {
 
   final holes = [hole1];
 
-  final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
+  final area = PolygonHole.calculatePolygonWithHolesArea(outerPolygon, holes);
   print("Area of polygon with holes: $area");
 
   // Equirectangular approximation Calculation
