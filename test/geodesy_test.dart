@@ -376,7 +376,6 @@ void main() {
     expect(length, equals(111319.0));
   });
 
-  ///
   test('Lines are parallel and do not intersect', () {
     // Create two parallel lines with no intersection
     LatLng start1 = const LatLng(0.0, 0.0);
