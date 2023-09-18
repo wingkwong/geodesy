@@ -1,6 +1,6 @@
 import 'package:geodesy/geodesy.dart';
 
-///Geodesy class that acts as a wrapper for various geodetic calculations. This class provides a
+/// Geodesy class that acts as a wrapper for various geodetic calculations. This class provides a
 /// wide range of geo-spatial functionalities, from calculating distances and bearings to working
 /// with polygons, points, and lines. This can be a valuable utility for geo-spatial applications
 class Geodesy {
