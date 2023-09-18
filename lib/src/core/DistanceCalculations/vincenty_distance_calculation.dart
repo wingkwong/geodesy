@@ -1,11 +1,24 @@
-import 'core.dart';
+import '../core.dart';
 
-/// Vincenty formula for Geodesic Distance Calculation
+/// Vincenty Distance class for calculating geodesic distances between two points on
+/// the surface of an ellipsoid using the Vincenty formula.
 class VincentyDistance {
-  /// Calculate the distance between two points on the surface of an ellipsoid.
-  /// It's calculate geodesic distances, which are the shortest distances
-  /// between two points on the curved surface of an
-  /// ellipsoid (such as the Earth).
+  /// Calculates the geodesic distance between two points on the surface of an
+  /// ellipsoid using the Vincenty formula.
+  ///
+  /// The Vincenty formula provides a highly accurate method for calculating
+  /// geodesic distances, which are the shortest distances between two points
+  /// on the curved surface of an ellipsoid (such as the Earth).
+  ///
+  /// [lat1] - The latitude of the first point in decimal degrees.
+  ///
+  /// [lon1] - The longitude of the first point in decimal degrees.
+  ///
+  /// [lat2] - The latitude of the second point in decimal degrees.
+  ///
+  /// [lon2] - The longitude of the second point in decimal degrees.
+  ///
+  /// Returns the geodesic distance between the two points in meters.
   static double vincentyDistance(
     double lat1,
     double lon1,

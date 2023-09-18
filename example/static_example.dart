@@ -1,8 +1,10 @@
 import 'package:geodesy/geodesy.dart';
+import 'package:geodesy/src/core/GeodesicMeasurements/polygon_area_by_points.dart';
+import 'package:geodesy/src/core/GeodesicMeasurements/polyline_length_by_multiple_points.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_destination_point.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/calculate_points_along_great_circle.dart';
 import 'package:geodesy/src/core/GeodeticPointManipulation/mid_point_between_two_points.dart';
-import 'package:geodesy/src/core/polygon_with_hole.dart';
+import 'package:geodesy/src/core/IntersectionAndProjection/geodesic_lines.dart';
 
 void main() {
   // Calculate Bounding Box
@@ -86,7 +88,7 @@ void main() {
 
   final holes = [hole1];
 
-  final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
+  final area = PolygonHole.calculatePolygonWithHolesArea(outerPolygon, holes);
   print("Area of polygon with holes: $area");
 
   // Equirectangular approximation Calculation
@@ -144,4 +146,63 @@ void main() {
   for (var point in arcPoints) {
     print('${point.latitude}, ${point.longitude}');
   }
+
+  /// PolyLine Length
+  // Create a list of LatLng points representing your polyLine
+  List<LatLng> polyLinePoints = [
+    const LatLng(42.345, -71.098), // Add your points here
+    const LatLng(42.355, -71.108),
+    const LatLng(42.365, -71.118),
+    // Add more points as needed
+  ];
+
+  // Calculate the length of the polyLine
+  double length = PolyLine.calculatePolyLineLength(polyLinePoints);
+
+  print('Length of the polyLine: $length meters');
+
+  /// Polygon Area by Using Shoelace formula
+  // Create a list of LatLng points representing your polygon
+  List<LatLng> polygonPoints = [
+    const LatLng(42.345, -71.098), // Add your points here
+    const LatLng(42.355, -71.108),
+    const LatLng(42.365, -71.118),
+    // Add more points as needed
+  ];
+
+  // Calculate the area of the polygon
+  double polygonArea = PolygonArea.calculatePolygonArea(polygonPoints);
+
+  print('Area of the polygon: $polygonArea square meters');
+
+  /// Calculate intersection points of two geodesic lines
+  // Example geodesic lines
+  LatLng start1 = const LatLng(42.345, -71.098);
+  LatLng end1 = const LatLng(42.355, -71.108);
+  LatLng start2 = const LatLng(42.355, -71.108);
+  LatLng end2 = const LatLng(42.365, -71.118);
+
+  // Calculate intersection point
+  LatLng? intersection = GeodesicLines.calculateGeodesicLineIntersection(
+      start1, end1, start2, end2);
+
+  if (intersection != null) {
+    print(''''Intersection point: Latitude ${intersection.latitude}, 
+        Longitude ${intersection.longitude}''');
+  } else {
+    print('No intersection found.');
+  }
+
+  /// Project a point onto a geodesic line
+  // Example geodesic line and point
+  LatLng start = const LatLng(42.345, -71.098);
+  LatLng end = const LatLng(42.355, -71.108);
+  LatLng point = const LatLng(42.350, -71.103);
+
+  // Project the point onto the geodesic line
+  LatLng projection =
+      GeodesicLines.projectPointOntoGeodesicLine(point, start, end);
+
+  print('''Projected Point: Latitude ${projection.latitude}, 
+      Longitude ${projection.longitude}''');
 }

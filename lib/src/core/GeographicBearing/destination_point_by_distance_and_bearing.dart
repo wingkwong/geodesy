@@ -1,12 +1,22 @@
-import 'core.dart';
+import '../core.dart';
 
-/// DestinationPointByDistanceAndBearing
+/// A DistanceAndBearing class for calculating destination points based on a starting point,
+/// a distance, a direction (bearing), and optionally a radius.
 class DistanceAndBearing {
-  /// DestinationPointByDistanceAndBearing:
-  /// This code takes a starting point, a distance, a direction (bearing), and
-  /// optionally a radius, and calculates the coordinates of a new point based
-  /// on these inputs, using trigonometric calculations and
-  /// the Haversine formula for spherical geometry.
+  /// Calculates the coordinates of a destination point based on a starting point,
+  /// a distance, a direction (bearing), and optionally a radius.
+  ///
+  /// [l] - The LatLng coordinates of the starting point.
+  ///
+  /// [distance] - The distance in meters to travel from the starting point.
+  ///
+  /// [bearing] - The direction or bearing in degrees (0 to 360) from the starting
+  ///              point (0 degrees points north, 90 degrees points east, etc.).
+  ///
+  /// [radius] - The radius of the Earth or the sphere being considered. It is
+  ///            an optional parameter and defaults to the Earth's radius (6371e3 meters).
+  ///
+  /// Returns a new LatLng object representing the coordinates of the destination point.
   static LatLng destinationPointByDistanceAndBearing(
       LatLng l, num distance, num bearing,
       [num? radius]) {
@@ -31,7 +41,7 @@ class DistanceAndBearing {
     final x = cosAngularDistanceRadius - sinLatRadians * sinLatRadians2;
     final num lngRadians2 = lngRadians + atan2(y, x);
 
-    return LatLng(radianToDeg(latRadians2 as double),
-        (radianToDeg(lngRadians2 as double) + 540) % 360 - 180);
+    return LatLng(radianToDeg(latRadians2.toDouble()),
+        (radianToDeg(lngRadians2.toDouble()) + 540.0) % 360.0 - 180.0);
   }
 }

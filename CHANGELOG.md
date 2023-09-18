@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 0.10.0
+
+- Geodesy Refactoring
+- Implement Geodesic Measurements
+  - Calculate the length of a polyline formed by connecting multiple points
+  - Calculate the area of a polygon defined by a set of points using Shoelace formula
+- Implement Intersection and Projection
+  - Calculate intersection points of two geodesic lines
+  - Project a point onto a geodesic line
+
 ## 0.9.0
 
 - Implement DistanceCalculations: EquirectangularApproximation, and SphericalLawOfCosines
