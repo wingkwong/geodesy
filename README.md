@@ -22,40 +22,32 @@ dart pub add geodesy
 flutter pub add geodesy
 ```
 
-### Import the library in your dart file
+### Import Geodesy
 
 ```dart
 import 'package:geodesy/geodesy.dart';
 ```
 
-### Initialization
-
-```dart
-final Geodesy geodesy = Geodesy();
-```
-
 ## Class
 
-The Geodesy class provides a collection of methods for performing various geodetic calculations, including distance calculations, point intersections, and more. This class is designed to work with geographical coordinates in the form of latitude and longitude.
+The `Geodesy` class provides a collection of methods for performing various geodetic calculations, including distance calculations, point intersections, and more. This class is designed to work with geographical coordinates in the form of latitude and longitude.
 
-Please see the details [here](doc/CLASS.md).
-
-### Example
-
-Please check out [here](example/class_example.dart).
+Please see the [Usage](doc/CLASS.md) and [Example](example/class_example.dart).
 
 ## Static Methods
 
-Static methods are available without using Geodesy instance.
+Static methods are available without using `Geodesy` instance.
 
-Please see the details  [here](doc/METHODS.md).
-### Example
-
-Please check out [here](example/static_example.dart).
-## Code of Conduct
-
-See [here](doc/CODE_OF_CONDUCT.md).
+Please see the [Usage](doc/METHODS.md) and [Example](example/static_example.dart).
 
 ## License
 
-See [here](./LICENSE).
+This project is licensed under [MIT](./LICENSE).
+
+## Contributors
+
+Thank you for your contributions! We appreciate all the contributions from the community.
+
+<a href="https://github.com/wingkwong/geodesy/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=wingkwong/geodesy" />
+</a>
