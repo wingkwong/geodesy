@@ -36,7 +36,7 @@ Please see the [Usage](doc/CLASS.md) and [Example](example/class_example.dart).
 
 ## Static Methods
 
-Static methods are available without using Geo`desy instance.
+Static methods are available without using `Geodesy` instance.
 
 Please see the [Usage](doc/METHODS.md) and [Example](example/static_example.dart).
 
