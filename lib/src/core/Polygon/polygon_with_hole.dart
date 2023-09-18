@@ -1,12 +1,13 @@
-import 'core.dart';
+import '../core.dart';
 
-/// Polygon
-class Polygon {
-  /// In this code, the calculatePolygonWithHolesArea function takes the
-  /// outerPolygon (a list of LatLng points) and a list of holes
-  /// (each hole represented as a list of LatLng points).
-  /// It calculates the area using the given polygon and holes and
-  /// returns the final area.
+/// A Polygon Hole class for calculating the area of a polygon with holes.
+class PolygonHole {
+  /// Calculate the area of a polygon with holes.
+  ///
+  /// [outerPolygon] - A list of LatLng coordinates representing the vertices of the outer polygon.
+  /// [holes] - A list of holes, where each hole is represented as a list of LatLng coordinates.
+  ///
+  /// Returns the area of the polygon with holes in square meters.
   static double calculatePolygonWithHolesArea(
       List<LatLng> outerPolygon, List<List<LatLng>> holes) {
     // Calculate and sum the areas of holes

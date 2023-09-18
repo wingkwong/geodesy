@@ -1,17 +1,28 @@
 import '../core.dart';
 
-///  Geodetic Point Manipulation - Calculate Point Along Great Circle
+/// A Great Circle Point class for calculating points along the great circle arc
+/// connecting two LatLng points.
 class GreatCirclePoint {
-  /// calculates a list of points along the great circle arc connecting
-  /// the startPoint and endPoint.
-  /// It uses linear interpolation to calculate the intermediate points
-  /// at equally spaced intervals along the arc.
+  /// Calculates a list of points along the great circle arc connecting
+  /// the [startPoint] and [endPoint].
+  ///
+  /// It uses linear interpolation to calculate intermediate points at equally
+  /// spaced intervals along the arc.
+  ///
+  /// [startPoint] - The starting LatLng point of the great circle arc.
+  ///
+  /// [endPoint] - The ending LatLng point of the great circle arc.
+  ///
+  /// [numPoints] - The number of points to calculate along the arc, including
+  ///               the start and end points.
+  ///
+  /// Returns a list of LatLng points representing points along the great circle arc.
   static List<LatLng> calculatePointsAlongGreatCircle(
       LatLng startPoint, LatLng endPoint, int numPoints) {
     final List<LatLng> points = <LatLng>[];
 
-    final double startLat =
-        startPoint.latitude * (pi / 180.0); // Convert degrees to radians
+    // Convert degrees to radians
+    final double startLat = startPoint.latitude * (pi / 180.0);
     final double startLon = startPoint.longitude * (pi / 180.0);
     final double endLat = endPoint.latitude * (pi / 180.0);
     final double endLon = endPoint.longitude * (pi / 180.0);
@@ -23,7 +34,8 @@ class GreatCirclePoint {
       double lat = startLat * (1 - t) + endLat * t;
       double lon = startLon * (1 - t) + endLon * t;
 
-      lat = lat * (180.0 / pi); // Convert radians to degrees
+      // Convert radians back to degrees
+      lat = lat * (180.0 / pi);
       lon = lon * (180.0 / pi);
 
       points.add(LatLng(lat, lon));

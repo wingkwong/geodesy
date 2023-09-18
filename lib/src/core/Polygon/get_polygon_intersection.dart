@@ -1,8 +1,14 @@
-import 'core.dart';
+import '../core.dart';
 
-///
+/// A PolygonIntersection class for finding the intersection points of two polygons.
 class PolygonIntersection {
-  ///Get Polygon Intersection
+  /// Get the intersection points of two polygons.
+  ///
+  /// [polygon1] - A list of LatLng coordinates representing the vertices of the first polygon.
+  /// [polygon2] - A list of LatLng coordinates representing the vertices of the second polygon.
+  ///
+  /// Returns a list of LatLng points representing the intersection points of the two polygons.
+
   static List<LatLng> getPolygonIntersection(
       List<LatLng> polygon1, List<LatLng> polygon2) {
     final List<LatLng> intersectionPoints = <LatLng>[];
@@ -27,6 +33,14 @@ class PolygonIntersection {
     return intersectionPoints;
   }
 
+  /// Calculate the intersection point of two line segments defined by their endpoints.
+  ///
+  /// [start1] - The starting point of the first line segment.
+  /// [end1] - The ending point of the first line segment.
+  /// [start2] - The starting point of the second line segment.
+  /// [end2] - The ending point of the second line segment.
+  ///
+  /// Returns the intersection point as a LatLng object if it exists; otherwise, returns null.
   static LatLng? _getLineIntersection(
       LatLng start1, LatLng end1, LatLng start2, LatLng end2) {
     final num x1 = start1.latitude;
@@ -60,6 +74,14 @@ class PolygonIntersection {
       return null;
     }
   }
+
+  /// Check if a point lies on a line segment defined by its endpoints.
+  ///
+  /// [point] - The point to check.
+  /// [lineStart] - The starting point of the line segment.
+  /// [lineEnd] - The ending point of the line segment.
+  ///
+  /// Returns true if the point lies on the line segment; otherwise, returns false.
 
   static bool _isPointOnLine(LatLng point, LatLng lineStart, LatLng lineEnd) {
     final minX = lineStart.latitude < lineEnd.latitude
