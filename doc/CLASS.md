@@ -3,10 +3,10 @@
 The `Geodesy` class provides a collection of methods for performing various geodetic calculations, including distance calculations, point intersections, and more. This class is designed to work with geographical coordinates in the form of latitude and longitude.
 
 ```dart
-final Geodesy geodesy = Geodesy();
+final geodesy = Geodesy();
 ```
 
-Call any function which is given blow using geodesy Instance
+Call any function which is given below using geodesy Instance.
 
 ## Methods
 
@@ -215,9 +215,7 @@ Returns a `LatLng` object representing the centroid of the polygon.
 
 ### Get Polygon Intersection
 
-Calculate the intersection of
-
- two polygons defined by their vertices.
+Calculate the intersection of two polygons defined by their vertices.
 
 ```dart
 List<LatLng> getPolygonIntersection(List<LatLng> polygon1, List<LatLng> polygon2)
@@ -271,6 +269,21 @@ LatLng midPointBetweenTwoPoints = geodesy.calculateMidpoint(bgPoint1, pFPoint2);
 List<LatLng> arcPoints = geodesy.calculatePointsAlongGreatCircle(startPoint, endPoint, numPoints);
 ```
 
----
+### PolyLine Length by multiple Points
 
-This `Geodesy` class provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.
+```dart
+double length = PolyLine.calculatePolyLineLength(polyLinePoints);
+```
+
+### Polygon Area Calculation using Shoelace formula
+
+```dart
+double polygonArea = geodesy.calculatePolygonArea(polygonPoints);
+```
+
+### Intersection points of two geodesic lines
+
+```dart
+LatLng? intersection = geodesy.calculateGeodesicLineIntersection(
+    start1, end1, start2, end2);
+```

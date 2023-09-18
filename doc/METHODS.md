@@ -1,8 +1,8 @@
 # Static Methods
 
-The `Geodesy` Static Methods provides a collection of methods for performing various geodetic calculations, including distance calculations, point intersections, and more. This  designed to work with geographical coordinates in the form of latitude and longitude.
+This `Geodesy` provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.
 
-Call any Static Methods which is given below without using geodesy Instance.
+Call any Static Methods which is given below without using `Geodesy` Instance.
 
 ## Methods
 
@@ -113,7 +113,7 @@ BoundingBox.isGeoPointInBoundingBox(l, topLeft, bottomRight);
 
 Returns `true` if the point is within the bounding box, otherwise `false`.
 
-### IsGeo Point In Polygon
+### Is GeoPoint In Polygon
 
 Check if a given point is within a polygon using the even-odd rule algorithm.
 
@@ -254,6 +254,21 @@ List<LatLng> arcPoints = GreatCirclePoint.calculatePointsAlongGreatCircle(
   startPoint, endPoint, numPoints);
 ```
 
----
+### PolyLine Length by multiple Points
 
-This `Geodesy` provides a comprehensive set of methods for performing various geodetic calculations and operations. You can use these methods to calculate distances, bearings, intersections, and more based on geographical coordinates.
+```dart
+double length = PolyLine.calculatePolyLineLength(polyLinePoints);
+```
+
+### Polygon Area Calculation using Shoelace formula
+
+```dart
+ double polygonArea = PolygonArea.calculatePolygonArea(polygonPoints);
+```
+
+### Intersection points of two geodesic lines
+
+```dart
+  LatLng? intersection = GeodesicLines.calculateGeodesicLineIntersection(
+      start1, end1, start2, end2);
+```

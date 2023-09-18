@@ -4,6 +4,6 @@ import '../core/core.dart';
 extension RadianConversion on num {
   /// Convert the double value to Radian
   double toRadians() {
-    return this * (pi / 180.0);
+    return this.toDouble() * (pi / 180.0);
   }
 }

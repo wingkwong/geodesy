@@ -1,8 +1,12 @@
-import 'core.dart';
+import '../core.dart';
 
-///
+/// A Polygon Centroid class for finding the centroid of polygons.
 class PolygonCentroid {
-  /// Finds the centroid of polygons
+  /// Finds the centroid of a polygon defined by a list of LatLng points.
+  ///
+  /// [polygons] - A list of LatLng coordinates representing the vertices of the polygon.
+  ///
+  /// Returns the centroid of the polygon as a LatLng object.
   static LatLng findPolygonCentroid(List<LatLng> polygons) {
     num x = 0;
     num y = 0;

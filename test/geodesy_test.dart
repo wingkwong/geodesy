@@ -344,4 +344,70 @@ void main() {
           closeTo(expectedPoints[i].longitude, tolerance));
     }
   });
+
+  test('Calculate the area of a square', () {
+    // Create a square with four vertices
+    List<LatLng> squarePoints = [
+      const LatLng(0.0, 0.0),
+      const LatLng(0.0, 1.0),
+      const LatLng(1.0, 1.0),
+      const LatLng(1.0, 0.0),
+    ];
+
+    // Calculate the area of the square
+    double area = geodesy.calculatePolygonArea(squarePoints);
+
+    // The area of a square with side length 1 is 1 square meter
+    expect(area, equals(1.0));
+  });
+
+  test('Calculate the length of a straight line in meters', () {
+    // Create a straight line with two points
+    List<LatLng> linePoints = [
+      const LatLng(0.0, 0.0),
+      const LatLng(0.0, 1.0),
+    ];
+
+    // Calculate the length of the line in meters
+    double length = geodesy.calculatePolyLineLength(linePoints);
+
+    // The length of a straight line from (0,0) to (0,1) in meters
+    // is 111319.0 meters
+    expect(length, equals(111319.0));
+  });
+
+  test('Lines are parallel and do not intersect', () {
+    // Create two parallel lines with no intersection
+    LatLng start1 = const LatLng(0.0, 0.0);
+    LatLng end1 = const LatLng(1.0, 0.0);
+    LatLng start2 = const LatLng(0.0, 1.0);
+    LatLng end2 = const LatLng(1.0, 1.0);
+
+    // Calculate intersection point
+    LatLng? intersection =
+        geodesy.calculateGeodesicLineIntersection(start1, end1, start2, end2);
+
+    // There should be no intersection
+    expect(intersection, isNull);
+  });
+
+  test('Project a point onto a geodesic line', () {
+    // Define the geodesic line
+    LatLng start = const LatLng(42.345, -71.098);
+    LatLng end = const LatLng(42.355, -71.108);
+
+    // Define the point to be projected
+    LatLng point = const LatLng(42.350, -71.103);
+
+    // Calculate the expected projected point manually (e.g., using a GIS tool)
+    LatLng expectedProjection =
+        const LatLng(42.3512233054802, -71.09799913598741);
+
+    // Project the point onto the geodesic line
+    LatLng projection = geodesy.projectPointOntoGeodesicLine(point, start, end);
+
+    // Check if the projected point is close enough to the expected result
+    expect(projection.latitude, closeTo(expectedProjection.latitude, 0.0001));
+    expect(projection.longitude, closeTo(expectedProjection.longitude, 0.0001));
+  });
 }

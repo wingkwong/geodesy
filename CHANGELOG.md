@@ -1,32 +1,47 @@
 # CHANGELOG
 
+## 0.10.1
+
+- Added Example README.md 
+- Revised Documentation Content
+
+## 0.10.0
+
+- Refactored Geodesy
+- Implemented Geodesic Measurements
+  - Calculating the length of a polyline formed by connecting multiple points
+  - Calculating the area of a polygon defined by a set of points using Shoelace formula
+- Implemented Intersection and Projection
+  - Calculating intersection points of two geodesic lines
+  - Projecting a point onto a geodesic line
+
 ## 0.9.0
 
-- Implement DistanceCalculations: EquirectangularApproximation, and SphericalLawOfCosines
-- Implement GeodeticPointManipulation: DestinationPoint, MidPointBetweenTwoPoints, and GreatCirclePoint
+- Implemented DistanceCalculations: EquirectangularApproximation, and SphericalLawOfCosines
+- Implemented GeodeticPointManipulation: DestinationPoint, MidPointBetweenTwoPoints, and GreatCirclePoint
 
 ## 0.8.0
 
-- Implement Calculating Polygon Area With Hole
-- Implement Vincenty Formula for Geodesic Distance Calculation
-- Add CODE_OF_CONDUCT.md
-- Revise LICENSE
+- Implemented Calculating Polygon Area With Hole
+- Implemented Vincenty Formula for Geodesic Distance Calculation
+- Added CODE_OF_CONDUCT.md
+- Revised LICENSE
 
 ## 0.7.0
 
-- Refactor geodesy
-- Support Class & Static methods
+- Refactored geodesy
+- Supported Class & Static methods
 
 ## 0.6.0
 
-- Add findPolygonCentroid
-- Add getPolygonIntersection
+- Added findPolygonCentroid
+- Added getPolygonIntersection
 
 ## 0.5.0
 
-- Add greatCircleDistanceBetweenTwoGeoPoints
-- Add getRectangleBounds
-- Add calculateBoundingBox
+- Added greatCircleDistanceBetweenTwoGeoPoints
+- Added getRectangleBounds
+- Added calculateBoundingBox
 
 ## 0.4.2
 
