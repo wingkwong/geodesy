@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 0.10.2 
+
+- Fixed Shoelace formula
+- Added Unit Conversion
+
 ## 0.10.1
 
 - Added Example README.md 
