@@ -25,8 +25,8 @@ class PolygonArea {
       final LatLng currentPoint = polygonPoints[i];
       final LatLng nextPoint = polygonPoints[(i + 1) % polygonPoints.length];
 
-      area += (currentPoint.latitude + nextPoint.latitude) *
-          (currentPoint.longitude - nextPoint.longitude);
+      area += (currentPoint.latitude * nextPoint.longitude -
+          nextPoint.latitude * currentPoint.longitude);
     }
 
     area = area.abs() / 2.0;
