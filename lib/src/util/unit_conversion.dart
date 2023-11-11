@@ -121,11 +121,3 @@ extension UnitConversions on num {
   /// Meters To Square Kilometers
   double get metersToSquareKilometers => this * this / 1e6;
 }
-
-
-// void main() {
-//   double distanceInMeters = 5000.0;
-//   print('Distance in meters: $distanceInMeters');
-//   print('Distance in kilometers: ${distanceInMeters.metersToKilometers}');
-//   print('Distance in centimeters: ${distanceInMeters.metersToCentimeters}');
-// }
