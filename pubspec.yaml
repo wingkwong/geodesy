@@ -7,7 +7,7 @@ environment:
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
-  latlong2: ^0.9.0
+  latlong2: ^0.10.0
 
 dev_dependencies:
   lints: ^5.0.0
