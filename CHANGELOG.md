@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.11.0
+
+- Updated min sdk version to 3.2.0
+- Bumped dev_dependencies (lints & test)
+- Bumped dependencies (latlong2)
+
 ## 0.10.2 
 
 - Fixed Shoelace formula
