@@ -122,14 +122,22 @@ class Geodesy {
 
   /// Calculate the Vincenty formula for geodesic distance calculation between two geographic points.
   ///
-  /// Given the latitude and longitude of two points [lat1], [lon1], [lat2], and [lon2], this function calculates and returns the geodesic distance between these two points using the Vincenty formula.
+  /// Given the latitude and longitude of two points [lat1], [lon1], [lat2], and [lon2], this function calculates and returns the geodesic distance in meters using the Vincenty formula.
+  /// Throws [ArgumentError] for non-finite or out-of-range coordinates and
+  /// [StateError] if the calculation does not converge within 200 iterations
+  /// (possible for antipodal or nearly antipodal points).
   double vincentyDistance(double lat1, double lon1, double lat2, double lon2) {
     return VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
   }
 
   /// Calculate the area of a polygon with holes.
   ///
-  /// Given an outer polygon defined by a list of [outerPolygon] points and a list of [holes] (each hole represented as a list of LatLng points), this function calculates and returns the area of the polygon with holes.
+  /// Returns square meters on a sphere of radius 6,371,000 meters, subtracting
+  /// each hole's smaller enclosed area regardless of winding. Empty [holes]
+  /// returns the outer area. Holes must be simple, contained in [outerPolygon],
+  /// and non-overlapping; topology is not checked. Throws [ArgumentError] for
+  /// invalid rings or total hole area exceeding the outer area.
+  /// See [PolygonHole.calculatePolygonWithHolesArea] for details.
   double calculatePolygonWithHolesArea(
       List<LatLng> outerPolygon, List<List<LatLng>> holes) {
     return PolygonHole.calculatePolygonWithHolesArea(outerPolygon, holes);
@@ -183,14 +191,23 @@ class Geodesy {
 
   /// Calculate the area of a polygon defined by a list of [polygonPoints] points.
   ///
-  /// Given a list of [polygonPoints] representing the vertices of a polygon, this function calculates and returns the area of the polygon.
+  /// Returns the smaller enclosed region in square meters on a sphere of
+  /// radius 6,371,000 meters, using short great-circle edges. Either winding
+  /// and open or explicitly closed rings are accepted. The polygon must be
+  /// simple; self-intersections are not checked. Throws [ArgumentError] for
+  /// invalid coordinates, antipodal edges, or numerically unstable rings.
+  /// See [PolygonArea.calculatePolygonArea] for details.
   double calculatePolygonArea(List<LatLng> polygonPoints) {
     return PolygonArea.calculatePolygonArea(polygonPoints);
   }
 
   /// Calculate the intersection points of two geodesic lines defined by start and end points.
   ///
-  /// Given four geographic points [start1], [end1], [start2], and [end2] representing the start and end points of two geodesic lines, this function calculates and returns the intersection point of these two lines as a [LatLng] object. If no intersection is found, it returns `null`.
+  /// Returns the unique intersection of the shorter great-circle segments
+  /// [start1]-[end1] and [start2]-[end2], including their endpoints. Returns
+  /// `null` for disjoint, coincident, or overlapping segments. Throws
+  /// [ArgumentError] for invalid coordinates or identical or antipodal
+  /// endpoints. See [GeodesicLines.calculateGeodesicLineIntersection].
   LatLng? calculateGeodesicLineIntersection(
       LatLng start1, LatLng end1, LatLng start2, LatLng end2) {
     return GeodesicLines.calculateGeodesicLineIntersection(
@@ -199,7 +216,11 @@ class Geodesy {
 
   /// Project a point onto a geodesic line.
   ///
-  /// Given a geographic point [point], and start [start] and end [end] points defining a geodesic line, this function calculates and returns the projection (closest point) of the given point onto the geodesic line as a [LatLng] object.
+  /// Returns the nearest point to [point] on the infinite great circle through
+  /// [start] and [end]. The result is not clamped to the shorter segment.
+  /// Throws [ArgumentError] for invalid coordinates, identical or antipodal
+  /// endpoints, or a point with no unique projection. See
+  /// [GeodesicLines.projectPointOntoGeodesicLine].
   LatLng projectPointOntoGeodesicLine(LatLng point, LatLng start, LatLng end) {
     return GeodesicLines.projectPointOntoGeodesicLine(point, start, end);
   }

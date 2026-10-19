@@ -209,17 +209,34 @@ Returns a list of `LatLng` points representing the intersection polygon.
 
 ### Vincenty formula for Geodesic Distance Calculation
 
+Returns the WGS-84 ellipsoidal distance in meters. Coordinates must be finite,
+with latitude in [-90, 90] and longitude in [-180, 180]; invalid coordinates
+throw `ArgumentError`. Identical points return zero. Antipodal or nearly
+antipodal pairs may fail to converge; after 200 iterations, `StateError` is
+thrown instead of returning an approximation.
+
 ```dart
 VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
 ```
 
 ### Calculate Area of Polygon with Hole
 
+Returns square meters using the spherical polygon area calculation below for
+each ring, independent of winding. Empty holes return the outer area; empty or
+degenerate holes contribute zero. Holes must be simple, non-overlapping, and
+contained in the outer ring's smaller region. Containment and overlap are not
+checked. Invalid rings or total hole area exceeding the outer area (beyond
+floating-point tolerance) throw `ArgumentError`.
+
 ```dart
-final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
+final area = PolygonHole.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
 
 ### Equirectangular approximation Calculation
+
+Returns an approximate distance in meters using a mean Earth radius of
+6,371,000 meters. Intended for nearby points; longitude differences are wrapped
+to take the short route across the dateline.
 
 ```dart
 double equirectangularDistance = 
@@ -227,6 +244,9 @@ double equirectangularDistance =
 ```
 
 ### Spherical Law Of Cosines Distance
+
+Returns the spherical distance in meters using a mean Earth radius of
+6,371,000 meters.
 
 ```dart
 double sLCDdistance =
@@ -260,7 +280,17 @@ List<LatLng> arcPoints = GreatCirclePoint.calculatePointsAlongGreatCircle(
 double length = PolyLine.calculatePolyLineLength(polyLinePoints);
 ```
 
-### Polygon Area Calculation using Shoelace formula
+### Spherical Polygon Area
+
+Returns square meters on a sphere of radius 6,371,000 meters. Edges follow the
+shorter great-circle arcs. The result is the smaller enclosed region, at most
+a hemisphere, regardless of winding. Rings close automatically; repeating the
+first vertex is optional. Fewer than three vertices return zero.
+
+Supply a simple ring: self-intersections are unsupported and are not checked.
+Invalid coordinates, antipodal adjacent vertices, and numerically unstable
+rings throw `ArgumentError`. This spherical model is not an ellipsoidal area
+calculation, and constant-latitude edges generally differ from great-circle arcs.
 
 ```dart
  double polygonArea = PolygonArea.calculatePolygonArea(polygonPoints);
@@ -268,7 +298,24 @@ double length = PolyLine.calculatePolyLineLength(polyLinePoints);
 
 ### Intersection points of two geodesic lines
 
+Returns the unique intersection of two finite, shorter great-circle segments,
+including endpoints. Disjoint, coincident, and overlapping segments return
+`null`. Invalid coordinates and identical or antipodal segment endpoints throw
+`ArgumentError`.
+
 ```dart
-  LatLng? intersection = GeodesicLines.calculateGeodesicLineIntersection(
-      start1, end1, start2, end2);
+LatLng? intersection = GeodesicLines.calculateGeodesicLineIntersection(
+    start1, end1, start2, end2);
+```
+
+### Project a point onto a geodesic line
+
+Returns the nearest point on the infinite great circle through `start` and
+`end`. The projection is not clamped to the finite segment. Invalid coordinates,
+identical or antipodal endpoints, and points with no unique projection throw
+`ArgumentError`.
+
+```dart
+LatLng projection =
+    GeodesicLines.projectPointOntoGeodesicLine(point, start, end);
 ```

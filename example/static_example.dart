@@ -83,7 +83,7 @@ void main() {
   final holes = [hole1];
 
   final area = PolygonHole.calculatePolygonWithHolesArea(outerPolygon, holes);
-  print("Area of polygon with holes: $area");
+  print("Area of polygon with holes: $area square meters");
 
   // Equirectangular approximation Calculation
   final firstPoint = const LatLng(52.5200, 13.4050); // Berlin, Germany
@@ -93,7 +93,7 @@ void main() {
       EquirectangularApproximation.equirectangularDistance(
           firstPoint, secondPoint);
   print(
-      '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} km
+      '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} m
       ''');
 
   /// Calculate Spherical Law Of Cosines Distance
@@ -103,7 +103,7 @@ void main() {
   double sLCDdistance =
       SphericalLawOfCosines.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
   print(
-      '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} km
+      '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} m
       ''');
 
   /// Geodetic Point Manipulation - Rhumb Line Destination Formula
@@ -155,7 +155,7 @@ void main() {
 
   print('Length of the polyLine: $length meters');
 
-  /// Polygon Area by Using Shoelace formula
+  /// Spherical polygon area with great-circle edges
   // Create a list of LatLng points representing your polygon
   List<LatLng> polygonPoints = [
     const LatLng(42.345, -71.098), // Add your points here

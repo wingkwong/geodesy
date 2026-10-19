@@ -18,20 +18,21 @@ class EquirectangularApproximation {
   /// [point2] - The second LatLng object representing the latitude and
   /// longitude  coordinates of the second point.
   ///
-  /// Returns the distance between the two points in kilometers, calculated
+  /// Returns the distance between the two points in meters, calculated
   /// using the Equirectangular approximation formula.
   static double equirectangularDistance(LatLng point1, LatLng point2) {
-    // Earth's radius in kilometers.
-    final double radius = 6371.0;
+    // Mean Earth radius in meters.
+    const double radius = 6371000.0;
 
-    // Extract latitude and longitude values from the LatLng objects.
-    double lat1 = point1.latitude;
-    double lon1 = point1.longitude;
-    double lat2 = point2.latitude;
-    double lon2 = point2.longitude;
+    final lat1 = point1.latitude.toRadians();
+    final lat2 = point2.latitude.toRadians();
+    // Wrap the difference before converting to radians so short dateline
+    // crossings are treated the same as other nearby pairs.
+    final deltaLon =
+        ((point2.longitude - point1.longitude + 180) % 360 - 180).toRadians();
 
     // Calculate the differences in longitude and latitude.
-    double x = (lon2 - lon1) * (radius * cos((lat1 + lat2) / 2));
+    double x = deltaLon * (radius * cos((lat1 + lat2) / 2));
     double y = (lat2 - lat1) * radius;
 
     // Calculate the distance using the Pythagorean theorem.

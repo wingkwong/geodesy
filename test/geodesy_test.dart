@@ -106,7 +106,7 @@ void main() {
     const num latitude2 = 48.8566; // Latitude of the second point
     const num longitude2 = 2.3522; // Longitude of the second point
 
-    const num expectedDistance = 877460.0; // Expected distance in kilometers
+    const num expectedDistance = 877460.0; // Expected distance in meters
 
     final num distance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
         latitude1, longitude1, latitude2, longitude2);
@@ -247,10 +247,10 @@ void main() {
     final calculatedArea =
         geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
 
-    // Expected area of the polygon with the hole
-    final expectedArea = 0.75; // This value should match the actual calculation
+    // Spherical-excess reference in square meters, with R = 6,371,000 m.
+    final expectedArea = 9273027721.421833;
 
-    expect(calculatedArea, expectedArea);
+    expect(calculatedArea, closeTo(expectedArea, .01));
   });
 
   //
@@ -260,8 +260,8 @@ void main() {
 
     double distance = geodesy.equirectangularDistance(point1, point2);
 
-    // Expected distance between Berlin and Paris in kilometers (approximate)
-    double expectedDistance = 68326.0664427471;
+    // Equirectangular approximation between Berlin and Paris in meters.
+    double expectedDistance = 878748.148907713;
 
     // Define a tolerance for floating-point comparison
     double tolerance = 0.01;
@@ -274,8 +274,8 @@ void main() {
 
     double distance = geodesy.sphericalLawOfCosinesDistance(point1, point2);
 
-    // Expected distance between Berlin and Paris in kilometers (approximate)
-    double expectedDistance = 877.4633259175409;
+    // Expected distance between Berlin and Paris in meters (approximate).
+    double expectedDistance = 877463.3259175409;
 
     // Define a tolerance for floating-point comparison
     double tolerance = 0.01;
@@ -357,8 +357,9 @@ void main() {
     // Calculate the area of the square
     double area = geodesy.calculatePolygonArea(squarePoints);
 
-    // The area of a square with side length 1 is 1 square meter
-    expect(area, equals(1.0));
+    // The vertices differ by one degree, not one meter.
+    // Spherical-excess reference with great-circle edges and R = 6,371,000 m.
+    expect(area, closeTo(12363997753.67991, .01));
   });
 
   test('Calculate the length of a straight line in meters', () {
@@ -399,15 +400,15 @@ void main() {
     // Define the point to be projected
     LatLng point = const LatLng(42.350, -71.103);
 
-    // Calculate the expected projected point manually (e.g., using a GIS tool)
+    // Cartesian unit-sphere projection onto the great-circle plane.
     LatLng expectedProjection =
-        const LatLng(42.3512233054802, -71.09799913598741);
+        const LatLng(42.35000017886313, -71.10299967252298);
 
     // Project the point onto the geodesic line
     LatLng projection = geodesy.projectPointOntoGeodesicLine(point, start, end);
 
     // Check if the projected point is close enough to the expected result
-    expect(projection.latitude, closeTo(expectedProjection.latitude, 0.0001));
-    expect(projection.longitude, closeTo(expectedProjection.longitude, 0.0001));
+    expect(projection.latitude, closeTo(expectedProjection.latitude, 1e-9));
+    expect(projection.longitude, closeTo(expectedProjection.longitude, 1e-9));
   });
 }

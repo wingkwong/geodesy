@@ -16,11 +16,17 @@ class SphericalLawOfCosines {
   /// [point2] - The second LatLng object representing the latitude and
   ///            longitude coordinates of the second point.
   ///
-  /// Returns the distance between the two points in kilometers, calculated
+  /// Returns the distance between the two points in meters, calculated
   /// using the Spherical Law of Cosines formula.
   static double sphericalLawOfCosinesDistance(LatLng point1, LatLng point2) {
-    // Earth's radius in kilometers.
-    final double radius = 6371.0;
+    // Mean Earth radius in meters.
+    const double radius = 6371000.0;
+
+    if (point1.latitude == point2.latitude &&
+        ((point2.longitude - point1.longitude) % 360 == 0 ||
+            point1.latitude.abs() == 90)) {
+      return 0;
+    }
 
     // Convert latitude and longitude values to radians.
     double lat1 = (point1.latitude).toRadians();
@@ -32,9 +38,10 @@ class SphericalLawOfCosines {
     double deltaLon = lon2 - lon1;
 
     // Calculate the distance using the Spherical Law of Cosines formula.
-    double distance =
-        acos(sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(deltaLon)) *
-            radius;
+    final cosAngle =
+        sin(lat1) * sin(lat2) + cos(lat1) * cos(lat2) * cos(deltaLon);
+    // Floating-point rounding can put the cosine just outside [-1, 1].
+    double distance = acos(cosAngle.clamp(-1.0, 1.0)) * radius;
 
     return distance;
   }
