@@ -400,15 +400,15 @@ void main() {
     // Define the point to be projected
     LatLng point = const LatLng(42.350, -71.103);
 
-    // Calculate the expected projected point manually (e.g., using a GIS tool)
+    // Cartesian unit-sphere projection onto the great-circle plane.
     LatLng expectedProjection =
-        const LatLng(42.3512233054802, -71.09799913598741);
+        const LatLng(42.35000017886313, -71.10299967252298);
 
     // Project the point onto the geodesic line
     LatLng projection = geodesy.projectPointOntoGeodesicLine(point, start, end);
 
     // Check if the projected point is close enough to the expected result
-    expect(projection.latitude, closeTo(expectedProjection.latitude, 0.0001));
-    expect(projection.longitude, closeTo(expectedProjection.longitude, 0.0001));
+    expect(projection.latitude, closeTo(expectedProjection.latitude, 1e-9));
+    expect(projection.longitude, closeTo(expectedProjection.longitude, 1e-9));
   });
 }

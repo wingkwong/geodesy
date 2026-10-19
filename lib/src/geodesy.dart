@@ -203,7 +203,11 @@ class Geodesy {
 
   /// Calculate the intersection points of two geodesic lines defined by start and end points.
   ///
-  /// Given four geographic points [start1], [end1], [start2], and [end2] representing the start and end points of two geodesic lines, this function calculates and returns the intersection point of these two lines as a [LatLng] object. If no intersection is found, it returns `null`.
+  /// Returns the unique intersection of the shorter great-circle segments
+  /// [start1]-[end1] and [start2]-[end2], including their endpoints. Returns
+  /// `null` for disjoint, coincident, or overlapping segments. Throws
+  /// [ArgumentError] for invalid coordinates or identical or antipodal
+  /// endpoints. See [GeodesicLines.calculateGeodesicLineIntersection].
   LatLng? calculateGeodesicLineIntersection(
       LatLng start1, LatLng end1, LatLng start2, LatLng end2) {
     return GeodesicLines.calculateGeodesicLineIntersection(
@@ -212,7 +216,11 @@ class Geodesy {
 
   /// Project a point onto a geodesic line.
   ///
-  /// Given a geographic point [point], and start [start] and end [end] points defining a geodesic line, this function calculates and returns the projection (closest point) of the given point onto the geodesic line as a [LatLng] object.
+  /// Returns the nearest point to [point] on the infinite great circle through
+  /// [start] and [end]. The result is not clamped to the shorter segment.
+  /// Throws [ArgumentError] for invalid coordinates, identical or antipodal
+  /// endpoints, or a point with no unique projection. See
+  /// [GeodesicLines.projectPointOntoGeodesicLine].
   LatLng projectPointOntoGeodesicLine(LatLng point, LatLng start, LatLng end) {
     return GeodesicLines.projectPointOntoGeodesicLine(point, start, end);
   }

@@ -313,7 +313,24 @@ double polygonArea = geodesy.calculatePolygonArea(polygonPoints);
 
 ### Intersection points of two geodesic lines
 
+Returns the unique intersection of two finite, shorter great-circle segments,
+including endpoints. Disjoint, coincident, and overlapping segments return
+`null`. Invalid coordinates and identical or antipodal segment endpoints throw
+`ArgumentError`.
+
 ```dart
 LatLng? intersection = geodesy.calculateGeodesicLineIntersection(
     start1, end1, start2, end2);
+```
+
+### Project a point onto a geodesic line
+
+Returns the nearest point on the infinite great circle through `start` and
+`end`. The projection is not clamped to the finite segment. Invalid coordinates,
+identical or antipodal endpoints, and points with no unique projection throw
+`ArgumentError`.
+
+```dart
+LatLng projection =
+    geodesy.projectPointOntoGeodesicLine(point, start, end);
 ```

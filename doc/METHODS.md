@@ -298,7 +298,24 @@ calculation, and constant-latitude edges generally differ from great-circle arcs
 
 ### Intersection points of two geodesic lines
 
+Returns the unique intersection of two finite, shorter great-circle segments,
+including endpoints. Disjoint, coincident, and overlapping segments return
+`null`. Invalid coordinates and identical or antipodal segment endpoints throw
+`ArgumentError`.
+
 ```dart
-  LatLng? intersection = GeodesicLines.calculateGeodesicLineIntersection(
-      start1, end1, start2, end2);
+LatLng? intersection = GeodesicLines.calculateGeodesicLineIntersection(
+    start1, end1, start2, end2);
+```
+
+### Project a point onto a geodesic line
+
+Returns the nearest point on the infinite great circle through `start` and
+`end`. The projection is not clamped to the finite segment. Invalid coordinates,
+identical or antipodal endpoints, and points with no unique projection throw
+`ArgumentError`.
+
+```dart
+LatLng projection =
+    GeodesicLines.projectPointOntoGeodesicLine(point, start, end);
 ```
