@@ -132,7 +132,12 @@ class Geodesy {
 
   /// Calculate the area of a polygon with holes.
   ///
-  /// Given an outer polygon defined by a list of [outerPolygon] points and a list of [holes] (each hole represented as a list of LatLng points), this function calculates and returns the area of the polygon with holes.
+  /// Returns square meters on a sphere of radius 6,371,000 meters, subtracting
+  /// each hole's smaller enclosed area regardless of winding. Empty [holes]
+  /// returns the outer area. Holes must be simple, contained in [outerPolygon],
+  /// and non-overlapping; topology is not checked. Throws [ArgumentError] for
+  /// invalid rings or total hole area exceeding the outer area.
+  /// See [PolygonHole.calculatePolygonWithHolesArea] for details.
   double calculatePolygonWithHolesArea(
       List<LatLng> outerPolygon, List<List<LatLng>> holes) {
     return PolygonHole.calculatePolygonWithHolesArea(outerPolygon, holes);
@@ -186,7 +191,12 @@ class Geodesy {
 
   /// Calculate the area of a polygon defined by a list of [polygonPoints] points.
   ///
-  /// Given a list of [polygonPoints] representing the vertices of a polygon, this function calculates and returns the area of the polygon.
+  /// Returns the smaller enclosed region in square meters on a sphere of
+  /// radius 6,371,000 meters, using short great-circle edges. Either winding
+  /// and open or explicitly closed rings are accepted. The polygon must be
+  /// simple; self-intersections are not checked. Throws [ArgumentError] for
+  /// invalid coordinates, antipodal edges, or numerically unstable rings.
+  /// See [PolygonArea.calculatePolygonArea] for details.
   double calculatePolygonArea(List<LatLng> polygonPoints) {
     return PolygonArea.calculatePolygonArea(polygonPoints);
   }

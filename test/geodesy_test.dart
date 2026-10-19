@@ -247,10 +247,10 @@ void main() {
     final calculatedArea =
         geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
 
-    // Expected area of the polygon with the hole
-    final expectedArea = 0.75; // This value should match the actual calculation
+    // Spherical-excess reference in square meters, with R = 6,371,000 m.
+    final expectedArea = 9273027721.421833;
 
-    expect(calculatedArea, expectedArea);
+    expect(calculatedArea, closeTo(expectedArea, .01));
   });
 
   //
@@ -357,8 +357,9 @@ void main() {
     // Calculate the area of the square
     double area = geodesy.calculatePolygonArea(squarePoints);
 
-    // The area of a square with side length 1 is 1 square meter
-    expect(area, equals(1.0));
+    // The vertices differ by one degree, not one meter.
+    // Spherical-excess reference with great-circle edges and R = 6,371,000 m.
+    expect(area, closeTo(12363997753.67991, .01));
   });
 
   test('Calculate the length of a straight line in meters', () {

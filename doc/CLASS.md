@@ -241,6 +241,13 @@ final double calculatedDistance =
 
 ### Calculate Area of Polygon with Hole
 
+Returns square meters using the spherical polygon area calculation below for
+each ring, independent of winding. Empty holes return the outer area; empty or
+degenerate holes contribute zero. Holes must be simple, non-overlapping, and
+contained in the outer ring's smaller region. Containment and overlap are not
+checked. Invalid rings or total hole area exceeding the outer area (beyond
+floating-point tolerance) throw `ArgumentError`.
+
 ```dart
 final calculatedArea = geodesy.calculatePolygonWithHolesArea(outerPolygon, holes);
 ```
@@ -288,7 +295,17 @@ List<LatLng> arcPoints = geodesy.calculatePointsAlongGreatCircle(startPoint, end
 double length = PolyLine.calculatePolyLineLength(polyLinePoints);
 ```
 
-### Polygon Area Calculation using Shoelace formula
+### Spherical Polygon Area
+
+Returns square meters on a sphere of radius 6,371,000 meters. Edges follow the
+shorter great-circle arcs. The result is the smaller enclosed region, at most
+a hemisphere, regardless of winding. Rings close automatically; repeating the
+first vertex is optional. Fewer than three vertices return zero.
+
+Supply a simple ring: self-intersections are unsupported and are not checked.
+Invalid coordinates, antipodal adjacent vertices, and numerically unstable
+rings throw `ArgumentError`. This spherical model is not an ellipsoidal area
+calculation, and constant-latitude edges generally differ from great-circle arcs.
 
 ```dart
 double polygonArea = geodesy.calculatePolygonArea(polygonPoints);
