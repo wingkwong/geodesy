@@ -106,7 +106,7 @@ void main() {
     const num latitude2 = 48.8566; // Latitude of the second point
     const num longitude2 = 2.3522; // Longitude of the second point
 
-    const num expectedDistance = 877460.0; // Expected distance in kilometers
+    const num expectedDistance = 877460.0; // Expected distance in meters
 
     final num distance = geodesy.greatCircleDistanceBetweenTwoGeoPoints(
         latitude1, longitude1, latitude2, longitude2);
@@ -260,8 +260,8 @@ void main() {
 
     double distance = geodesy.equirectangularDistance(point1, point2);
 
-    // Expected distance between Berlin and Paris in kilometers (approximate)
-    double expectedDistance = 68326.0664427471;
+    // Equirectangular approximation between Berlin and Paris in meters.
+    double expectedDistance = 878748.148907713;
 
     // Define a tolerance for floating-point comparison
     double tolerance = 0.01;
@@ -274,8 +274,8 @@ void main() {
 
     double distance = geodesy.sphericalLawOfCosinesDistance(point1, point2);
 
-    // Expected distance between Berlin and Paris in kilometers (approximate)
-    double expectedDistance = 877.4633259175409;
+    // Expected distance between Berlin and Paris in meters (approximate).
+    double expectedDistance = 877463.3259175409;
 
     // Define a tolerance for floating-point comparison
     double tolerance = 0.01;

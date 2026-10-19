@@ -122,7 +122,10 @@ class Geodesy {
 
   /// Calculate the Vincenty formula for geodesic distance calculation between two geographic points.
   ///
-  /// Given the latitude and longitude of two points [lat1], [lon1], [lat2], and [lon2], this function calculates and returns the geodesic distance between these two points using the Vincenty formula.
+  /// Given the latitude and longitude of two points [lat1], [lon1], [lat2], and [lon2], this function calculates and returns the geodesic distance in meters using the Vincenty formula.
+  /// Throws [ArgumentError] for non-finite or out-of-range coordinates and
+  /// [StateError] if the calculation does not converge within 200 iterations
+  /// (possible for antipodal or nearly antipodal points).
   double vincentyDistance(double lat1, double lon1, double lat2, double lon2) {
     return VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
   }

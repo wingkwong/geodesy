@@ -93,7 +93,7 @@ void main() {
       EquirectangularApproximation.equirectangularDistance(
           firstPoint, secondPoint);
   print(
-      '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} km
+      '''Equirectangular Distance: ${equirectangularDistance.toStringAsFixed(2)} m
       ''');
 
   /// Calculate Spherical Law Of Cosines Distance
@@ -103,7 +103,7 @@ void main() {
   double sLCDdistance =
       SphericalLawOfCosines.sphericalLawOfCosinesDistance(bGPoint, pFPoint);
   print(
-      '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} km
+      '''Spherical Law of Cosines Distance: ${sLCDdistance.toStringAsFixed(2)} m
       ''');
 
   /// Geodetic Point Manipulation - Rhumb Line Destination Formula

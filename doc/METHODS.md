@@ -209,6 +209,12 @@ Returns a list of `LatLng` points representing the intersection polygon.
 
 ### Vincenty formula for Geodesic Distance Calculation
 
+Returns the WGS-84 ellipsoidal distance in meters. Coordinates must be finite,
+with latitude in [-90, 90] and longitude in [-180, 180]; invalid coordinates
+throw `ArgumentError`. Identical points return zero. Antipodal or nearly
+antipodal pairs may fail to converge; after 200 iterations, `StateError` is
+thrown instead of returning an approximation.
+
 ```dart
 VincentyDistance.vincentyDistance(lat1, lon1, lat2, lon2);
 ```
@@ -221,12 +227,19 @@ final area = Polygon.calculatePolygonWithHolesArea(outerPolygon, holes);
 
 ### Equirectangular approximation Calculation
 
+Returns an approximate distance in meters using a mean Earth radius of
+6,371,000 meters. Intended for nearby points; longitude differences are wrapped
+to take the short route across the dateline.
+
 ```dart
 double equirectangularDistance = 
   EquirectangularApproximation.equirectangularDistance(firstPoint,secondPoint);
 ```
 
 ### Spherical Law Of Cosines Distance
+
+Returns the spherical distance in meters using a mean Earth radius of
+6,371,000 meters.
 
 ```dart
 double sLCDdistance =
